@@ -8,15 +8,15 @@ import Rounting from './routes/Routing';
 function App() {
 
   return (
-    <>
+    <div className='bg-slate-600'>
       <Header />
-      <div className='flex flex-col justify-center nunito-sans-regular'>
+      <div className='flex flex-col justify-center nunito-sans-regular pt-20'>
         <div className='ContainerPrimary relative'>
           <Rounting />
         </div>
       </div>
       <Footer />
-    </>
+    </div>
   )
 }
 
