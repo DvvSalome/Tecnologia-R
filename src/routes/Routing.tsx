@@ -1,14 +1,15 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Inicio from "../pages/Inicio";
 
 const Rounting: React.FC = () => {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Inicio />} />
-      </Routes>
-    </Router>
+    <Routes>
+      <Route path="/" element={<Inicio />} />
+      <Route path="/productos" element={<Inicio />} />
+      <Route path="/contacto" element={<Inicio />} />
+      <Route path="/nosotros" element={<Inicio />} />
+    </Routes>
   );
 };
 
