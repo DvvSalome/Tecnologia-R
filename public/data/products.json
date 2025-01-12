@@ -1,0 +1,104 @@
+[
+  {
+    "id": 1,
+    "nombre": "Producto 1",
+    "descripcion": "Este es el producto 1, ideal para uso diario.",
+    "tipo": 1,
+    "precio": 19.99,
+    "descuento": 15.00,
+    "imagenes": [
+      "/images/teclados/GS200-B-2.jpg",
+      "/images/teclados/GS200-N-2.jpg",
+      "/images/teclados/product1-image3.jpg"
+    ]
+  },
+  {
+    "id": 2,
+    "nombre": "Producto 2",
+    "descripcion": "Producto 2, perfecto para actividades al aire libre.",
+    "tipo": 1,
+    "precio": 25.50,
+    "descuento": 20.00,
+    "imagenes": [
+      "/images/teclados/GS200-N-2.jpg",
+      "/images/teclados/product2-image2.jpg"
+    ]
+  },
+  {
+    "id": 3,
+    "nombre": "Producto 3",
+    "descripcion": "Producto 3, una excelente opción para la oficina.",
+    "tipo": 1,
+    "precio": 45.99,
+    "descuento": 40.00,
+    "imagenes": [
+      "/images/teclados/MKF30S-1.png",
+      "/images/teclados/MKF30S-1.png",
+      "/images/teclados/MKF30S-1.png",
+      "/images/teclados/MKF30S-1.png"
+    ]
+  },
+  {
+    "id": 4,
+    "nombre": "Producto 4",
+    "descripcion": "Producto 4 con diseño innovador y tecnología avanzada.",
+    "tipo": 1,
+    "precio": 89.99,
+    "descuento": 79.99,
+    "imagenes": [
+      "/images/teclados/TGMJR-003-1.jpg",
+      "/images/teclados/product4-image2.jpg"
+    ]
+  },
+  {
+    "id": 5,
+    "nombre": "Producto 5",
+    "descripcion": "Producto 5, económico y funcional.",
+    "tipo": 1,
+    "precio": 10.00,
+    "descuento": 8.50,
+    "imagenes": [
+      "/images/teclados/TGMJR-008-4.jpg"
+    ]
+  },
+  {
+    "id": 6,
+    "nombre": "Producto 6",
+    "descripcion": "Producto 6, ideal para regalar en ocasiones especiales.",
+    "tipo": 1,
+    "precio": 29.99,
+    "descuento": 25.00,
+    "imagenes": [
+      "/images/teclados/TGMJR-010-1.jpg",
+      "/images/teclados/product6-image2.jpg",
+      "/images/teclados/product6-image3.jpg"
+    ]
+  },
+  {
+    "id": 7,
+    "nombre": "Producto 6",
+    "descripcion": "Producto 6, ideal para regalar en ocasiones especiales.",
+    "tipo": 1,
+    "precio": 29.99,
+    "descuento": 25.00,
+    "imagenes": [
+      "/images/teclados/TGMJR-014-6.jpg",
+      "/images/teclados/product6-image2.jpg",
+      "/images/teclados/product6-image3.jpg"
+    ]
+  },
+  {
+    "id": 8,
+    "nombre": "Portatil",
+    "descripcion": "Producto 6, ideal para regalar en ocasiones especiales.",
+    "tipo": 7,
+    "precio": 29.99,
+    "descuento": 25.00,
+    "imagenes": [
+      "/images/inicio/best-seller.png",
+      "/images/teclados/product6-image2.jpg",
+      "/images/teclados/product6-image3.jpg"
+    ],
+    "popular": true
+  }
+]

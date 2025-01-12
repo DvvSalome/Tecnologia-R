@@ -48,3 +48,12 @@ export default tseslint.config({
   },
 })
 ```
+
+// tipo de productos(
+// 1: teclados
+// 2: mouse
+// 3: monitores
+// 4: audifonos
+// 5: camaras
+// 6: microfonos
+// )

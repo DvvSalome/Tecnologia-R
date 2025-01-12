@@ -40,7 +40,8 @@ const Banner = ({ slides }: SliderProps) => {
   };
 
   return (
-    <div className="relative w-full overflow-hidden my-10 rounded-lg">
+    <div className="flex justify-center my-10">
+      <div className="relative w-10/12 overflow-hidden rounded-lg">
       {/* Contenedor de slides */}
       <div
         className="flex transition-transform duration-500"
@@ -49,7 +50,7 @@ const Banner = ({ slides }: SliderProps) => {
         {slides.map((slide, index) => (
           <div
             key={index}
-            className="min-w-full h-[600px] bg-cover bg-center"
+            className="min-w-full h-[300px] md:h-[400px] lg:h-[600px] bg-cover bg-center"
             style={{ backgroundImage: `url(${slide})` }}
           ></div>
         ))}
@@ -83,6 +84,7 @@ const Banner = ({ slides }: SliderProps) => {
           ></button>
         ))}
       </div>
+    </div>
     </div>
   );
 };
