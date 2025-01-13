@@ -38,6 +38,10 @@ const Navbar = () => {
     };
   }, [isMenuOpen]);
 
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
     <nav className="p-4">
       <div className="flex items-center justify-between w-full">
@@ -84,7 +88,10 @@ const Navbar = () => {
                     ? "bg-gradient-to-b from-green-400 to-blue-400 bg-clip-text text-transparent p-2 rounded font-bold"
                     : "text-white p-2 rounded hover:ring-2 hover:ring-blue-400"
                 }
-                onClick={() => setIsMenuOpen(false)} // Cierra el menú al seleccionar un enlace
+                onClick={() => {
+                  setIsMenuOpen(false);
+                  scrollToTop();
+                }} // Cierra el menú al seleccionar un enlace
               >
                 {link.name}
               </NavLink>
