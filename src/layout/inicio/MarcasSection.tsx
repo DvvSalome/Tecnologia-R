@@ -1,110 +1,73 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useEffect, useRef } from "react";
 
 const images = [
-  '/images/marcas/1.png',
-  '/images/marcas/2.png',
-  '/images/marcas/3.png',
-  '/images/marcas/4.png',
-  '/images/marcas/5.png',
-  '/images/marcas/7.png',
+  "/images/marcas/1.png",
+  "/images/marcas/2.png",
+  "/images/marcas/3.png",
+  "/images/marcas/4.png",
+  "/images/marcas/5.png",
+  "/images/marcas/7.png",
 ];
 
-type MarcasSectionProps = {
-  animation?: string;
-  scrollSpeed?: number;
-};
-
-const MarcasSection: React.FC<MarcasSectionProps> = ({
-  animation = '',
-  scrollSpeed = 0.5,
-}) => {
+const MarcasSection: React.FC = () => {
   const scrollContainerRef = useRef<HTMLDivElement | null>(null);
-  const scrollWrapperRef = useRef<HTMLDivElement | null>(null);
-  const [containerWidth, setContainerWidth] = useState(0);
 
-  // Actualizar el ancho del contenedor en el tamaño de la ventana
   useEffect(() => {
-    const handleResize = () => {
-      if (scrollContainerRef.current) {
-        setContainerWidth(scrollContainerRef.current.offsetWidth);
+    const container = scrollContainerRef.current;
+    if (!container) return;
+
+    let scrollPosition = 0;
+    const scrollSpeed = 1; // Velocidad del scroll
+
+    const startScrolling = () => {
+      scrollPosition += scrollSpeed;
+      if (scrollPosition >= container.scrollWidth / 2) {
+        scrollPosition = 0; // Reinicia el scroll al punto inicial
       }
+      container.style.transform = `translateX(-${scrollPosition}px)`;
+      requestAnimationFrame(startScrolling);
     };
 
-    window.addEventListener('resize', handleResize);
-    handleResize(); // Iniciar el ancho al cargar
+    // Duplica las imágenes para el efecto infinito
+    container.innerHTML += container.innerHTML;
 
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
+    // Inicia el scroll infinito
+    const animationFrameId = requestAnimationFrame(startScrolling);
+
+    return () => cancelAnimationFrame(animationFrameId); // Limpieza
   }, []);
 
-  // Inicia el scroll infinito
-  useEffect(() => {
-    const scrollContainer = scrollContainerRef.current;
-    const scrollWrapper = scrollWrapperRef.current;
-
-    if (!scrollContainer || !scrollWrapper || containerWidth === 0) return;
-
-    const totalWidth = scrollWrapper.scrollWidth;
-    let lastScrollPosition = 0;
-
-    // Animación para scroll infinito
-    const animateScroll = () => {
-      if (!scrollWrapper) return;
-
-      const currentScrollPosition = lastScrollPosition + scrollSpeed;
-
-      // Si se ha desplazado fuera del contenedor, reajustamos la posición
-      if (currentScrollPosition >= totalWidth) {
-        scrollWrapper.style.transition = 'none'; // Desactivar la transición temporalmente
-        scrollWrapper.style.transform = `translateX(0)`;
-        lastScrollPosition = 0; // Reiniciar la posición
-        setTimeout(() => {
-          scrollWrapper.style.transition = 'transform 0s linear';
-        }, 50);
-      } else {
-        scrollWrapper.style.transform = `translateX(-${currentScrollPosition}px)`;
-        lastScrollPosition = currentScrollPosition;
-      }
-
-      // Continuar la animación
-      animationFrameId = requestAnimationFrame(animateScroll);
-    };
-
-    // Comenzamos la animación de scroll
-    let animationFrameId = requestAnimationFrame(animateScroll);
-
-    return () => {
-      cancelAnimationFrame(animationFrameId);
-    };
-  }, [scrollSpeed, containerWidth]);
-
   return (
-    <div>
-      <h2 className="w-full text-center text-3xl text-white font-semibold">
-        OFRECIENDO LO MEJOR
+    <div className="relative overflow-hidden py-8">
+      <h2 className="text-center text-3xl text-white font-semibold mb-6">
+        MARCAS
       </h2>
-      <div
-        ref={scrollContainerRef}
-        className="w-full inline-flex flex-nowrap overflow-hidden"
-      >
+      <div className="relative w-full overflow-hidden">
+        {/* Contenedor principal */}
         <div
-          ref={scrollWrapperRef}
-          className="flex"
+          ref={scrollContainerRef}
+          className="flex space-x-8 relative"
           style={{
-            display: 'flex',
-            flexDirection: 'row',
-            transition: 'transform 0.2s linear', // Suavizar la animación
+            display: "flex",
+            whiteSpace: "nowrap",
+            willChange: "transform",
           }}
         >
-          {/* Duplicar las imágenes para crear el efecto de scroll infinito */}
-          {[...images, ...images].map((src, index) => (
-            <div key={index} className="flex-shrink-0">
-              <img src={src} alt={`Image ${index + 1}`} className="h-32" />
+          {images.map((src, index) => (
+            <div
+              key={index}
+              className="flex-shrink-0"
+              style={{ width: "auto", paddingRight: "2rem" }}
+            >
+              <img src={src} alt={`Marca ${index + 1}`} className="h-32" />
             </div>
           ))}
         </div>
       </div>
+
+      {/* Gradientes para el efecto de desvanecimiento */}
+      <div className="absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-slate-600 via-transparent to-transparent pointer-events-none"></div>
+      <div className="absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-slate-600 via-transparent to-transparent pointer-events-none"></div>
     </div>
   );
 };

@@ -2,7 +2,7 @@ import ProductsCard from "../../components/cards/ProductCard"
 
 const ProductoSection = () => {
   return (
-    <div className="flex my-10 mx-10 justify-around">
+    <div className="flex my-10 md:mx-10 justify-evenly sm:justify-around">
       <ProductsCard image="/images/inicio/keyboard.svg" title="Teclados" link="" />
       <ProductsCard image="/images/inicio/mouse.svg" title="Mouses" link="" />
       <ProductsCard image="/images/inicio/monitor.svg" title="Monitores" link="" />

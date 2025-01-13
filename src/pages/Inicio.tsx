@@ -15,7 +15,7 @@ const Inicio = () => {
       <ProductoSection />
       <ProductoDesSection />
       <VideosSection />
-      <MarcasSection animation="animate-infinite-scroll" scrollSpeed={1} />
+      <MarcasSection />
     </>
   );
 };
