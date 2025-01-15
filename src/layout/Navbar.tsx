@@ -1,7 +1,9 @@
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate, useLocation } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
 
 const Navbar = () => {
+  const location = useLocation();
+
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [openSubmenu, setOpenSubmenu] = useState<string | null>(null);
@@ -17,12 +19,18 @@ const Navbar = () => {
     {
       name: "Periféricos",
       id: "perifericos",
-      options: [{ name: "Teclados", id: 1 }, { name: "Mouse", id: 2 }],
+      options: [
+        { name: "Teclados", id: 1 },
+        { name: "Mouse", id: 2 },
+      ],
     },
     {
       name: "Componentes",
       id: "componentes",
-      options: [{ name: "Placas base", id: 3 }, { name: "Procesadores", id: 4 }],
+      options: [
+        { name: "Placas base", id: 3 },
+        { name: "Procesadores", id: 4 },
+      ],
     },
   ];
 
@@ -45,6 +53,17 @@ const Navbar = () => {
     closeSidebar();
     navigate(`/productos/${id}`);
   };
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 1024) {
+        setIsMenuOpen(false);
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -72,11 +91,14 @@ const Navbar = () => {
 
   const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
 
-  const handleProductClick = () => toggleSidebar();
+  const handleProductClick = () => {
+    closeSidebar();
+    toggleSidebar();
+  };
 
   return (
-    <nav className="p-4">
-      <div className="flex items-center justify-between w-full">
+    <nav className="pt-2 pe-5 sm:p-4">
+      <div className="flex flex-col items-end justify-between w-full">
         {/* Botón de hamburguesa */}
         <button
           ref={buttonRef}
@@ -107,7 +129,7 @@ const Navbar = () => {
           ref={menuRef}
           className={`lg:flex space-y-6 lg:space-y-0 lg:flex-row transition-all transform duration-500 ease-in-out ${
             isMenuOpen
-              ? "flex flex-col items-center absolute top-20 left-0 w-full bg-gray-700 bg-opacity-90 px-6 py-4 opacity-100 translate-y-0 lg:static lg:bg-transparent lg:opacity-100 lg:translate-y-0"
+              ? "flex flex-col items-center mt-11 w-full bg-gray-700 bg-opacity-90 px-6 py-4 opacity-100 lg:static lg:bg-transparent lg:opacity-100 lg:translate-y-0"
               : "hidden lg:flex lg:flex-row lg:items-center lg:space-x-4"
           }`}
         >
@@ -116,7 +138,11 @@ const Navbar = () => {
               {link.name === "Productos" ? (
                 <button
                   onClick={handleProductClick}
-                  className="text-white p-2 rounded hover:ring-2 hover:ring-blue-400 focus:outline-none"
+                  className={`${
+                    location.pathname.includes("/productos")
+                      ? "bg-gradient-to-b from-green-400 to-blue-400 bg-clip-text text-transparent p-2 rounded font-bold"
+                      : "text-white p-2 rounded hover:ring-2 hover:ring-blue-400"
+                  }`}
                 >
                   {link.name}
                 </button>
@@ -141,47 +167,51 @@ const Navbar = () => {
         </ul>
       </div>
 
-      {/* Menú lateral */}
+      {/* Menú lateral para Productos */}
       <div
         ref={sidebarRef}
-        className={`fixed inset-0 flex justify-end bg-black bg-opacity-50 z-50 transition-transform duration-500 ease-in-out ${
+        className={`fixed top-0 right-0 h-full bg-gray-700 bg-opacity-60 backdrop-blur-sm text-white p-6 z-50 shadow-2xl transform transition-transform duration-500 ease-in-out ${
           isSidebarOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
-        <div className="w-64 bg-gray-800 p-6 shadow-lg">
-          <button
-            className="text-white mb-4 focus:outline-none"
-            onClick={closeSidebar}
-          >
-            Cerrar
-          </button>
-          <ul>
-            {productSections.map((section) => (
-              <li key={section.id} className="mb-4">
-                <button
-                  className="text-white font-bold focus:outline-none"
-                  onClick={() => handleSubmenuToggle(section.id)}
-                >
-                  {section.name}
-                </button>
-                {openSubmenu === section.id && (
-                  <ul className="ml-4 mt-2">
-                    {section.options.map((option) => (
-                      <li key={option.id}>
-                        <button
-                          onClick={() => handleSectionClick(option.id)}
-                          className="text-blue-400 hover:underline focus:outline-none"
-                        >
-                          {option.name}
-                        </button>
-                      </li>
-                    ))}
-                  </ul>
-                )}
-              </li>
-            ))}
-          </ul>
-        </div>
+        <h2 className="text-xl font-bold mb-4 bg-sky-950 p-3 mr-5 rounded-lg">Categorías de Productos</h2>
+        {productSections.map((section) => (
+          <div key={section.id} className="mb-4">
+            <button
+              onClick={() => handleSubmenuToggle(section.id)}
+              className="font-semibold hover:underline"
+            >
+              {section.name}
+            </button>
+            <ul
+              className={`pl-4 overflow-hidden transition-all duration-300 ease-in-out ${
+                openSubmenu === section.id ? "max-h-40" : "max-h-0"
+              }`}
+            >
+              {section.options.map((option) => (
+                <li key={option.id} className="hover:underline">
+                  <NavLink
+                    to={`/productos/${option.name}`}
+                    className={({ isActive }) =>
+                      isActive
+                        ? "text-blue-400 font-bold"
+                        : "text-white hover:text-blue-300"
+                    }
+                    onClick={closeSidebar}
+                  >
+                    {option.name}
+                  </NavLink>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+        <button
+          onClick={closeSidebar}
+          className="absolute top-4 right-4 text-lg font-bold"
+        >
+          X
+        </button>
       </div>
     </nav>
   );

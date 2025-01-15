@@ -1,7 +1,19 @@
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { useEffect } from "react";
+
 const FormularioContacto = () => {
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,
+      once: true,
+    });
+  }, []);
   return (
-    <div className="bg-gray-900 w-11/12 lg:w-1/2 text-white py-10 px-5 sm:px-10 md:px-20 rounded-lg">
-      <h2 className="text-2xl md:text-3xl font-bold text-center mb-8">Formulario de Contacto</h2>
+    <div className="bg-gray-900 w-11/12 lg:w-1/2 text-white py-10 px-5 sm:px-10 md:px-20 rounded-lg" data-aos="flip-left">
+      <h2 className="text-2xl md:text-3xl font-bold text-center mb-8">
+        Formulario de Contacto
+      </h2>
       <form className="space-y-6">
         {/* Nombre completo */}
         <div>

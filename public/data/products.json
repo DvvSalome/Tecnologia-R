@@ -5,7 +5,7 @@
     "descripcion": "Este es el producto 1, ideal para uso diario.",
     "tipo": 1,
     "precio": 19.99,
-    "descuento": 15.00,
+    "descuento": 0,
     "imagenes": [
       "/images/teclados/GS200-B-2.jpg",
       "/images/teclados/GS200-N-2.jpg",
@@ -18,7 +18,7 @@
     "descripcion": "Producto 2, perfecto para actividades al aire libre.",
     "tipo": 1,
     "precio": 25.50,
-    "descuento": 20.00,
+    "descuento": 0,
     "imagenes": [
       "/images/teclados/GS200-N-2.jpg",
       "/images/teclados/product2-image2.jpg"
@@ -100,5 +100,101 @@
       "/images/teclados/product6-image3.jpg"
     ],
     "popular": true
+  },
+  {
+    "id": 9,
+    "nombre": "Teclado Gamer",
+    "descripcion": "Teclado mecánico para gamers con retroiluminación RGB.",
+    "tipo": 1,
+    "precio": 120.99,
+    "descuento": 30.00,
+    "imagenes": [
+      "https://via.placeholder.com/150x100?text=Teclado+Gamer+1",
+      "https://via.placeholder.com/150x100?text=Teclado+Gamer+2"
+    ]
+  },
+  {
+    "id": 10,
+    "nombre": "Mouse Ergonómico",
+    "descripcion": "Mouse ergonómico para una experiencia de uso más cómoda.",
+    "tipo": 2,
+    "precio": 45.50,
+    "descuento": 10.00,
+    "imagenes": [
+      "https://via.placeholder.com/150x100?text=Mouse+Ergonómico+1",
+      "https://via.placeholder.com/150x100?text=Mouse+Ergonómico+2"
+    ]
+  },
+  {
+    "id": 11,
+    "nombre": "Monitor 24\"",
+    "descripcion": "Monitor Full HD de 24\" con tecnología IPS.",
+    "tipo": 3,
+    "precio": 199.99,
+    "descuento": 50.00,
+    "imagenes": [
+      "https://via.placeholder.com/150x100?text=Monitor+24+1",
+      "https://via.placeholder.com/150x100?text=Monitor+24+2"
+    ]
+  },
+  {
+    "id": 12,
+    "nombre": "Auriculares Bluetooth",
+    "descripcion": "Auriculares Bluetooth con cancelación de ruido.",
+    "tipo": 4,
+    "precio": 89.99,
+    "descuento": 20.00,
+    "imagenes": [
+      "https://via.placeholder.com/150x100?text=Auriculares+Bluetooth+1",
+      "https://via.placeholder.com/150x100?text=Auriculares+Bluetooth+2"
+    ]
+  },
+  {
+    "id": 13,
+    "nombre": "Cámara 4K",
+    "descripcion": "Cámara 4K para grabación profesional de videos.",
+    "tipo": 5,
+    "precio": 499.99,
+    "descuento": 100.00,
+    "imagenes": [
+      "https://via.placeholder.com/150x100?text=Cámara+4K+1",
+      "https://via.placeholder.com/150x100?text=Cámara+4K+2"
+    ]
+  },
+  {
+    "id": 14,
+    "nombre": "Micrófono Profesional",
+    "descripcion": "Micrófono profesional ideal para grabación y transmisión en vivo.",
+    "tipo": 6,
+    "precio": 89.99,
+    "descuento": 15.00,
+    "imagenes": [
+      "https://via.placeholder.com/150x100?text=Micrófono+Profesional+1",
+      "https://via.placeholder.com/150x100?text=Micrófono+Profesional+2"
+    ]
+  },
+  {
+    "id": 15,
+    "nombre": "Teclado Mecánico RGB",
+    "descripcion": "Teclado mecánico con switches personalizados y retroiluminación RGB.",
+    "tipo": 1,
+    "precio": 150.00,
+    "descuento": 40.00,
+    "imagenes": [
+      "https://via.placeholder.com/150x100?text=Teclado+Mecánico+RGB+1",
+      "https://via.placeholder.com/150x100?text=Teclado+Mecánico+RGB+2"
+    ]
+  },
+  {
+    "id": 16,
+    "nombre": "Mouse Pad XXL",
+    "descripcion": "Alfombrilla de gran tamaño para un movimiento fluido del mouse.",
+    "tipo": 2,
+    "precio": 25.99,
+    "descuento": 5.00,
+    "imagenes": [
+      "https://via.placeholder.com/150x100?text=Mouse+Pad+XXL+1",
+      "https://via.placeholder.com/150x100?text=Mouse+Pad+XXL+2"
+    ]
   }
 ]

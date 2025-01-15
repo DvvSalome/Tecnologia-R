@@ -1,8 +1,16 @@
-import 'tailwindcss/tailwind.css';
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { useEffect } from "react";
 
 const YoutubeVideo = () => {
+  useEffect(() => {
+    AOS.init({
+      duration: 500,
+      once: true,
+    });
+  }, []);
   return (
-    <div className="bg-gray-900 mx-10 text-white p-6 rounded-lg">
+    <div className="bg-gray-900 mx-10 text-white p-6 rounded-lg" data-aos="flip-left">
       <div className="flex flex-col md:flex-row items-start">
         <div className="w-full md:w-2/3 lg:w-3/5 mr-0 md:mr-4 mb-4 md:mb-0">
           <iframe
@@ -21,8 +29,8 @@ const YoutubeVideo = () => {
           <p className="mb-4">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam
             laudantium quae cum nobis vel quaerat aut dolore esse! Deleniti
-            repudiandae, nisi in laudantium similique error repellendus voluptatum
-            doloribus aliquid enim.
+            repudiandae, nisi in laudantium similique error repellendus
+            voluptatum doloribus aliquid enim.
           </p>
           <input
             type="button"

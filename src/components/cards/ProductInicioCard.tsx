@@ -18,24 +18,39 @@ const ProductoInicioCard: React.FC<{
 }> = ({ producto, onOpenModal }) => {
   return (
     <div
-      className={`relative producto-card p-4 border border-gray-700 rounded-lg shadow-xl flex items-center h-full ${
-        producto.popular ? "bg-gray-800" : "bg-sky-950 flex-col min-h-[300px] max-h-[500px]"
-      }`}
+      className={`relative p-4 border border-gray-700 rounded-lg hover:z-30  hover:scale-105 transition-transform duration-300 ease-in-out ${
+        producto.popular
+          ? "bg-gradient-to-br from-gray-800 via-gray-700 to-gray-900"
+          : "bg-gradient-to-br from-sky-900 via-sky-950 to-blue-900"
+      } ${
+        producto.popular ? "flex-row w-full" : "flex-col min-h-[350px]"
+      } flex items-center h-full`}
     >
       {/* Etiqueta para productos populares */}
       {producto.popular && (
-        <span className="bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-full absolute top-2 right-2">
-          Lo más vendido
+        <span className="bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-full absolute top-2 left-2 shadow-md">
+          🔥 Lo más vendido
         </span>
       )}
 
+      {/* Imagen del producto */}
       <img
         src={producto.imagenes[0]} // Muestra la primera imagen
         alt={`Imagen principal de ${producto.nombre}`}
-        className={`object-cover rounded mb-4 ${producto.popular ? "w-1/2" : "w-full h-48"}`}
+        className={`object-cover rounded-md shadow-md ${
+          producto.popular ? "w-40 h-40 mr-4" : "w-full h-48 mb-4"
+        }`}
       />
-      <div className={`flex flex-col items-center ${producto.popular ? "w-1/2" : ""}`}>
-        <h2 className="text-lg font-semibold flex-shrink-0">
+
+      {/* Información del producto */}
+      <div
+        className={`text-center flex flex-col items-center ${
+          producto.popular
+            ? "items-start text-left"
+            : "items-center text-center"
+        } w-full`}
+      >
+        <h2 className="text-lg font-semibold text-gray-100 tracking-wide mb-2">
           {(() => {
             switch (producto.tipo) {
               case 1:
@@ -55,17 +70,31 @@ const ProductoInicioCard: React.FC<{
             }
           })()}
         </h2>
-        <p className="text-sm text-gray-600 flex-shrink-0">{producto.nombre}</p>
-        <p className="text-md font-bold text-green-600 mt-2">
-          Precio: ${producto.descuento}
-          <span className="line-through text-red-500 ml-2">
-            ${producto.precio}
-          </span>
+        <p className="text-md text-gray-300 leading-tight">{producto.nombre}</p>
+        <p className="text-md font-bold mt-2">
+          {producto.descuento > 0 ? (
+            <>
+              <span className="text-green-400">
+                ${producto.descuento.toFixed(2)}
+              </span>
+              <span className="line-through text-red-500 text-sm ml-2">
+                ${producto.precio.toFixed(2)}
+              </span>
+            </>
+          ) : (
+            <span className="text-green-400">
+              ${producto.precio.toFixed(2)}
+            </span>
+          )}
         </p>
-        <InicioProductButton
-          text="Ver más"
-          onClick={() => onOpenModal(producto)} // Llama a la función de apertura del modal
-        />
+
+        {/* Botón */}
+        <div className="mt-4">
+          <InicioProductButton
+            text="Ver más"
+            onClick={() => onOpenModal(producto)} // Llama a la función de apertura del modal
+          />
+        </div>
       </div>
     </div>
   );

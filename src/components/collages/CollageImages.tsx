@@ -1,6 +1,16 @@
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { useEffect } from "react";
+
 const CollageImages = () => {
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,
+      once: true,
+    });
+  }, []);
   return (
-    <div className="relative w-full mx-auto max-w-md h-[700px]">
+    <div className="relative w-full mx-auto max-w-md h-[700px]" data-aos="fade-down-right">
       {/* Primera imagen */}
       <img
         src="/images/nosotros/local_1.jpg"

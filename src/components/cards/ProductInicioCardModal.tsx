@@ -44,20 +44,20 @@ const ProductInicioCardModal: React.FC<{
       onClick={(e) => e.target === e.currentTarget && onClose()} // Cierra el modal si se hace clic en el fondo
       className="fixed inset-0 bg-black bg-opacity-70 z-50 flex items-center justify-center"
     >
-      <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-4xl max-h-[80vh] overflow-auto relative">
-        {/* Cerrar modal */}
+      <div className="bg-gray-100 p-8 rounded-lg shadow-lg w-full max-w-4xl max-h-[80vh] overflow-auto relative">
+        {/* Botón cerrar modal */}
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 text-gray-500 hover:text-gray-800 text-2xl"
+          className="absolute top-4 right-4 text-gray-400 hover:text-gray-800 text-2xl"
         >
           ✖
         </button>
 
-        <div className="flex gap-4 h-full max-h-[70vh] overflow-hidden">
+        <div className="flex gap-6 h-full max-h-[70vh] overflow-hidden">
           {/* Sección de imágenes */}
           <div className="flex-1 max-h-full overflow-y-auto">
             <div
-              className="w-full h-auto rounded overflow-hidden bg-cover cursor-zoom-in"
+              className="w-full h-auto rounded-lg overflow-hidden bg-cover cursor-zoom-in border border-gray-300"
               style={{ backgroundImage: `url(${imagenPrincipal})`, ...zoomStyle }}
               ref={imageRef}
               onMouseMove={handleMouseMove}
@@ -69,15 +69,15 @@ const ProductInicioCardModal: React.FC<{
                 className="w-full h-auto opacity-0" // Oculta la imagen real, solo se usa el fondo con zoom
               />
             </div>
-            <div className="flex gap-2 mt-4 overflow-x-auto">
+            <div className="flex gap-3 mt-4 overflow-x-auto">
               {producto.imagenes.map((imagen, index) => (
                 <img
                   key={index}
                   src={imagen}
                   alt={`Miniatura ${index + 1}`}
                   onClick={() => setImagenPrincipal(imagen)}
-                  className={`w-16 h-16 rounded cursor-pointer ${
-                    imagen === imagenPrincipal ? "border-2 border-blue-500" : ""
+                  className={`w-16 h-16 rounded-lg cursor-pointer border ${
+                    imagen === imagenPrincipal ? "border-blue-500" : "border-gray-300"
                   }`}
                 />
               ))}
@@ -86,19 +86,18 @@ const ProductInicioCardModal: React.FC<{
 
           {/* Sección de detalles */}
           <div className="flex-1 max-h-full overflow-y-auto">
-            <h2 className="text-2xl font-bold">{producto.nombre}</h2>
-            <p className="mt-2 text-gray-600">{producto.descripcion}</p>
-            <p className="mt-4 text-lg font-bold text-green-600">
-              Precio:{" "}
+            <h2 className="text-3xl font-semibold text-blue-700">{producto.nombre}</h2>
+            <p className="mt-3 text-gray-700 text-sm leading-relaxed">{producto.descripcion}</p>
+            <p className="mt-5 text-xl font-bold text-green-700">
               {producto.descuento > 0 ? (
                 <>
-                  ${producto.descuento}
+                  ${producto.descuento.toFixed(2)}
                   <span className="line-through text-red-500 ml-2">
-                    ${producto.precio}
+                    ${producto.precio.toFixed(2)}
                   </span>
                 </>
               ) : (
-                <span>${producto.precio}</span>
+                <span>${producto.precio.toFixed(2)}</span>
               )}
             </p>
 
@@ -107,7 +106,7 @@ const ProductInicioCardModal: React.FC<{
               href={`https://wa.me/+571234567890?text=Hola, estoy interesado en el producto: ${producto.nombre}.%0AEnlace al producto: ${window.location.href}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-4 inline-block bg-green-500 text-white px-6 py-3 rounded-lg hover:bg-green-600"
+              className="mt-6 inline-block bg-green-500 text-white px-8 py-3 rounded-full hover:bg-green-600 shadow-md transition duration-300"
             >
               Contactar por WhatsApp
             </a>

@@ -1,8 +1,18 @@
 import { FaGamepad, FaHeadphones, FaDesktop } from "react-icons/fa";
+import AOS from 'aos'
+import 'aos/dist/aos.css'
+import { useEffect } from "react";
+
 
 const NosotrosInfo = () => {
+  useEffect(() => {
+		AOS.init({
+			duration: 1000,
+			once: true
+		})
+	}, [])
   return (
-    <div className="bg-slate-950 text-white max-w-lg mx-auto p-6 rounded-lg shadow-lg">
+    <div className="bg-slate-950 text-white max-w-lg mx-auto p-6 rounded-lg shadow-lg" data-aos="fade-down-left">
       {/* Título */}
       <h2 className="text-3xl font-extrabold text-sky-400 mb-6 text-center">
         ¿Quiénes somos?

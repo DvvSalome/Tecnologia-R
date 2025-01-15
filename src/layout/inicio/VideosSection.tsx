@@ -1,8 +1,17 @@
 import { useEffect, useState } from "react";
 import InstagramVideo from "../../components/redes/InstagramVideo";
 import YoutubeVideo from "../../components/redes/YoutubeVideo";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const VideosSection = () => {
+  useEffect(() => {
+    AOS.init({
+      duration: 500,
+      once: true,
+    });
+  }, []);
+
   const [isMobile, setIsMobile] = useState(false);
 
   const videos = [
@@ -27,12 +36,15 @@ const VideosSection = () => {
   return (
     <div className="my-10">
       <YoutubeVideo />
-      <div className="mt-10 sm:mx-10">
+      <div className="mt-10 sm:mx-10" data-aos="fade-up">
         {isMobile ? (
           <div className="flex overflow-x-auto space-x-16">
             {/* Contenedor con scroll horizontal */}
             {videos.map((videoUrl, index) => (
-              <div key={index} className="flex-shrink-0 w-full sm:w-1/2 md:w-1/3 lg:w-1/4">
+              <div
+                key={index}
+                className="flex-shrink-0 w-full sm:w-1/2 md:w-1/3 lg:w-1/4"
+              >
                 <InstagramVideo embedUrl={videoUrl} />
               </div>
             ))}

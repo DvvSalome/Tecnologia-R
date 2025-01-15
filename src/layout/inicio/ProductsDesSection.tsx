@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import ProductInicioCard from "../../components/cards/ProductInicioCard";
 import productosDataRaw from "../../../public/data/products.json";
 import ProductInicioCardModal from "../../components/cards/ProductInicioCardModal";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 // Aseguramos que 'popular' sea siempre un booleano
 const productosData = productosDataRaw.map((producto) => ({
@@ -10,6 +12,13 @@ const productosData = productosDataRaw.map((producto) => ({
 }));
 
 const ProductoDesSection = () => {
+  useEffect(() => {
+    AOS.init({
+      duration: 500,
+      once: true,
+    });
+  }, []);
+
   const [modalProducto, setModalProducto] = useState(null);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [itemsPerSlide, setItemsPerSlide] = useState(5);
@@ -43,18 +52,32 @@ const ProductoDesSection = () => {
     setModalProducto(null);
   };
 
-  // Dividimos productos en grupos según itemsPerSlide
+  const productosNoPopulares = productosData.filter(
+    (producto) => !producto.popular
+  );
+
+  // Función para mezclar aleatoriamente el array de productos
+  const shuffleProducts = (products: any[]) => {
+    for (let i = products.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [products[i], products[j]] = [products[j], products[i]]; // Intercambiar los elementos
+    }
+    return products;
+  };
+
+  // Aplicamos el shuffle a los productos
+  const shuffledProducts = shuffleProducts([...productosNoPopulares]);
+
+  // Dividimos los productos barajados en grupos según itemsPerSlide
   const groupedProducts = [];
-  for (let i = 0; i < productosData.length; i += itemsPerSlide) {
-    groupedProducts.push(productosData.slice(i, i + itemsPerSlide));
+  for (let i = 0; i < shuffledProducts.length; i += itemsPerSlide) {
+    groupedProducts.push(shuffledProducts.slice(i, i + itemsPerSlide));
   }
 
   // Función para rellenar el último grupo si es necesario
   const padGroup = (group: any[]) => {
     const difference = itemsPerSlide - group.length;
-    return difference > 0
-      ? [...group, ...Array(difference).fill(null)]
-      : group;
+    return difference > 0 ? [...group, ...Array(difference).fill(null)] : group;
   };
 
   const goToNextSlide = () => {
@@ -76,7 +99,7 @@ const ProductoDesSection = () => {
   return (
     <div className="my-10 mx-5 sm:mx-20 relative flex flex-col gap-5">
       <div className="flex gap-5">
-        <div className="hidden lg:flex w-4/12">
+        <div className="hidden lg:flex w-4/12" data-aos="fade-right">
           <ProductInicioCard
             producto={productosData[7]}
             onOpenModal={handleOpenModal}
@@ -86,9 +109,10 @@ const ProductoDesSection = () => {
           src="/images/inicio/banner.png"
           alt="mini banner"
           className="w-full lg:w-8/12 rounded-xl"
+          data-aos="fade-left"
         />
       </div>
-      <div className="relative overflow-hidden">
+      <div className="relative overflow-hidden py-5" data-aos="zoom-in">
         {/* Contenedor de los slides */}
         <div
           className="flex transition-transform duration-500 ease-in-out"
@@ -106,29 +130,28 @@ const ProductoDesSection = () => {
               style={{ width: `${100 / groupedProducts.length}%` }}
             >
               {/* Mostrar los productos por slide */}
-              {padGroup(group.filter((producto) => producto?.tipo === 1)).map(
-                (producto, idx) =>
-                  producto ? (
-                    <div
-                      key={producto.id}
-                      className="flex-grow"
-                      style={{ flex: `0 0 ${100 / itemsPerSlide}%` }}
-                    >
-                      <ProductInicioCard
-                        producto={producto}
-                        onOpenModal={handleOpenModal}
-                      />
-                    </div>
-                  ) : (
-                    <div
-                      key={`placeholder-${idx}`}
-                      className="flex-grow"
-                      style={{
-                        flex: `0 0 ${100 / itemsPerSlide}%`,
-                        visibility: "hidden",
-                      }}
+              {padGroup(group).map((producto, idx) =>
+                producto ? (
+                  <div
+                    key={producto.id}
+                    className="flex-grow"
+                    style={{ flex: `0 0 ${100 / itemsPerSlide}%` }}
+                  >
+                    <ProductInicioCard
+                      producto={producto}
+                      onOpenModal={handleOpenModal}
                     />
-                  )
+                  </div>
+                ) : (
+                  <div
+                    key={`placeholder-${idx}`}
+                    className="flex-grow"
+                    style={{
+                      flex: `0 0 ${100 / itemsPerSlide}%`,
+                      visibility: "hidden",
+                    }}
+                  />
+                )
               )}
             </div>
           ))}

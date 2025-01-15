@@ -10,6 +10,7 @@ const images = [
 ];
 
 const MarcasSection: React.FC = () => {
+
   const scrollContainerRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {

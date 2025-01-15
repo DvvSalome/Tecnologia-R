@@ -1,10 +1,20 @@
 import { useState, useEffect, useRef } from "react";
+import AOS from 'aos'
+import 'aos/dist/aos.css'
 
 interface SliderProps {
   slides: string[];
 }
 
 const Banner = ({ slides }: SliderProps) => {
+
+  useEffect(() => {
+		AOS.init({
+			duration: 1000,
+			once: true
+		})
+	}, [])
+
   const [currentIndex, setCurrentIndex] = useState(0);
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -40,7 +50,7 @@ const Banner = ({ slides }: SliderProps) => {
   };
 
   return (
-    <div className="flex justify-center my-10">
+    <div className="flex justify-center my-10" data-aos="fade-down">
       <div className="relative w-10/12 overflow-hidden rounded-lg">
       {/* Contenedor de slides */}
       <div
