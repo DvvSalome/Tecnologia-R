@@ -170,7 +170,7 @@ const Navbar = () => {
       {/* Menú lateral para Productos */}
       <div
         ref={sidebarRef}
-        className={`fixed top-0 right-0 h-full bg-gray-700 bg-opacity-60 backdrop-blur-sm text-white p-6 z-50 shadow-2xl transform transition-transform duration-500 ease-in-out ${
+        className={`fixed w-96 top-0 right-0 h-full bg-gray-700 bg-opacity-60 backdrop-blur-sm text-white p-6 z-50 shadow-2xl transform transition-transform duration-500 ease-in-out ${
           isSidebarOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
@@ -179,7 +179,7 @@ const Navbar = () => {
           <div key={section.id} className="mb-4">
             <button
               onClick={() => handleSubmenuToggle(section.id)}
-              className="font-semibold hover:underline"
+              className="font-semibold hover:underline text-xl"
             >
               {section.name}
             </button>
@@ -189,7 +189,7 @@ const Navbar = () => {
               }`}
             >
               {section.options.map((option) => (
-                <li key={option.id} className="hover:underline">
+                <li key={option.id} className="hover:underline text-lg">
                   <NavLink
                     to={`/productos/${option.name}`}
                     className={({ isActive }) =>
