@@ -10,7 +10,7 @@ const YoutubeVideo = () => {
     });
   }, []);
   return (
-    <div className="bg-gray-900 mx-10 text-white p-6 rounded-lg" data-aos="flip-left">
+    <div className="bg-slate-300 dark:bg-gray-900 mx-10 text-black shadow-md dark:text-white p-6 rounded-lg" data-aos="flip-left">
       <div className="flex flex-col md:flex-row items-start">
         <div className="w-full md:w-2/3 lg:w-3/5 mr-0 md:mr-4 mb-4 md:mb-0">
           <iframe
@@ -21,7 +21,7 @@ const YoutubeVideo = () => {
             frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowFullScreen
-            className="rounded-lg shadow-lg"
+            className="rounded-lg"
           ></iframe>
         </div>
         <div className="w-full md:w-1/3 lg:w-2/5 text-left">

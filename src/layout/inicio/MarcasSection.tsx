@@ -39,8 +39,8 @@ const MarcasSection: React.FC = () => {
   }, []);
 
   return (
-    <div className="relative overflow-hidden py-8">
-      <h2 className="text-center text-3xl text-white font-semibold mb-6">
+    <div className="relative overflow-hidden py-8 mb-10">
+      <h2 className="text-center text-3xl text-black dark:text-white font-semibold mb-6">
         MARCAS
       </h2>
       <div className="relative w-full overflow-hidden">
@@ -67,8 +67,8 @@ const MarcasSection: React.FC = () => {
       </div>
 
       {/* Gradientes para el efecto de desvanecimiento */}
-      <div className="absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-slate-600 via-transparent to-transparent pointer-events-none"></div>
-      <div className="absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-slate-600 via-transparent to-transparent pointer-events-none"></div>
+      <div className="absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-white dark:from-slate-600 via-transparent to-transparent pointer-events-none"></div>
+      <div className="absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-white dark:from-slate-600 via-transparent to-transparent pointer-events-none"></div>
     </div>
   );
 };

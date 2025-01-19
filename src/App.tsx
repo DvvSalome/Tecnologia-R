@@ -8,7 +8,7 @@ import Rounting from './routes/Routing';
 function App() {
 
   return (
-    <div className='bg-slate-600'>
+    <div className='bg-white dark:bg-slate-600'>
       <Header />
       <div className='flex flex-col justify-center nunito-sans-regular pt-10 md:pt-20'>
         <div className='ContainerPrimary relative'>

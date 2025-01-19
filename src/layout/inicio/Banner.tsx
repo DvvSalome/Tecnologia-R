@@ -51,7 +51,7 @@ const Banner = ({ slides }: SliderProps) => {
 
   return (
     <div className="flex justify-center my-10" data-aos="fade-down">
-      <div className="relative w-10/12 overflow-hidden rounded-lg">
+      <div className="relative w-10/12 overflow-hidden rounded-lg shadow-xl">
       {/* Contenedor de slides */}
       <div
         className="flex transition-transform duration-500"

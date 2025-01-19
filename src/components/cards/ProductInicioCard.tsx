@@ -16,12 +16,17 @@ const ProductoInicioCard: React.FC<{
   producto: Producto;
   onOpenModal: (producto: Producto) => void;
 }> = ({ producto, onOpenModal }) => {
+  // Verificamos si el producto está definido antes de acceder a sus propiedades
+  if (!producto) {
+    return null; // o cualquier renderizado alternativo, como un mensaje de error o un loader
+  }
+  
   return (
     <div
-      className={`relative p-4 border border-gray-700 rounded-lg hover:z-30  hover:scale-105 transition-transform duration-300 ease-in-out ${
+      className={`relative p-4 border shadow-md dark:border-gray-700 rounded-lg hover:z-30  hover:scale-105 transition-transform duration-300 ease-in-out ${
         producto.popular
-          ? "bg-gradient-to-br from-gray-800 via-gray-700 to-gray-900"
-          : "bg-gradient-to-br from-sky-900 via-sky-950 to-blue-900"
+          ? "dark:bg-gradient-to-br border-gray-200 bg-white dark:from-gray-800 dark:via-gray-700 dark:to-gray-900"
+          : "dark:bg-gradient-to-br border-gray-300 bg-white dark:from-sky-900 dark:via-sky-950 dark:to-blue-900"
       } ${
         producto.popular ? "flex-row w-full" : "flex-col min-h-[350px]"
       } flex items-center h-full`}
@@ -37,7 +42,7 @@ const ProductoInicioCard: React.FC<{
       <img
         src={producto.imagenes[0]} // Muestra la primera imagen
         alt={`Imagen principal de ${producto.nombre}`}
-        className={`object-cover rounded-md shadow-md ${
+        className={`object-cover rounded-md ${
           producto.popular ? "w-40 h-40 mr-4" : "w-full h-48 mb-4"
         }`}
       />
@@ -50,7 +55,7 @@ const ProductoInicioCard: React.FC<{
             : "items-center text-center"
         } w-full`}
       >
-        <h2 className="text-lg font-semibold text-gray-100 tracking-wide mb-2">
+        <h2 className="text-lg font-semibold text-gray-400 dark:text-white tracking-wide mb-2">
           {(() => {
             switch (producto.tipo) {
               case 1:
@@ -70,14 +75,14 @@ const ProductoInicioCard: React.FC<{
             }
           })()}
         </h2>
-        <p className="text-md text-gray-300 leading-tight">{producto.nombre}</p>
-        <p className="text-md font-bold mt-2">
+        <p className="text-md text-black text-xl dark:text-gray-300 leading-tight">{producto.nombre}</p>
+        <p className="text-md font-bold text-xl">
           {producto.descuento > 0 ? (
             <>
               <span className="text-green-400">
                 ${producto.descuento.toFixed(2)}
               </span>
-              <span className="line-through text-red-500 text-sm ml-2">
+              <span className="line-through text-red-500 text-base ml-2">
                 ${producto.precio.toFixed(2)}
               </span>
             </>

@@ -52,26 +52,29 @@ const ProductoDesSection = () => {
     setModalProducto(null);
   };
 
+  // Filtramos los productos para que no se muestren los populares
   const productosNoPopulares = productosData.filter(
-    (producto) => !producto.popular
+    (producto) => producto.popular === false
   );
 
-  // Función para mezclar aleatoriamente el array de productos
-  const shuffleProducts = (products: any[]) => {
-    for (let i = products.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [products[i], products[j]] = [products[j], products[i]]; // Intercambiar los elementos
+  // Agrupamos los productos por tipo
+  const productosPorTipo = productosNoPopulares.reduce((acc, producto) => {
+    if (!acc[producto.tipo]) {
+      acc[producto.tipo] = [];
     }
-    return products;
-  };
+    acc[producto.tipo].push(producto);
+    return acc;
+  }, {});
 
-  // Aplicamos el shuffle a los productos
-  const shuffledProducts = shuffleProducts([...productosNoPopulares]);
+  // Obtenemos el último producto agregado de cada tipo (en base al id, asumiendo que el id es secuencial)
+  const ultimosProductos = Object.values(productosPorTipo).map((productos) => {
+    return productos.sort((a, b) => b.id - a.id)[0]; // Ordenamos por ID, el más reciente tiene el ID más alto
+  });
 
-  // Dividimos los productos barajados en grupos según itemsPerSlide
+  // Dividimos los productos seleccionados en grupos para el slider
   const groupedProducts = [];
-  for (let i = 0; i < shuffledProducts.length; i += itemsPerSlide) {
-    groupedProducts.push(shuffledProducts.slice(i, i + itemsPerSlide));
+  for (let i = 0; i < ultimosProductos.length; i += itemsPerSlide) {
+    groupedProducts.push(ultimosProductos.slice(i, i + itemsPerSlide));
   }
 
   // Función para rellenar el último grupo si es necesario
@@ -79,6 +82,8 @@ const ProductoDesSection = () => {
     const difference = itemsPerSlide - group.length;
     return difference > 0 ? [...group, ...Array(difference).fill(null)] : group;
   };
+
+  const productoPopular = productosData.find((producto) => producto.popular);
 
   const goToNextSlide = () => {
     setCurrentIndex((prevIndex) =>
@@ -100,10 +105,12 @@ const ProductoDesSection = () => {
     <div className="my-10 mx-5 sm:mx-20 relative flex flex-col gap-5">
       <div className="flex gap-5">
         <div className="hidden lg:flex w-4/12" data-aos="fade-right">
-          <ProductInicioCard
-            producto={productosData[7]}
-            onOpenModal={handleOpenModal}
-          />
+          {productoPopular && (
+            <ProductInicioCard
+              producto={productoPopular}
+              onOpenModal={handleOpenModal}
+            />
+          )}
         </div>
         <img
           src="/images/inicio/banner.png"
@@ -126,7 +133,7 @@ const ProductoDesSection = () => {
           {groupedProducts.map((group, index) => (
             <div
               key={index}
-              className="flex w-full"
+              className="flex w-full px-1.5"
               style={{ width: `${100 / groupedProducts.length}%` }}
             >
               {/* Mostrar los productos por slide */}
@@ -134,7 +141,7 @@ const ProductoDesSection = () => {
                 producto ? (
                   <div
                     key={producto.id}
-                    className="flex-grow"
+                    className="flex-grow px-1.5"
                     style={{ flex: `0 0 ${100 / itemsPerSlide}%` }}
                   >
                     <ProductInicioCard
@@ -145,7 +152,7 @@ const ProductoDesSection = () => {
                 ) : (
                   <div
                     key={`placeholder-${idx}`}
-                    className="flex-grow"
+                    className="flex-grow px-1.5"
                     style={{
                       flex: `0 0 ${100 / itemsPerSlide}%`,
                       visibility: "hidden",
