@@ -3,6 +3,7 @@ import MarcasSection from "../layout/inicio/MarcasSection";
 import ProductoDesSection from "../layout/inicio/ProductsDesSection";
 import ProductoSection from "../layout/inicio/ProductsSection";
 import VideosSection from "../layout/inicio/VideosSection";
+import SearchBar from "../components/search/SearchBar";
 
 const Inicio = () => {
   const images = [
@@ -11,6 +12,7 @@ const Inicio = () => {
   ];
   return (
     <>
+      <SearchBar />
       <Banner slides={images} />
       <ProductoSection />
       <ProductoDesSection />

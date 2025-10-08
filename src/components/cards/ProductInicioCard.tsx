@@ -9,7 +9,7 @@ interface Producto {
   precio: number;
   descuento: number;
   imagenes: string[];
-  popular: boolean;
+  popular?: boolean;
 }
 
 const ProductoInicioCard: React.FC<{

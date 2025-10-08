@@ -1,12 +1,14 @@
 import { useState, useEffect } from "react";
 import ProductInicioCard from "../../components/cards/ProductInicioCard";
 import productosDataRaw from "../../../public/data/products.json";
+import { getLatestByType, groupForSlider } from "../../utils/products";
+import { Product } from "../../types/product";
 import ProductInicioCardModal from "../../components/cards/ProductInicioCardModal";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
-// Aseguramos que 'popular' sea siempre un booleano
-const productosData = productosDataRaw.map((producto) => ({
+// Normalizamos datos y tipamos
+const productosData: Product[] = (productosDataRaw as any[]).map((producto) => ({
   ...producto,
   popular: producto.popular ?? false,
 }));
@@ -52,30 +54,9 @@ const ProductoDesSection = () => {
     setModalProducto(null);
   };
 
-  // Filtramos los productos para que no se muestren los populares
-  const productosNoPopulares = productosData.filter(
-    (producto) => producto.popular === false
-  );
-
-  // Agrupamos los productos por tipo
-  const productosPorTipo = productosNoPopulares.reduce((acc, producto) => {
-    if (!acc[producto.tipo]) {
-      acc[producto.tipo] = [];
-    }
-    acc[producto.tipo].push(producto);
-    return acc;
-  }, {});
-
-  // Obtenemos el último producto agregado de cada tipo (en base al id, asumiendo que el id es secuencial)
-  const ultimosProductos = Object.values(productosPorTipo).map((productos) => {
-    return productos.sort((a, b) => b.id - a.id)[0]; // Ordenamos por ID, el más reciente tiene el ID más alto
-  });
-
-  // Dividimos los productos seleccionados en grupos para el slider
-  const groupedProducts = [];
-  for (let i = 0; i < ultimosProductos.length; i += itemsPerSlide) {
-    groupedProducts.push(ultimosProductos.slice(i, i + itemsPerSlide));
-  }
+  // Obtenemos los últimos productos por tipo y los agrupamos para el slider
+  const ultimosProductos = getLatestByType().filter((p) => !p.popular);
+  const groupedProducts = groupForSlider(ultimosProductos, itemsPerSlide);
 
   // Función para rellenar el último grupo si es necesario
   const padGroup = (group: any[]) => {
