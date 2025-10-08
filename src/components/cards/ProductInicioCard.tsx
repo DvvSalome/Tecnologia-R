@@ -80,15 +80,15 @@ const ProductoInicioCard: React.FC<{
           {producto.descuento > 0 ? (
             <>
               <span className="text-green-400">
-                ${producto.descuento.toFixed(2)}
+                ${producto.descuento.toFixed(3)}
               </span>
               <span className="line-through text-red-500 text-base ml-2">
-                ${producto.precio.toFixed(2)}
+                ${producto.precio.toFixed(3)}
               </span>
             </>
           ) : (
             <span className="text-green-400">
-              ${producto.precio.toFixed(2)}
+              ${producto.precio.toFixed(3)}
             </span>
           )}
         </p>

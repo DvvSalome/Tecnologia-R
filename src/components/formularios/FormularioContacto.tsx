@@ -10,7 +10,7 @@ const FormularioContacto = () => {
     });
   }, []);
   return (
-    <div className="bg-gray-900 w-11/12 lg:w-1/2 text-white py-10 px-5 sm:px-10 md:px-20 rounded-lg" data-aos="flip-left">
+    <div className="dark:bg-gray-900 bg-gray-200 w-11/12 lg:w-1/2 text-black dark:text-white py-10 px-5 sm:px-10 md:px-20 rounded-lg" data-aos="flip-left">
       <h2 className="text-2xl md:text-3xl font-bold text-center mb-8">
         Formulario de Contacto
       </h2>
@@ -25,7 +25,7 @@ const FormularioContacto = () => {
             id="nombre"
             name="nombre"
             placeholder="Ingrese su nombre completo"
-            className="w-full p-3 bg-gray-800 text-white rounded-lg border border-gray-700 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+            className="w-full p-3 bg-slate-50 dark:bg-gray-800 text-black dark:text-white rounded-lg border border-slate-400 dark:border-gray-700 focus:ring-2 focus:ring-blue-500 focus:outline-none"
           />
         </div>
 
@@ -39,7 +39,7 @@ const FormularioContacto = () => {
             id="correo"
             name="correo"
             placeholder="Ingrese su correo electrónico"
-            className="w-full p-3 bg-gray-800 text-white rounded-lg border border-gray-700 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+            className="w-full p-3 bg-slate-50 dark:bg-gray-800 text-black dark:text-white rounded-lg border border-slate-400 dark:border-gray-700 focus:ring-2 focus:ring-blue-500 focus:outline-none"
           />
         </div>
 
@@ -53,7 +53,7 @@ const FormularioContacto = () => {
             id="telefono"
             name="telefono"
             placeholder="Ingrese su número de teléfono"
-            className="w-full p-3 bg-gray-800 text-white rounded-lg border border-gray-700 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+            className="w-full p-3 bg-slate-50 dark:bg-gray-800 text-black dark:text-white rounded-lg border border-slate-400 dark:border-gray-700 focus:ring-2 focus:ring-blue-500 focus:outline-none"
           />
         </div>
 
@@ -65,7 +65,7 @@ const FormularioContacto = () => {
           <select
             id="motivo"
             name="motivo"
-            className="w-full p-3 bg-gray-800 text-white rounded-lg border border-gray-700 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+            className="w-full p-3 bg-slate-50 dark:bg-gray-800 text-black dark:text-white rounded-lg border border-slate-400 dark:border-gray-700 focus:ring-2 focus:ring-blue-500 focus:outline-none"
           >
             <option value="" disabled selected>
               Seleccione un motivo
@@ -87,7 +87,7 @@ const FormularioContacto = () => {
             name="mensaje"
             rows={4}
             placeholder="Escriba su mensaje"
-            className="w-full p-3 bg-gray-800 text-white rounded-lg border border-gray-700 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+            className="w-full p-3 bg-slate-50 dark:bg-gray-800 placeholder:text-gray-400 dark:placeholder:text-white text-black dark:text-white rounded-lg border border-slate-400 dark:border-gray-700 focus:ring-2 focus:ring-blue-500 focus:outline-none"
           ></textarea>
         </div>
 

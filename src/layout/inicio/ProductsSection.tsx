@@ -12,24 +12,35 @@ const ProductoSection = () => {
   }, []);
 
   return (
-    <div className="flex my-10 md:mx-10 justify-evenly sm:justify-around" data-aos="flip-down">
+    <div
+      className="flex my-10 md:mx-10 justify-evenly sm:justify-around"
+      data-aos="flip-down"
+    >
       <ProductsCard
         image="/images/inicio/keyboard.svg"
         title="Teclados"
-        link=""
+        link="/productos/Teclados"
       />
-      <ProductsCard image="/images/inicio/mouse.svg" title="Mouses" link="" />
+      <ProductsCard
+        image="/images/inicio/mouse.svg"
+        title="Mouses"
+        link="/productos/Mouses"
+      />
       <ProductsCard
         image="/images/inicio/monitor.svg"
         title="Monitores"
-        link=""
+        link="/productos/Monittores"
       />
       <ProductsCard
         image="/images/inicio/headset.svg"
         title="Audífonos"
-        link=""
+        link="/productos/Audifonos"
       />
-      <ProductsCard image="/images/inicio/cam.svg" title="Cámaras" link="" />
+      <ProductsCard
+        image="/images/inicio/cam.svg"
+        title="Cámaras"
+        link="/productos/Camaras"
+      />
     </div>
   );
 };

@@ -21,18 +21,31 @@ const Navbar = () => {
       id: "perifericos",
       options: [
         { name: "Teclados", id: 1 },
-        { name: "Mouse", id: 2 },
+        { name: "Mouses", id: 2 },
+        { name: "Monitores", id: 3 },
+        { name: "Audifonos", id: 4 },
+        { name: "Camaras", id: 5 },
+        { name: "Microfonos", id: 5 },
       ],
     },
     {
       name: "Componentes",
       id: "componentes",
       options: [
-        { name: "Placas base", id: 3 },
-        { name: "Procesadores", id: 4 },
+        { name: "Placas base", id: 7 },
+        { name: "Procesadores", id: 8 },
       ],
     },
   ];
+
+  // tipo de productos(
+// 1: teclados
+// 2: mouse
+// 3: monitores
+// 4: audifonos
+// 5: camaras
+// 6: microfonos
+// )
 
   const menuRef = useRef<HTMLUListElement | null>(null);
   const buttonRef = useRef<HTMLButtonElement | null>(null);
@@ -170,7 +183,7 @@ const Navbar = () => {
       {/* Menú lateral para Productos */}
       <div
         ref={sidebarRef}
-        className={`fixed w-96 top-0 right-0 h-full bg-gray-700 bg-opacity-60 backdrop-blur-sm text-white p-6 z-50 shadow-2xl transform transition-transform duration-500 ease-in-out ${
+        className={`fixed w-96 top-0 right-0 h-full bg-gray-600 dark:bg-gray-700 bg-opacity-60 backdrop-blur-sm text-white p-6 z-50 shadow-2xl transform transition-transform duration-500 ease-in-out ${
           isSidebarOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
@@ -185,7 +198,7 @@ const Navbar = () => {
             </button>
             <ul
               className={`pl-4 overflow-hidden transition-all duration-300 ease-in-out ${
-                openSubmenu === section.id ? "max-h-40" : "max-h-0"
+                openSubmenu === section.id ? "max-h-44" : "max-h-0"
               }`}
             >
               {section.options.map((option) => (
@@ -199,7 +212,7 @@ const Navbar = () => {
                     }
                     onClick={closeSidebar}
                   >
-                    {option.name}
+                    P-{option.id}
                   </NavLink>
                 </li>
               ))}

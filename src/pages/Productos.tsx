@@ -41,7 +41,7 @@ const Productos: React.FC = () => {
     switch (tipo) {
       case "Teclados":
         return 1;
-      case "Mouse":
+      case "Mouses":
         return 2;
       case "Monitores":
         return 3;
@@ -90,11 +90,11 @@ const Productos: React.FC = () => {
         <div data-aos="fade-up">
           <Lottie options={options} height={400} width={400} />
         </div>
-        <div className="bg-sky-950 px-14 py-10 rounded-xl" data-aos="fade-down">
-          <h1 className="text-2xl font-semibold text-white mb-4">
+        <div className="bg-gray-300 dark:bg-sky-950 px-14 py-10 rounded-xl" data-aos="fade-down">
+          <h1 className="text-2xl font-semibold text-black dark:text-white mb-4">
             ¡Lo sentimos!
           </h1>
-          <p className="text-gray-300 mb-6">
+          <p className="text-gray-600 dark:text-gray-300 mb-6">
             Actualmente no hay productos disponibles para este tipo.
           </p>
           <button

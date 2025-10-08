@@ -44,7 +44,7 @@ const ProductInicioCardModal: React.FC<{
       onClick={(e) => e.target === e.currentTarget && onClose()} // Cierra el modal si se hace clic en el fondo
       className="fixed inset-0 bg-black bg-opacity-70 z-50 flex items-center justify-center"
     >
-      <div className="bg-gray-100 p-8 rounded-lg shadow-lg w-full max-w-4xl max-h-[80vh] overflow-auto relative">
+      <div className="bg-gray-100 dark:bg-gray-900 p-8 rounded-lg shadow-lg w-full max-w-4xl max-h-[80vh] overflow-auto relative">
         {/* Botón cerrar modal */}
         <button
           onClick={onClose}
@@ -86,8 +86,8 @@ const ProductInicioCardModal: React.FC<{
 
           {/* Sección de detalles */}
           <div className="flex-1 max-h-full overflow-y-auto">
-            <h2 className="text-3xl font-semibold text-blue-700">{producto.nombre}</h2>
-            <p className="mt-3 text-gray-700 text-sm leading-relaxed">{producto.descripcion}</p>
+            <h2 className="text-3xl font-bold text-blue-700">{producto.nombre}</h2>
+            <p className="mt-3 text-gray-700 dark:text-gray-200 text-sm leading-relaxed">{producto.descripcion}</p>
             <p className="mt-5 text-xl font-bold text-green-700">
               {producto.descuento > 0 ? (
                 <>

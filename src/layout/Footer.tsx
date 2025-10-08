@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <footer className="border-t-2 border-black dark:bg-gray-900 text-white nunito-sans-regular flex flex-col items-center gap-10 py-10">
+    <footer className="border-t-2 border-gray-300 dark:bg-gray-900 text-white nunito-sans-regular flex flex-col items-center gap-10 py-10">
       <div className="flex flex-col md:flex-row md:gap-10 px-10 items-center ContainerPrimary">
         <img src="/images/header/Logo Tecnologia R.png" alt="logo" className="mb-5 md:mb-0" />
         <div className="flex flex-col lg:flex-row gap-10 w-full">

@@ -12,14 +12,14 @@ const NosotrosInfo = () => {
 		})
 	}, [])
   return (
-    <div className="bg-slate-950 text-white max-w-lg mx-auto p-6 rounded-lg shadow-lg" data-aos="fade-down-left">
+    <div className="bg-white border border-gray-200 dark:border-0 dark:bg-slate-950 text-black dark:text-white max-w-lg mx-auto p-6 rounded-lg shadow-lg" data-aos="fade-down-left">
       {/* Título */}
       <h2 className="text-3xl font-extrabold text-sky-400 mb-6 text-center">
         ¿Quiénes somos?
       </h2>
 
       {/* Descripción */}
-      <p className="text-gray-300 text-lg mb-6 leading-relaxed">
+      <p className="text-gray-600 dark:text-gray-300 text-lg mb-6 leading-relaxed">
         En <span className="bg-gradient-to-b from-green-400 to-sky-400 text-transparent bg-clip-text font-bold">Tecnologia R</span>, ofrecemos productos y periféricos diseñados para 
         llevar tu experiencia de gaming y tecnología al siguiente nivel. 
         Nuestra misión es proporcionar equipos confiables, potentes y 
@@ -34,7 +34,7 @@ const NosotrosInfo = () => {
             <FaGamepad className="text-white text-3xl" />
           </div>
           <h3 className="text-lg font-semibold text-sky-400">Gaming</h3>
-          <p className="text-gray-300 text-sm">
+          <p className="text-gray-600 dark:text-gray-300 text-sm">
             Equipos diseñados para rendimiento extremo.
           </p>
         </div>
@@ -44,7 +44,7 @@ const NosotrosInfo = () => {
             <FaHeadphones className="text-white text-3xl" />
           </div>
           <h3 className="text-lg font-semibold text-sky-400">Audio</h3>
-          <p className="text-gray-300 text-sm">
+          <p className="text-gray-600 dark:text-gray-300 text-sm">
             Auriculares con calidad de sonido inmersiva.
           </p>
         </div>
@@ -54,7 +54,7 @@ const NosotrosInfo = () => {
             <FaDesktop className="text-white text-3xl" />
           </div>
           <h3 className="text-lg font-semibold text-sky-400">Tecnología</h3>
-          <p className="text-gray-300 text-sm">
+          <p className="text-gray-600 dark:text-gray-300 text-sm">
             Innovación y potencia en cada producto.
           </p>
         </div>
