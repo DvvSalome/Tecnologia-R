@@ -2,6 +2,8 @@ import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import productsDataRaw from "../../../public/data/products.json";
 import ProductInicioCardModal from "../cards/ProductInicioCardModal";
+import Lottie from "react-lottie";
+import animationData from "../../../public/lotties/vacio.json";
 
 const SearchBar: React.FC = () => {
   const [query, setQuery] = useState("");
@@ -64,26 +66,48 @@ const SearchBar: React.FC = () => {
           className="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500"
         />
 
-        {openDropdown && results.length > 0 && (
-          <ul className="absolute left-0 right-0 bg-white shadow-md mt-2 rounded max-h-64 overflow-auto z-50">
-            {results.map((p) => (
-              <li
-                key={p.id}
-                onClick={() => setModalProducto(p)}
-                className="flex items-center gap-3 p-2 hover:bg-gray-100 cursor-pointer"
-              >
-                <img
-                  src={p.imagenes?.[0]}
-                  alt={p.nombre}
-                  className="w-16 h-12 object-cover rounded"
-                />
-                <div className="flex-1">
-                  <div className="font-semibold text-sm">{p.nombre}</div>
-                  <div className="text-xs text-gray-500">${p.precio}</div>
+        {openDropdown && (
+          <div className="absolute left-0 right-0 bg-white shadow-md mt-2 rounded max-h-64 overflow-auto z-50">
+            {results.length > 0 ? (
+              <ul>
+                {results.map((p) => (
+                  <li
+                    key={p.id}
+                    onClick={() => setModalProducto(p)}
+                    className="flex items-center gap-3 p-2 hover:bg-gray-100 cursor-pointer"
+                  >
+                    <img
+                      src={p.imagenes?.[0]}
+                      alt={p.nombre}
+                      className="w-16 h-12 object-cover rounded"
+                    />
+                    <div className="flex-1">
+                      <div className="font-semibold text-sm">{p.nombre}</div>
+                      <div className="text-xs text-gray-500">${p.precio}</div>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            ) : query.trim() !== "" ? (
+              <div className="flex flex-col items-center justify-center p-6">
+                <div className="w-40 h-40">
+                  <Lottie
+                    options={{
+                      loop: true,
+                      autoplay: true,
+                      animationData: animationData,
+                      rendererSettings: { preserveAspectRatio: "xMidYMid slice" },
+                    }}
+                    height={160}
+                    width={160}
+                  />
                 </div>
-              </li>
-            ))}
-          </ul>
+                <div className="text-center text-sm text-gray-600 mt-2">No encontramos resultados para "{query}"</div>
+              </div>
+            ) : (
+              <div className="p-3 text-center text-sm text-gray-500">Escribe para buscar productos</div>
+            )}
+          </div>
         )}
 
         {modalProducto && (

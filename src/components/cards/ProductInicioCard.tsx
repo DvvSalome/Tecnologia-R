@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import InicioProductButton from "../buttons/InicioProductButton";
 
 interface Producto {
@@ -39,13 +39,22 @@ const ProductoInicioCard: React.FC<{
       )}
 
       {/* Imagen del producto */}
-      <img
-        src={producto.imagenes[0]} // Muestra la primera imagen
-        alt={`Imagen principal de ${producto.nombre}`}
-        className={`object-cover rounded-md ${
-          producto.popular ? "w-40 h-40 mr-4" : "w-full h-48 mb-4"
-        }`}
-      />
+      {(() => {
+        const firstImg = producto.imagenes && producto.imagenes.length ? producto.imagenes[0] : "/images/general/email.png";
+        const [imgSrc, setImgSrc] = useState(firstImg);
+
+        return (
+          <img
+            src={imgSrc}
+            onError={() => setImgSrc("/images/general/email.png")}
+            alt={`Imagen principal de ${producto.nombre}`}
+            loading="lazy"
+            className={`object-cover rounded-md ${
+              producto.popular ? "w-40 h-40 mr-4" : "w-full h-48 mb-4"
+            }`}
+          />
+        );
+      })()}
 
       {/* Información del producto */}
       <div
