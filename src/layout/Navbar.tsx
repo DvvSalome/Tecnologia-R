@@ -202,18 +202,14 @@ const Navbar = () => {
               }`}
             >
               {section.options.map((option) => (
-                <li key={option.id} className="hover:underline text-lg">
-                  <NavLink
-                    to={`/productos/${option.name}`}
-                    className={({ isActive }) =>
-                      isActive
-                        ? "text-blue-400 font-bold"
-                        : "text-white hover:text-blue-300"
-                    }
-                    onClick={closeSidebar}
+                <li key={`${section.id}-${option.id}-${option.name}`} className="hover:underline text-lg">
+                  <button
+                    type="button"
+                    onClick={() => handleSectionClick(option.id)}
+                    className="text-left w-full text-white hover:text-blue-300"
                   >
-                    P-{option.id}
-                  </NavLink>
+                    {option.name}
+                  </button>
                 </li>
               ))}
             </ul>
