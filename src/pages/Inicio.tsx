@@ -1,5 +1,6 @@
+// ...existing code...
 import Banner from "../layout/inicio/Banner";
-import MarcasSection from "../layout/inicio/MarcasSection";
+// import MarcasSection from "../layout/inicio/MarcasSection"; // eliminado
 import ProductoDesSection from "../layout/inicio/ProductsDesSection";
 import ProductoSection from "../layout/inicio/ProductsSection";
 import VideosSection from "../layout/inicio/VideosSection";
@@ -17,7 +18,7 @@ const Inicio = () => {
       <ProductoSection />
       <ProductoDesSection />
       <VideosSection />
-      <MarcasSection />
+      {/* MarcasSection eliminado */}
     </>
   );
 };
