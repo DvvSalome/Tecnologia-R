@@ -1,15 +1,17 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import productosDataRaw from "../../public/data/products.json";
 import ProductInicioCardModal from "../components/cards/ProductInicioCardModal";
+import { useProducts } from "../contexts/ProductsContext";
+import { getById } from "../utils/products";
 
 const ProductoDetalle: React.FC = () => {
   const { id } = useParams<{ id: string }>();
-  const producto = (productosDataRaw as any[]).find((p) => String(p.id) === id);
+  const { products, loading, error } = useProducts();
+  const producto = id ? getById(products, id) : undefined;
 
-  if (!producto) {
-    return <div className="p-8">Producto no encontrado</div>;
-  }
+  if (loading) return <div className="p-8">Cargando...</div>;
+  if (error) return <div className="p-8 text-red-600">Error: {error}</div>;
+  if (!producto) return <div className="p-8">Producto no encontrado</div>;
 
   return (
     <div className="p-8">

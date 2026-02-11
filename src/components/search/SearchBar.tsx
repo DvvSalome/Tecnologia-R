@@ -1,9 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import productsDataRaw from "../../../public/data/products.json";
 import ProductInicioCardModal from "../cards/ProductInicioCardModal";
 import Lottie from "react-lottie";
 import animationData from "../../../public/lotties/vacio.json";
+import { useProducts } from "../../contexts/ProductsContext";
+import { searchProducts } from "../../utils/products";
 
 const SearchBar: React.FC = () => {
   const [query, setQuery] = useState("");
@@ -11,7 +12,7 @@ const SearchBar: React.FC = () => {
   const [openDropdown, setOpenDropdown] = useState(false);
   const [modalProducto, setModalProducto] = useState<any | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
-
+  const { products } = useProducts();
   const navigate = useNavigate();
 
   // Debounce search
@@ -20,22 +21,12 @@ const SearchBar: React.FC = () => {
       setResults([]);
       return;
     }
-
     const handler = setTimeout(() => {
-      const q = query.toLowerCase();
-      const filtered = (productsDataRaw as any[])
-        .filter(
-          (p) =>
-            p.nombre?.toLowerCase().includes(q) ||
-            p.descripcion?.toLowerCase().includes(q)
-        )
-        .slice(0, 6);
-
+      const filtered = searchProducts(products, query).slice(0, 6);
       setResults(filtered);
     }, 300);
-
     return () => clearTimeout(handler);
-  }, [query]);
+  }, [query, products]);
 
   useEffect(() => {
     const onClick = (e: MouseEvent) => {

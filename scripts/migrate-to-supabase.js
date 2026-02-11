@@ -31,10 +31,10 @@ async function migrate() {
     
     console.log(`📦 Encontrados ${products.length} productos`);
     
-    // Preparar datos para Supabase
+    // Preparar datos para Supabase (la columna en la tabla se llama "descripción" con tilde)
     const productsToInsert = products.map(product => ({
       nombre: product.nombre,
-      descripcion: product.descripcion,
+      descripción: product.descripcion,
       tipo: product.tipo,
       precio: product.precio,
       descuento: product.descuento || 0,

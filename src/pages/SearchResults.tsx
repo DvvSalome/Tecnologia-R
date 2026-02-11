@@ -1,10 +1,11 @@
 import React, { useMemo, useState } from "react";
 import { useLocation } from "react-router-dom";
-import productosDataRaw from "../../public/data/products.json";
 import ProductoInicioCard from "../components/cards/ProductInicioCard";
 import ProductInicioCardModal from "../components/cards/ProductInicioCardModal";
 import Lottie from "react-lottie";
 import animationData from "../../public/lotties/vacio.json";
+import { useProducts } from "../contexts/ProductsContext";
+import { searchProducts } from "../utils/products";
 
 function useQuery() {
   return new URLSearchParams(useLocation().search);
@@ -14,19 +15,15 @@ const SearchResults: React.FC = () => {
   const query = useQuery();
   const q = query.get("q") || "";
   const [modalProducto, setModalProducto] = useState<any | null>(null);
+  const { products, loading, error } = useProducts();
 
-  const results = useMemo(() => {
-    const qq = q.toLowerCase().trim();
-    if (!qq) return [];
-    return (productosDataRaw as any[]).filter(
-      (p) =>
-        p.nombre?.toLowerCase().includes(qq) ||
-        p.descripcion?.toLowerCase().includes(qq)
-    );
-  }, [q]);
+  const results = useMemo(() => searchProducts(products, q), [products, q]);
 
   const handleOpenModal = (producto: any) => setModalProducto(producto);
   const handleCloseModal = () => setModalProducto(null);
+
+  if (loading) return <div className="container mx-auto p-4">Cargando...</div>;
+  if (error) return <div className="container mx-auto p-4 text-red-600">Error: {error}</div>;
 
   return (
     <div className="container mx-auto p-4">

@@ -1,19 +1,14 @@
 import { useState, useEffect } from "react";
 import ProductInicioCard from "../../components/cards/ProductInicioCard";
-import productosDataRaw from "../../../public/data/products.json";
 import { getLatestByType, groupForSlider } from "../../utils/products";
-import { Product } from "../../types/product";
 import ProductInicioCardModal from "../../components/cards/ProductInicioCardModal";
 import AOS from "aos";
 import "aos/dist/aos.css";
-
-// Normalizamos datos y tipamos
-const productosData: Product[] = (productosDataRaw as any[]).map((producto) => ({
-  ...producto,
-  popular: producto.popular ?? false,
-}));
+import { useProducts } from "../../contexts/ProductsContext";
 
 const ProductoDesSection = () => {
+  const { products, loading, error } = useProducts();
+
   useEffect(() => {
     AOS.init({
       duration: 500,
@@ -55,7 +50,7 @@ const ProductoDesSection = () => {
   };
 
   // Obtenemos los últimos productos por tipo y los agrupamos para el slider
-  const ultimosProductos = getLatestByType().filter((p) => !p.popular);
+  const ultimosProductos = getLatestByType(products).filter((p) => !p.popular);
   const groupedProducts = groupForSlider(ultimosProductos, itemsPerSlide);
 
   // Función para rellenar el último grupo si es necesario
@@ -64,7 +59,10 @@ const ProductoDesSection = () => {
     return difference > 0 ? [...group, ...Array(difference).fill(null)] : group;
   };
 
-  const productoPopular = productosData.find((producto) => producto.popular);
+  const productoPopular = products.find((producto) => producto.popular);
+
+  if (loading) return <div className="my-10 mx-5 sm:mx-20 text-center">Cargando productos...</div>;
+  if (error) return <div className="my-10 mx-5 sm:mx-20 text-center text-red-600">Error: {error}</div>;
 
   const goToNextSlide = () => {
     setCurrentIndex((prevIndex) =>
