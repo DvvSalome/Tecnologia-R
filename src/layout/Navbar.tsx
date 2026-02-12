@@ -34,7 +34,7 @@ const SidebarPortal = ({
   openSubmenu: string | null;
   handleSubmenuToggle: (id: string) => void;
   handleSectionClick: (id: number) => void;
-  sidebarRef: React.RefObject<HTMLDivElement | null>;
+  sidebarRef: React.RefObject<HTMLDivElement>;
 }) => {
   const navigate = useNavigate();
 
@@ -192,7 +192,7 @@ const Navbar = () => {
 
   const menuRef = useRef<HTMLUListElement | null>(null);
   const buttonRef = useRef<HTMLButtonElement | null>(null);
-  const sidebarRef = useRef<HTMLDivElement | null>(null);
+  const sidebarRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
 
   const toggleMenu = () => setIsMenuOpen((prev) => !prev);
