@@ -1,4 +1,5 @@
 import React, { useState, useRef } from "react";
+import { getProductImageUrl } from "../../utils/imageUrl";
 
 interface Producto {
   id: number;
@@ -14,7 +15,11 @@ const ProductInicioCardModal: React.FC<{
   producto: Producto;
   onClose: () => void;
 }> = ({ producto, onClose }) => {
-  const [imagenPrincipal, setImagenPrincipal] = useState(producto.imagenes[0]);
+  const fallbackImg = "/images/general/email.png";
+  const firstImg = producto.imagenes?.[0]
+    ? getProductImageUrl(producto.imagenes[0], fallbackImg)
+    : fallbackImg;
+  const [imagenPrincipal, setImagenPrincipal] = useState(firstImg);
   const imageRef = useRef<HTMLDivElement>(null); // Referencia a la imagen contenedora
   const [zoomStyle, setZoomStyle] = useState({ backgroundPosition: "center", backgroundSize: "contain" });
 
@@ -58,22 +63,22 @@ const ProductInicioCardModal: React.FC<{
           <div className="flex-1 max-h-full overflow-y-auto">
             <div
               className="w-full h-auto rounded-lg overflow-hidden bg-cover cursor-zoom-in border border-gray-300"
-              style={{ backgroundImage: `url(${imagenPrincipal})`, ...zoomStyle }}
+              style={{ backgroundImage: `url(${getProductImageUrl(imagenPrincipal, fallbackImg)})`, ...zoomStyle }}
               ref={imageRef}
               onMouseMove={handleMouseMove}
               onMouseLeave={handleMouseLeave}
             >
               <img
-                src={imagenPrincipal}
+                src={getProductImageUrl(imagenPrincipal, fallbackImg)}
                 alt={`Imagen de ${producto.nombre}`}
                 className="w-full h-auto opacity-0" // Oculta la imagen real, solo se usa el fondo con zoom
               />
             </div>
             <div className="flex gap-3 mt-4 overflow-x-auto">
-              {producto.imagenes.map((imagen, index) => (
+              {(producto.imagenes ?? []).map((imagen, index) => (
                 <img
                   key={index}
-                  src={imagen}
+                  src={getProductImageUrl(imagen, fallbackImg)}
                   alt={`Miniatura ${index + 1}`}
                   onClick={() => setImagenPrincipal(imagen)}
                   className={`w-16 h-16 rounded-lg cursor-pointer border ${

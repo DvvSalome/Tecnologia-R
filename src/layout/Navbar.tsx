@@ -1,5 +1,6 @@
 import { NavLink, useNavigate, useLocation } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
+import { PRODUCT_TYPES } from "../constants/productTypes";
 
 const Navbar = () => {
   const location = useLocation();
@@ -15,37 +16,19 @@ const Navbar = () => {
     { name: "Nosotros", path: "/nosotros" },
   ];
 
+  // Menú de categorías: edita src/constants/productTypes.ts para cambiar o añadir
   const productSections = [
     {
       name: "Periféricos",
       id: "perifericos",
-      options: [
-        { name: "Teclados", id: 1 },
-        { name: "Mouses", id: 2 },
-        { name: "Monitores", id: 3 },
-        { name: "Audifonos", id: 4 },
-        { name: "Camaras", id: 5 },
-        { name: "Microfonos", id: 5 },
-      ],
+      options: PRODUCT_TYPES.filter((t) => t.id >= 1 && t.id <= 6).map((t) => ({ name: t.labelPlural, id: t.id })),
     },
     {
       name: "Componentes",
       id: "componentes",
-      options: [
-        { name: "Placas base", id: 7 },
-        { name: "Procesadores", id: 8 },
-      ],
+      options: PRODUCT_TYPES.filter((t) => t.id >= 7 && t.id <= 8).map((t) => ({ name: t.labelPlural, id: t.id })),
     },
   ];
-
-  // tipo de productos(
-// 1: teclados
-// 2: mouse
-// 3: monitores
-// 4: audifonos
-// 5: camaras
-// 6: microfonos
-// )
 
   const menuRef = useRef<HTMLUListElement | null>(null);
   const buttonRef = useRef<HTMLButtonElement | null>(null);

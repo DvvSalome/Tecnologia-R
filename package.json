@@ -8,7 +8,9 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "migrate:supabase": "node --env-file=.env scripts/migrate-to-supabase.js"
+    "migrate:supabase": "node --env-file=.env scripts/migrate-to-supabase.js",
+    "upload:images": "node --env-file=.env scripts/upload-images-to-supabase.js",
+    "import:products": "node --env-file=.env scripts/import-products-from-csv.js"
   },
   "dependencies": {
     "@types/leaflet": "^1.9.16",
@@ -19,10 +21,10 @@
     "react-dom": "^18.3.1",
     "react-icons": "^5.4.0",
     "react-lottie": "^1.2.10",
-    "react-router-dom": "^7.1.1"
+    "react-router-dom": "^7.1.1",
+    "@supabase/supabase-js": "^2.47.0"
   },
   "devDependencies": {
-    "@supabase/supabase-js": "^2.47.0",
     "@eslint/js": "^9.17.0",
     "@types/aos": "^3.0.7",
     "@types/react": "^18.3.18",

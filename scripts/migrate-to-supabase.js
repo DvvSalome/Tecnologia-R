@@ -22,10 +22,12 @@ const __dirname = path.dirname(__filename);
 const productsPath = path.join(__dirname, '../public/data/products.json');
 
 async function migrate() {
-  console.log('🚀 Iniciando migración...');
-  
+  console.log('🚀 Iniciando migración (solo si tienes backup de products.json)...');
+  if (!fs.existsSync(productsPath)) {
+    console.log('⚠️ No existe public/data/products.json. Los productos se gestionan en Supabase.');
+    return;
+  }
   try {
-    // Leer JSON
     const rawData = fs.readFileSync(productsPath, 'utf8');
     const products = JSON.parse(rawData);
     

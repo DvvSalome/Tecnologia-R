@@ -5,6 +5,7 @@ import Lottie from "react-lottie";
 import animationData from "../../../public/lotties/vacio.json";
 import { useProducts } from "../../contexts/ProductsContext";
 import { searchProducts } from "../../utils/products";
+import { getProductImageUrl } from "../../utils/imageUrl";
 
 const SearchBar: React.FC = () => {
   const [query, setQuery] = useState("");
@@ -68,7 +69,7 @@ const SearchBar: React.FC = () => {
                     className="flex items-center gap-3 p-2 hover:bg-gray-100 cursor-pointer"
                   >
                     <img
-                      src={p.imagenes?.[0]}
+                      src={getProductImageUrl(p.imagenes?.[0], "/images/general/email.png")}
                       alt={p.nombre}
                       className="w-16 h-12 object-cover rounded"
                     />

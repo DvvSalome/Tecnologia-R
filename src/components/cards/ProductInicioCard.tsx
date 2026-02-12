@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import InicioProductButton from "../buttons/InicioProductButton";
+import { getProductImageUrl } from "../../utils/imageUrl";
+import { getTipoLabel } from "../../constants/productTypes";
 
 interface Producto {
   id: number;
@@ -12,15 +14,19 @@ interface Producto {
   popular?: boolean;
 }
 
+const FALLBACK_IMG = "/images/general/email.png";
+
 const ProductoInicioCard: React.FC<{
   producto: Producto;
   onOpenModal: (producto: Producto) => void;
 }> = ({ producto, onOpenModal }) => {
-  // Verificamos si el producto está definido antes de acceder a sus propiedades
-  if (!producto) {
-    return null; // o cualquier renderizado alternativo, como un mensaje de error o un loader
-  }
-  
+  const initialImg = producto?.imagenes?.length
+    ? getProductImageUrl(producto.imagenes[0], FALLBACK_IMG)
+    : FALLBACK_IMG;
+  const [imgSrc, setImgSrc] = useState(initialImg);
+
+  if (!producto) return null;
+
   return (
     <div
       className={`relative p-4 border shadow-md dark:border-gray-700 rounded-lg hover:z-30  hover:scale-105 transition-transform duration-300 ease-in-out ${
@@ -38,23 +44,16 @@ const ProductoInicioCard: React.FC<{
         </span>
       )}
 
-      {/* Imagen del producto */}
-      {(() => {
-        const firstImg = producto.imagenes && producto.imagenes.length ? producto.imagenes[0] : "/images/general/email.png";
-        const [imgSrc, setImgSrc] = useState(firstImg);
-
-        return (
-          <img
-            src={imgSrc}
-            onError={() => setImgSrc("/images/general/email.png")}
-            alt={`Imagen principal de ${producto.nombre}`}
-            loading="lazy"
-            className={`object-cover rounded-md ${
-              producto.popular ? "w-40 h-40 mr-4" : "w-full h-48 mb-4"
-            }`}
-          />
-        );
-      })()}
+      {/* Imagen del producto (URL de Supabase Storage o ruta local) */}
+      <img
+        src={imgSrc}
+        onError={() => setImgSrc(FALLBACK_IMG)}
+        alt={`Imagen principal de ${producto.nombre}`}
+        loading="lazy"
+        className={`object-cover rounded-md ${
+          producto.popular ? "w-40 h-40 mr-4" : "w-full h-48 mb-4"
+        }`}
+      />
 
       {/* Información del producto */}
       <div
@@ -65,24 +64,7 @@ const ProductoInicioCard: React.FC<{
         } w-full`}
       >
         <h2 className="text-lg font-semibold text-gray-400 dark:text-white tracking-wide mb-2">
-          {(() => {
-            switch (producto.tipo) {
-              case 1:
-                return "Teclado";
-              case 2:
-                return "Mouse";
-              case 3:
-                return "Monitor";
-              case 4:
-                return "Audífono";
-              case 5:
-                return "Cámara";
-              case 6:
-                return "Micrófono";
-              default:
-                return "Otros";
-            }
-          })()}
+          {getTipoLabel(producto.tipo)}
         </h2>
         <p className="text-md text-black text-xl dark:text-gray-300 leading-tight">{producto.nombre}</p>
         <p className="text-md font-bold text-xl">

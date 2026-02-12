@@ -10,16 +10,16 @@ const Footer = () => {
           <div className="flex flex-col items-center md:items-start gap-5 w-full md:w-1/3">
             <p className="text-xl text-gray-400 font-bold">Productos</p>
             <div className="flex flex-col gap-3 items-center md:items-start text-gray-500">
-              <NavLink to="/teclados" className="hover:text-blue-500">
+              <NavLink to="/productos/1" className="hover:text-blue-500">
                 Teclados
               </NavLink>
-              <NavLink to="/mouses" className="hover:text-blue-500">
+              <NavLink to="/productos/2" className="hover:text-blue-500">
                 Mouses
               </NavLink>
-              <NavLink to="/monitores" className="hover:text-blue-500">
+              <NavLink to="/productos/3" className="hover:text-blue-500">
                 Monitores
               </NavLink>
-              <NavLink to="/audifonos" className="hover:text-blue-500">
+              <NavLink to="/productos/4" className="hover:text-blue-500">
                 Audífonos
               </NavLink>
             </div>
