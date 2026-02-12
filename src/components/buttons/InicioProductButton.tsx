@@ -1,20 +1,24 @@
 interface HoverEffectButtonProps {
   text: string;
-  onClick: () => void;
+  onClick: (e: React.MouseEvent) => void;
 }
 
 const InicioProductButton = ({ text, onClick }: HoverEffectButtonProps) => {
   return (
     <button
       onClick={onClick}
-      className="relative w-32 inline-flex items-center justify-start px-5 py-3 overflow-hidden font-bold rounded-md group"
+      className="group/btn relative inline-flex items-center justify-center px-6 py-2.5
+                 rounded-xl text-sm font-bold overflow-hidden
+                 bg-primary-50 dark:bg-primary-950/30 text-primary-600 dark:text-primary-400
+                 border border-primary-200/60 dark:border-primary-800/40
+                 hover:text-white hover:border-transparent
+                 transition-all duration-400 hover:shadow-lg hover:shadow-primary-500/20"
     >
-      <span className="w-32 h-32 rotate-45 translate-x-12 -translate-y-2 absolute left-0 top-0 bg-white opacity-[3%]"></span>
-      <span className="absolute top-0 left-0 w-48 h-48 -mt-1 transition-all duration-500 ease-in-out rotate-45 -translate-x-56 -translate-y-24 bg-[#4874D6] opacity-100 group-hover:-translate-x-8"></span>
-      <p className="text-center relative w-full text-left text-[#4874D6] transition-colors duration-200 ease-in-out group-hover:text-white">
-        {text}
-      </p>
-      <span className="absolute inset-0 border-2 border-[#4874D6] rounded-md"></span>
+      {/* Animated background fill */}
+      <span className="absolute inset-0 bg-gradient-to-r from-primary-500 to-primary-600
+                       translate-y-full group-hover/btn:translate-y-0
+                       transition-transform duration-400 ease-out" />
+      <span className="relative">{text}</span>
     </button>
   );
 };

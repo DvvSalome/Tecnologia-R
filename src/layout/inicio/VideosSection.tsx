@@ -6,10 +6,7 @@ import "aos/dist/aos.css";
 
 const VideosSection = () => {
   useEffect(() => {
-    AOS.init({
-      duration: 500,
-      once: true,
-    });
+    AOS.init({ duration: 600, once: true });
   }, []);
 
   const [isMobile, setIsMobile] = useState(false);
@@ -21,37 +18,35 @@ const VideosSection = () => {
   ];
 
   useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 768); // Cambia el valor según el tamaño que desees
-    };
-
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
     window.addEventListener("resize", handleResize);
-    handleResize(); // Llamar a la función al cargar para establecer el valor inicial
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
+    handleResize();
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   return (
-    <div className="my-10">
+    <div className="my-12 px-4">
+      {/* Section title */}
+      <div className="mb-8 text-center" data-aos="fade-up">
+        <h2 className="text-2xl font-bold text-surface-800 dark:text-surface-100">
+          Contenido
+        </h2>
+        <div className="mt-2 mx-auto h-1 w-16 rounded-full bg-gradient-to-r from-primary-500 to-accent-500" />
+      </div>
+
       <YoutubeVideo />
-      <div className="mt-10 sm:mx-10" data-aos="fade-up">
+
+      <div className="mt-10" data-aos="fade-up">
         {isMobile ? (
-          <div className="flex overflow-x-auto space-x-16">
-            {/* Contenedor con scroll horizontal */}
+          <div className="flex overflow-x-auto gap-4 pb-4 snap-x snap-mandatory -mx-4 px-4">
             {videos.map((videoUrl, index) => (
-              <div
-                key={index}
-                className="flex-shrink-0 w-full sm:w-1/2 md:w-1/3 lg:w-1/4"
-              >
+              <div key={index} className="flex-shrink-0 w-[85%] snap-center">
                 <InstagramVideo embedUrl={videoUrl} />
               </div>
             ))}
           </div>
         ) : (
-          <div className="flex gap-5">
-            {/* Si no es móvil, muestra los videos en fila */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
             {videos.map((videoUrl, index) => (
               <InstagramVideo key={index} embedUrl={videoUrl} />
             ))}

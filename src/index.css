@@ -2,8 +2,170 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ── Base styles ── */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-surface-50 text-surface-800 dark:bg-surface-950 dark:text-surface-100;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-surface-300 dark:bg-surface-700 rounded-full;
+    transition: background-color 0.2s;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-primary-400 dark:bg-primary-600;
+  }
+
+  /* Selection */
+  ::selection {
+    @apply bg-primary-500/30 text-primary-900 dark:text-primary-100;
+  }
+}
+
+/* ── Component styles ── */
+@layer components {
+  /* Glass effect */
+  .glass {
+    @apply bg-white/70 dark:bg-surface-900/70 backdrop-blur-lg border border-white/20 dark:border-surface-700/30;
+  }
+
+  .glass-strong {
+    @apply bg-white/85 dark:bg-surface-900/85 backdrop-blur-xl border border-white/30 dark:border-surface-700/40;
+  }
+
+  /* Gradient text */
+  .text-gradient {
+    @apply bg-gradient-to-r from-primary-500 to-accent-500 bg-clip-text text-transparent;
+  }
+
+  .text-gradient-reverse {
+    @apply bg-gradient-to-r from-accent-400 to-primary-400 bg-clip-text text-transparent;
+  }
+
+  /* Hover card effect */
+  .card-hover {
+    @apply transition-all duration-300 ease-out hover:shadow-card-hover hover:-translate-y-1.5;
+  }
+
+  /* Focus ring */
+  .focus-ring {
+    @apply focus:outline-none focus:ring-2 focus:ring-primary-500/50 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-surface-900;
+  }
+
+  /* Animated underline for nav links */
+  .nav-link-underline {
+    @apply relative;
+  }
+  .nav-link-underline::after {
+    content: '';
+    @apply absolute bottom-0 left-1/2 w-0 h-0.5 rounded-full bg-gradient-to-r from-primary-500 to-accent-500;
+    transform: translateX(-50%);
+    transition: width 0.3s ease;
+  }
+  .nav-link-underline:hover::after,
+  .nav-link-underline.active::after {
+    @apply w-full;
+  }
+
+  /* Gradient animated border */
+  .gradient-border {
+    position: relative;
+  }
+  .gradient-border::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(135deg, #3b7bfc, #10b981, #3b7bfc);
+    background-size: 200% 200%;
+    animation: gradientX 3s ease infinite;
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+
+  /* Shimmer loading skeleton */
+  .skeleton {
+    @apply bg-surface-200 dark:bg-surface-700 rounded-xl;
+    background-image: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.15) 50%,
+      transparent 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+  }
+
+  /* Floating particles background */
+  .particles-bg {
+    position: relative;
+    overflow: hidden;
+  }
+  .particles-bg::before,
+  .particles-bg::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.07;
+    pointer-events: none;
+  }
+  .particles-bg::before {
+    width: 300px;
+    height: 300px;
+    background: #3b7bfc;
+    top: -100px;
+    right: -100px;
+    animation: float 8s ease-in-out infinite;
+  }
+  .particles-bg::after {
+    width: 200px;
+    height: 200px;
+    background: #10b981;
+    bottom: -60px;
+    left: -60px;
+    animation: float 6s ease-in-out 2s infinite;
+  }
+}
+
+/* ── Utility styles ── */
+@layer utilities {
+  .animate-delay-100 { animation-delay: 100ms; }
+  .animate-delay-200 { animation-delay: 200ms; }
+  .animate-delay-300 { animation-delay: 300ms; }
+  .animate-delay-400 { animation-delay: 400ms; }
+  .animate-delay-500 { animation-delay: 500ms; }
+  .animate-delay-600 { animation-delay: 600ms; }
+  .animate-delay-700 { animation-delay: 700ms; }
+  .animate-delay-800 { animation-delay: 800ms; }
+
+  /* Fill mode for staggered animations */
+  .fill-forwards { animation-fill-mode: forwards; }
+  .fill-both { animation-fill-mode: both; }
+}
+
+/* ── Font ── */
 .nunito-sans-regular {
-  font-family: "Nunito Sans", serif;
+  font-family: "Nunito Sans", sans-serif;
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;

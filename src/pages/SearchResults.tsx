@@ -19,44 +19,71 @@ const SearchResults: React.FC = () => {
 
   const results = useMemo(() => searchProducts(products, q), [products, q]);
 
-  const handleOpenModal = (producto: any) => setModalProducto(producto);
-  const handleCloseModal = () => setModalProducto(null);
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center h-64">
+        <div className="w-12 h-12 border-4 border-primary-200 border-t-primary-500 rounded-full animate-spin" />
+      </div>
+    );
+  }
 
-  if (loading) return <div className="container mx-auto p-4">Cargando...</div>;
-  if (error) return <div className="container mx-auto p-4 text-red-600">Error: {error}</div>;
+  if (error) {
+    return (
+      <div className="flex items-center justify-center h-64 text-red-500 font-medium">
+        Error: {error}
+      </div>
+    );
+  }
 
   return (
-    <div className="container mx-auto p-4">
-      <h1 className="text-2xl font-semibold mb-4">Resultados para: "{q}"</h1>
+    <div className="px-4 py-8">
+      {/* Header */}
+      <div className="mb-8">
+        <h1 className="text-2xl font-bold text-surface-800 dark:text-surface-100">
+          Resultados para: <span className="text-gradient">&ldquo;{q}&rdquo;</span>
+        </h1>
+        <div className="mt-2 h-1 w-16 rounded-full bg-gradient-to-r from-primary-500 to-accent-500" />
+        {results.length > 0 && (
+          <p className="mt-2 text-sm text-surface-500">
+            {results.length} resultado{results.length !== 1 ? "s" : ""} encontrado{results.length !== 1 ? "s" : ""}
+          </p>
+        )}
+      </div>
 
       {results.length > 0 ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
           {results.map((p) => (
-            <ProductoInicioCard key={p.id} producto={p} onOpenModal={handleOpenModal} />
+            <ProductoInicioCard
+              key={p.id}
+              producto={p}
+              onOpenModal={(producto) => setModalProducto(producto)}
+            />
           ))}
         </div>
       ) : q.trim() !== "" ? (
-        <div className="flex flex-col items-center justify-center p-8">
-          <div className="w-48 h-48">
-            <Lottie
-              options={{
-                loop: true,
-                autoplay: true,
-                animationData: animationData,
-                rendererSettings: { preserveAspectRatio: "xMidYMid slice" },
-              }}
-              height={192}
-              width={192}
-            />
-          </div>
-          <div className="text-center text-lg text-gray-600 mt-4">No encontramos resultados para "{q}"</div>
+        <div className="flex flex-col items-center justify-center py-12">
+          <Lottie
+            options={{
+              loop: true,
+              autoplay: true,
+              animationData,
+              rendererSettings: { preserveAspectRatio: "xMidYMid slice" },
+            }}
+            height={200}
+            width={200}
+          />
+          <p className="text-center text-surface-500 mt-4">
+            No encontramos resultados para &ldquo;{q}&rdquo;
+          </p>
         </div>
       ) : (
-        <div className="text-center text-gray-500">Escribe algo para buscar productos</div>
+        <div className="text-center text-surface-400 py-12">
+          Escribe algo para buscar productos
+        </div>
       )}
 
       {modalProducto && (
-        <ProductInicioCardModal producto={modalProducto} onClose={handleCloseModal} />
+        <ProductInicioCardModal producto={modalProducto} onClose={() => setModalProducto(null)} />
       )}
     </div>
   );

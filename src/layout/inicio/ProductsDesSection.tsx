@@ -5,15 +5,13 @@ import ProductInicioCardModal from "../../components/cards/ProductInicioCardModa
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { useProducts } from "../../contexts/ProductsContext";
+import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 
 const ProductoDesSection = () => {
   const { products, loading, error } = useProducts();
 
   useEffect(() => {
-    AOS.init({
-      duration: 500,
-      once: true,
-    });
+    AOS.init({ duration: 600, once: true });
   }, []);
 
   const [modalProducto, setModalProducto] = useState(null);
@@ -22,163 +20,156 @@ const ProductoDesSection = () => {
 
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth >= 1200) {
-        setItemsPerSlide(5);
-      } else if (window.innerWidth >= 992) {
-        setItemsPerSlide(4);
-      } else if (window.innerWidth >= 768) {
-        setItemsPerSlide(3);
-      } else {
-        setItemsPerSlide(2);
-      }
+      if (window.innerWidth >= 1200) setItemsPerSlide(5);
+      else if (window.innerWidth >= 992) setItemsPerSlide(4);
+      else if (window.innerWidth >= 768) setItemsPerSlide(3);
+      else setItemsPerSlide(2);
     };
-
     window.addEventListener("resize", handleResize);
-    handleResize(); // Llamar a la función para establecer el valor inicial
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
+    handleResize();
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const handleOpenModal = (producto: any) => {
-    setModalProducto(producto);
-  };
+  const handleOpenModal = (producto: any) => setModalProducto(producto);
+  const handleCloseModal = () => setModalProducto(null);
 
-  const handleCloseModal = () => {
-    setModalProducto(null);
-  };
-
-  // Obtenemos los últimos productos por tipo y los agrupamos para el slider
   const ultimosProductos = getLatestByType(products).filter((p) => !p.popular);
   const groupedProducts = groupForSlider(ultimosProductos, itemsPerSlide);
 
-  // Función para rellenar el último grupo si es necesario
   const padGroup = (group: any[]) => {
-    const difference = itemsPerSlide - group.length;
-    return difference > 0 ? [...group, ...Array(difference).fill(null)] : group;
+    const diff = itemsPerSlide - group.length;
+    return diff > 0 ? [...group, ...Array(diff).fill(null)] : group;
   };
 
   const productoPopular = products.find((producto) => producto.popular);
 
-  if (loading) return <div className="my-10 mx-5 sm:mx-20 text-center">Cargando productos...</div>;
-  if (error) return <div className="my-10 mx-5 sm:mx-20 text-center text-red-600">Error: {error}</div>;
+  if (loading) {
+    return (
+      <div className="my-12 px-4 sm:px-8 flex justify-center">
+        <div className="w-12 h-12 border-4 border-primary-200 border-t-primary-500 rounded-full animate-spin" />
+      </div>
+    );
+  }
+  if (error) {
+    return (
+      <div className="my-12 px-4 text-center text-red-500 dark:text-red-400 font-medium">
+        Error: {error}
+      </div>
+    );
+  }
 
   const goToNextSlide = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex < groupedProducts.length - 1 ? prevIndex + 1 : 0
-    );
+    setCurrentIndex((prev) => (prev < groupedProducts.length - 1 ? prev + 1 : 0));
   };
 
   const goToPrevSlide = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex > 0 ? prevIndex - 1 : groupedProducts.length - 1
-    );
-  };
-
-  const goToPage = (pageIndex: number) => {
-    setCurrentIndex(pageIndex);
+    setCurrentIndex((prev) => (prev > 0 ? prev - 1 : groupedProducts.length - 1));
   };
 
   return (
-    <div className="my-10 mx-5 sm:mx-20 relative flex flex-col gap-5">
+    <div className="my-12 px-4 sm:px-8 relative flex flex-col gap-6">
+      {/* Top section: Featured product + banner */}
       <div className="flex gap-5">
         <div className="hidden lg:flex w-4/12" data-aos="fade-right">
           {productoPopular && (
-            <ProductInicioCard
-              producto={productoPopular}
-              onOpenModal={handleOpenModal}
-            />
+            <ProductInicioCard producto={productoPopular} onOpenModal={handleOpenModal} />
           )}
         </div>
         <img
           src="/images/inicio/banner.png"
           alt="mini banner"
-          className="w-full lg:w-8/12 rounded-xl"
+          className="w-full lg:w-8/12 rounded-2xl shadow-card object-cover"
           data-aos="fade-left"
         />
       </div>
-      <div className="relative overflow-hidden py-5" data-aos="zoom-in">
-        {/* Contenedor de los slides */}
+
+      {/* Section title */}
+      <div className="flex items-center justify-between" data-aos="fade-up">
+        <h2 className="text-xl font-bold text-surface-800 dark:text-surface-100">
+          Novedades
+        </h2>
+        {groupedProducts.length > 1 && (
+          <div className="flex items-center gap-2">
+            <button
+              onClick={goToPrevSlide}
+              className="w-9 h-9 rounded-xl bg-surface-100 dark:bg-surface-800 flex items-center justify-center
+                         hover:bg-primary-50 dark:hover:bg-primary-950/30 hover:text-primary-500
+                         transition-all duration-300"
+            >
+              <FiChevronLeft className="w-4 h-4" />
+            </button>
+            <span className="text-xs font-medium text-surface-400 tabular-nums">
+              {currentIndex + 1} / {groupedProducts.length}
+            </span>
+            <button
+              onClick={goToNextSlide}
+              className="w-9 h-9 rounded-xl bg-surface-100 dark:bg-surface-800 flex items-center justify-center
+                         hover:bg-primary-50 dark:hover:bg-primary-950/30 hover:text-primary-500
+                         transition-all duration-300"
+            >
+              <FiChevronRight className="w-4 h-4" />
+            </button>
+          </div>
+        )}
+      </div>
+
+      {/* Slider */}
+      <div className="relative overflow-hidden" data-aos="fade-up">
         <div
-          className="flex transition-transform duration-500 ease-in-out"
+          className="flex transition-transform duration-600 ease-out"
           style={{
-            transform: `translateX(-${
-              (currentIndex * 100) / groupedProducts.length
-            }%)`,
+            transform: `translateX(-${(currentIndex * 100) / groupedProducts.length}%)`,
             width: `${groupedProducts.length * 100}%`,
           }}
         >
           {groupedProducts.map((group, index) => (
             <div
               key={index}
-              className="flex w-full px-1.5"
+              className="flex w-full"
               style={{ width: `${100 / groupedProducts.length}%` }}
             >
-              {/* Mostrar los productos por slide */}
               {padGroup(group).map((producto, idx) =>
                 producto ? (
                   <div
                     key={producto.id}
-                    className="flex-grow px-1.5"
+                    className="px-2"
                     style={{ flex: `0 0 ${100 / itemsPerSlide}%` }}
                   >
-                    <ProductInicioCard
-                      producto={producto}
-                      onOpenModal={handleOpenModal}
-                    />
+                    <ProductInicioCard producto={producto} onOpenModal={handleOpenModal} />
                   </div>
                 ) : (
                   <div
                     key={`placeholder-${idx}`}
-                    className="flex-grow px-1.5"
-                    style={{
-                      flex: `0 0 ${100 / itemsPerSlide}%`,
-                      visibility: "hidden",
-                    }}
+                    className="px-2"
+                    style={{ flex: `0 0 ${100 / itemsPerSlide}%`, visibility: "hidden" }}
                   />
                 )
               )}
             </div>
           ))}
         </div>
-
-        {/* Botones de navegación */}
-        <button
-          onClick={goToPrevSlide}
-          className="absolute top-1/2 left-0 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full shadow-lg z-10"
-        >
-          Prev
-        </button>
-        <button
-          onClick={goToNextSlide}
-          className="absolute top-1/2 right-0 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full shadow-lg z-10"
-        >
-          Next
-        </button>
       </div>
 
-      {/* Paginación */}
-      <div className="flex justify-center mt-4">
-        {groupedProducts.map((_, index) => (
-          <button
-            key={index}
-            onClick={() => goToPage(index)}
-            className={`mx-1 p-2 rounded-full ${
-              currentIndex === index ? "bg-gray-800 text-white" : "bg-gray-300"
-            }`}
-          >
-            {index + 1}
-          </button>
-        ))}
-      </div>
+      {/* Dots */}
+      {groupedProducts.length > 1 && (
+        <div className="flex justify-center gap-2">
+          {groupedProducts.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => setCurrentIndex(index)}
+              className={`h-1.5 rounded-full transition-all duration-300
+                ${currentIndex === index
+                  ? "w-6 bg-primary-500"
+                  : "w-3 bg-surface-300 dark:bg-surface-700 hover:bg-surface-400"
+                }`}
+            />
+          ))}
+        </div>
+      )}
 
-      {/* Modal de producto */}
+      {/* Modal */}
       {modalProducto && (
-        <ProductInicioCardModal
-          producto={modalProducto}
-          onClose={handleCloseModal}
-        />
+        <ProductInicioCardModal producto={modalProducto} onClose={handleCloseModal} />
       )}
     </div>
   );

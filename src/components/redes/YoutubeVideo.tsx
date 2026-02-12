@@ -1,42 +1,55 @@
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { useEffect } from "react";
+import { FiExternalLink } from "react-icons/fi";
 
 const YoutubeVideo = () => {
   useEffect(() => {
-    AOS.init({
-      duration: 500,
-      once: true,
-    });
+    AOS.init({ duration: 600, once: true });
   }, []);
+
   return (
-    <div className="bg-slate-300 dark:bg-gray-900 mx-10 text-black shadow-md dark:text-white p-6 rounded-lg" data-aos="flip-left">
-      <div className="flex flex-col md:flex-row items-start">
-        <div className="w-full md:w-2/3 lg:w-3/5 mr-0 md:mr-4 mb-4 md:mb-0">
-          <iframe
-            width="100%"
-            height="315"
-            src="https://www.youtube.com/embed/C2LwIyqWMRA?si=xIShyuhfiwWLyiRH&amp;start=28"
-            title="YouTube video player"
-            frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowFullScreen
-            className="rounded-lg"
-          ></iframe>
+    <div
+      className="rounded-3xl overflow-hidden shadow-card bg-white dark:bg-surface-800/80
+                 border border-surface-200 dark:border-surface-700/50 mx-auto max-w-5xl"
+      data-aos="fade-up"
+    >
+      <div className="flex flex-col md:flex-row">
+        {/* Video */}
+        <div className="w-full md:w-3/5">
+          <div className="aspect-video">
+            <iframe
+              width="100%"
+              height="100%"
+              src="https://www.youtube.com/embed/C2LwIyqWMRA?si=xIShyuhfiwWLyiRH&amp;start=28"
+              title="YouTube video player"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen
+              className="w-full h-full"
+            />
+          </div>
         </div>
-        <div className="w-full md:w-1/3 lg:w-2/5 text-left">
-          <h3 className="text-xl font-bold mb-2">Titulo de ejemplo</h3>
-          <p className="mb-4">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam
-            laudantium quae cum nobis vel quaerat aut dolore esse! Deleniti
-            repudiandae, nisi in laudantium similique error repellendus
-            voluptatum doloribus aliquid enim.
+
+        {/* Info */}
+        <div className="w-full md:w-2/5 p-6 md:p-8 flex flex-col justify-center">
+          <h3 className="text-xl font-bold text-surface-800 dark:text-surface-100 mb-3">
+            Nuestro canal
+          </h3>
+          <p className="text-sm text-surface-500 dark:text-surface-400 leading-relaxed mb-6">
+            Descubre reviews, unboxings y tutoriales de los mejores productos gaming y tecnologia en nuestro canal de YouTube.
           </p>
-          <input
-            type="button"
-            value="Mira Nuestro Canal"
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-          />
+          <a
+            href="https://www.youtube.com/@TecnologiaR"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 self-start px-5 py-2.5 rounded-xl
+                       bg-red-500 hover:bg-red-600 text-white text-sm font-bold
+                       shadow-lg hover:shadow-xl transition-all duration-300"
+          >
+            <FiExternalLink className="w-4 h-4" />
+            Ver canal
+          </a>
         </div>
       </div>
     </div>

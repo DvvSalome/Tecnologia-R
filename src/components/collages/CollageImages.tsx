@@ -4,33 +4,39 @@ import { useEffect } from "react";
 
 const CollageImages = () => {
   useEffect(() => {
-    AOS.init({
-      duration: 1000,
-      once: true,
-    });
+    AOS.init({ duration: 800, once: true });
   }, []);
+
   return (
-    <div className="relative w-full mx-auto max-w-md h-[700px]" data-aos="fade-down-right">
-      {/* Primera imagen */}
+    <div className="relative w-full mx-auto max-w-md h-[600px] lg:h-[700px]" data-aos="fade-right">
+      {/* Image 1 */}
       <img
         src="/images/nosotros/local_1.jpg"
-        alt="Imagen 1"
-        className="absolute top-16 left-1/2 transform -translate-x-1/2 w-72 max-w-md rounded-lg shadow-2xl z-10"
+        alt="Tienda 1"
+        className="absolute top-8 left-1/2 -translate-x-1/2 w-64 sm:w-72 rounded-2xl shadow-xl z-10
+                   hover:scale-105 hover:z-40 transition-transform duration-500"
       />
 
-      {/* Segunda imagen */}
+      {/* Image 2 */}
       <img
         src="/images/nosotros/local_2.jpg"
-        alt="Imagen 2"
-        className="absolute top-96 left-36 w-72 max-w-md rounded-lg shadow-2xl z-30"
+        alt="Tienda 2"
+        className="absolute top-72 left-8 sm:left-12 w-64 sm:w-72 rounded-2xl shadow-xl z-30
+                   hover:scale-105 hover:z-40 transition-transform duration-500"
       />
 
-      {/* Tercera imagen */}
+      {/* Image 3 */}
       <img
         src="/images/nosotros/local_3.jpg"
-        alt="Imagen 3"
-        className="absolute top-[250px] right-40 w-72 max-w-md rounded-lg shadow-2xl z-20"
+        alt="Tienda 3"
+        className="absolute top-48 right-4 sm:right-8 w-64 sm:w-72 rounded-2xl shadow-xl z-20
+                   hover:scale-105 hover:z-40 transition-transform duration-500"
       />
+
+      {/* Decorative gradient blob */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
+                      w-64 h-64 rounded-full bg-gradient-to-br from-primary-500/20 to-accent-500/20
+                      blur-3xl -z-10" />
     </div>
   );
 };

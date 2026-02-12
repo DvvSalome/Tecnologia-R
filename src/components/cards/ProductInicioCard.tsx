@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import InicioProductButton from "../buttons/InicioProductButton";
 import { getProductImageUrl } from "../../utils/imageUrl";
 import { getTipoLabel } from "../../constants/productTypes";
+import { FiShoppingBag } from "react-icons/fi";
 
 interface Producto {
   id: number;
@@ -27,68 +28,113 @@ const ProductoInicioCard: React.FC<{
 
   if (!producto) return null;
 
+  const discountPercent = producto.descuento > 0
+    ? Math.round((1 - producto.descuento / producto.precio) * 100)
+    : 0;
+
   return (
     <div
-      className={`relative p-4 border shadow-md dark:border-gray-700 rounded-lg hover:z-30  hover:scale-105 transition-transform duration-300 ease-in-out ${
-        producto.popular
-          ? "dark:bg-gradient-to-br border-gray-200 bg-white dark:from-gray-800 dark:via-gray-700 dark:to-gray-900"
-          : "dark:bg-gradient-to-br border-gray-300 bg-white dark:from-sky-900 dark:via-sky-950 dark:to-blue-900"
-      } ${
-        producto.popular ? "flex-row w-full" : "flex-col min-h-[350px]"
-      } flex items-center h-full`}
+      onClick={() => onOpenModal(producto)}
+      className={`group relative rounded-2xl overflow-hidden cursor-pointer
+        transition-all duration-400 card-hover
+        bg-white dark:bg-surface-800/80 border border-surface-200/80 dark:border-surface-700/50
+        ${producto.popular
+          ? "flex-row w-full shadow-lg ring-1 ring-accent-500/20"
+          : "flex-col min-h-[380px] shadow-card"
+        } flex items-center h-full`}
     >
-      {/* Etiqueta para productos populares */}
+      {/* Popular badge */}
       {producto.popular && (
-        <span className="bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-full absolute top-2 left-2 shadow-md">
-          🔥 Lo más vendido
-        </span>
+        <div className="absolute top-3 left-3 z-10">
+          <span className="inline-flex items-center gap-1.5 bg-gradient-to-r from-red-500 to-orange-500
+                           text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg animate-pulse-slow">
+            Lo mas vendido
+          </span>
+        </div>
       )}
 
-      {/* Imagen del producto (URL de Supabase Storage o ruta local) */}
-      <img
-        src={imgSrc}
-        onError={() => setImgSrc(FALLBACK_IMG)}
-        alt={`Imagen principal de ${producto.nombre}`}
-        loading="lazy"
-        className={`object-cover rounded-md ${
-          producto.popular ? "w-40 h-40 mr-4" : "w-full h-48 mb-4"
-        }`}
-      />
+      {/* Discount badge */}
+      {discountPercent > 0 && !producto.popular && (
+        <div className="absolute top-3 right-3 z-10">
+          <span className="inline-flex items-center bg-red-500 text-white text-xs font-bold
+                           px-2.5 py-1 rounded-full shadow-md">
+            -{discountPercent}%
+          </span>
+        </div>
+      )}
 
-      {/* Información del producto */}
+      {/* Image */}
       <div
-        className={`text-center flex flex-col items-center ${
-          producto.popular
-            ? "items-start text-left"
-            : "items-center text-center"
-        } w-full`}
+        className={`relative overflow-hidden bg-surface-100 dark:bg-surface-800
+          ${producto.popular ? "w-40 h-40 flex-shrink-0 m-4 rounded-xl" : "w-full h-52"}`}
       >
-        <h2 className="text-lg font-semibold text-gray-400 dark:text-white tracking-wide mb-2">
+        <img
+          src={imgSrc}
+          onError={() => setImgSrc(FALLBACK_IMG)}
+          alt={`Imagen de ${producto.nombre}`}
+          loading="lazy"
+          className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+        />
+        {/* Overlay on hover */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent
+                        opacity-0 group-hover:opacity-100 transition-all duration-400" />
+
+        {/* Quick view icon */}
+        <div className="absolute inset-0 flex items-center justify-center
+                        opacity-0 group-hover:opacity-100 transition-all duration-300">
+          <div className="w-11 h-11 rounded-full bg-white/90 dark:bg-surface-800/90 backdrop-blur-sm
+                          flex items-center justify-center shadow-lg
+                          scale-50 group-hover:scale-100 transition-transform duration-400 ease-[cubic-bezier(0.68,-0.55,0.265,1.55)]">
+            <FiShoppingBag className="w-5 h-5 text-primary-500" />
+          </div>
+        </div>
+      </div>
+
+      {/* Info */}
+      <div
+        className={`p-4 flex flex-col ${
+          producto.popular
+            ? "items-start text-left flex-1"
+            : "items-center text-center w-full flex-1"
+        }`}
+      >
+        {/* Category label */}
+        <span className="text-[11px] font-bold uppercase tracking-widest text-primary-500/80 dark:text-primary-400/80 mb-1.5">
           {getTipoLabel(producto.tipo)}
-        </h2>
-        <p className="text-md text-black text-xl dark:text-gray-300 leading-tight">{producto.nombre}</p>
-        <p className="text-md font-bold text-xl">
+        </span>
+
+        {/* Name */}
+        <h3 className="text-sm font-bold text-surface-800 dark:text-surface-100 leading-snug mb-2.5 line-clamp-2
+                       group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors duration-300">
+          {producto.nombre}
+        </h3>
+
+        {/* Price */}
+        <div className="flex items-center gap-2 mb-4">
           {producto.descuento > 0 ? (
             <>
-              <span className="text-green-400">
-                ${producto.descuento.toFixed(3)}
+              <span className="text-lg font-extrabold text-accent-600 dark:text-accent-400">
+                ${producto.descuento.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 2 })}
               </span>
-              <span className="line-through text-red-500 text-base ml-2">
-                ${producto.precio.toFixed(3)}
+              <span className="text-sm line-through text-surface-400 dark:text-surface-500">
+                ${producto.precio.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 2 })}
               </span>
             </>
           ) : (
-            <span className="text-green-400">
-              ${producto.precio.toFixed(3)}
+            <span className="text-lg font-extrabold text-accent-600 dark:text-accent-400">
+              ${producto.precio.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 2 })}
             </span>
           )}
-        </p>
+        </div>
 
-        {/* Botón */}
-        <div className="mt-4">
+        {/* Button */}
+        <div className="mt-auto">
           <InicioProductButton
-            text="Ver más"
-            onClick={() => onOpenModal(producto)} // Llama a la función de apertura del modal
+            text="Ver mas"
+            onClick={(e) => {
+              e.stopPropagation();
+              onOpenModal(producto);
+            }}
           />
         </div>
       </div>

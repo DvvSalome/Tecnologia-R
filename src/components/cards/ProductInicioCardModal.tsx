@@ -1,5 +1,7 @@
 import React, { useState, useRef } from "react";
 import { getProductImageUrl } from "../../utils/imageUrl";
+import { FiX } from "react-icons/fi";
+import { FaWhatsapp } from "react-icons/fa";
 
 interface Producto {
   id: number;
@@ -20,50 +22,56 @@ const ProductInicioCardModal: React.FC<{
     ? getProductImageUrl(producto.imagenes[0], fallbackImg)
     : fallbackImg;
   const [imagenPrincipal, setImagenPrincipal] = useState(firstImg);
-  const imageRef = useRef<HTMLDivElement>(null); // Referencia a la imagen contenedora
-  const [zoomStyle, setZoomStyle] = useState({ backgroundPosition: "center", backgroundSize: "contain" });
+  const imageRef = useRef<HTMLDivElement>(null);
+  const [zoomStyle, setZoomStyle] = useState({
+    backgroundPosition: "center",
+    backgroundSize: "contain",
+  });
 
   const handleMouseMove = (e: React.MouseEvent) => {
     if (imageRef.current) {
       const { width, height, left, top } = imageRef.current.getBoundingClientRect();
       const x = e.clientX - left;
       const y = e.clientY - top;
-
-      // Calcula la posición del cursor en relación con la imagen
-      const xPos = (x / width) * 100;
-      const yPos = (y / height) * 100;
-
       setZoomStyle({
-        backgroundPosition: `${xPos}% ${yPos}%`,
-        backgroundSize: "200%" // Tamaño del zoom
+        backgroundPosition: `${(x / width) * 100}% ${(y / height) * 100}%`,
+        backgroundSize: "200%",
       });
     }
   };
 
   const handleMouseLeave = () => {
-    setZoomStyle({ backgroundPosition: "center", backgroundSize: "contain" }); // Restaurar cuando el mouse sale de la imagen
+    setZoomStyle({ backgroundPosition: "center", backgroundSize: "contain" });
   };
 
   return (
     <div
-      onClick={(e) => e.target === e.currentTarget && onClose()} // Cierra el modal si se hace clic en el fondo
-      className="fixed inset-0 bg-black bg-opacity-70 z-50 flex items-center justify-center"
+      onClick={(e) => e.target === e.currentTarget && onClose()}
+      className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 animate-fade-in"
     >
-      <div className="bg-gray-100 dark:bg-gray-900 p-8 rounded-lg shadow-lg w-full max-w-4xl max-h-[80vh] overflow-auto relative">
-        {/* Botón cerrar modal */}
+      <div className="bg-white dark:bg-surface-900 rounded-3xl shadow-2xl w-full max-w-4xl max-h-[85vh] overflow-hidden relative animate-scale-in">
+        {/* Close button */}
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 text-gray-400 hover:text-gray-800 text-2xl"
+          className="absolute top-4 right-4 z-10 w-10 h-10 rounded-xl
+                     bg-surface-100 dark:bg-surface-800 flex items-center justify-center
+                     hover:bg-red-100 dark:hover:bg-red-950/30 hover:text-red-500
+                     transition-all duration-300 shadow-sm"
         >
-          ✖
+          <FiX className="w-5 h-5" />
         </button>
 
-        <div className="flex gap-6 h-full max-h-[70vh] overflow-hidden">
-          {/* Sección de imágenes */}
-          <div className="flex-1 max-h-full overflow-y-auto">
+        <div className="flex flex-col md:flex-row h-full max-h-[85vh] overflow-auto">
+          {/* Images section */}
+          <div className="md:w-1/2 p-6 flex flex-col gap-4">
+            {/* Main image with zoom */}
             <div
-              className="w-full h-auto rounded-lg overflow-hidden bg-cover cursor-zoom-in border border-gray-300"
-              style={{ backgroundImage: `url(${getProductImageUrl(imagenPrincipal, fallbackImg)})`, ...zoomStyle }}
+              className="w-full aspect-square rounded-2xl overflow-hidden bg-surface-100 dark:bg-surface-800
+                         bg-cover cursor-zoom-in border border-surface-200 dark:border-surface-700"
+              style={{
+                backgroundImage: `url(${getProductImageUrl(imagenPrincipal, fallbackImg)})`,
+                ...zoomStyle,
+              }}
               ref={imageRef}
               onMouseMove={handleMouseMove}
               onMouseLeave={handleMouseLeave}
@@ -71,48 +79,76 @@ const ProductInicioCardModal: React.FC<{
               <img
                 src={getProductImageUrl(imagenPrincipal, fallbackImg)}
                 alt={`Imagen de ${producto.nombre}`}
-                className="w-full h-auto opacity-0" // Oculta la imagen real, solo se usa el fondo con zoom
+                className="w-full h-full opacity-0"
               />
             </div>
-            <div className="flex gap-3 mt-4 overflow-x-auto">
-              {(producto.imagenes ?? []).map((imagen, index) => (
-                <img
-                  key={index}
-                  src={getProductImageUrl(imagen, fallbackImg)}
-                  alt={`Miniatura ${index + 1}`}
-                  onClick={() => setImagenPrincipal(imagen)}
-                  className={`w-16 h-16 rounded-lg cursor-pointer border ${
-                    imagen === imagenPrincipal ? "border-blue-500" : "border-gray-300"
-                  }`}
-                />
-              ))}
-            </div>
+
+            {/* Thumbnails */}
+            {(producto.imagenes ?? []).length > 1 && (
+              <div className="flex gap-2 overflow-x-auto pb-1">
+                {(producto.imagenes ?? []).map((imagen, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setImagenPrincipal(imagen)}
+                    className={`flex-shrink-0 w-16 h-16 rounded-xl overflow-hidden border-2 transition-all duration-200
+                      ${imagen === imagenPrincipal
+                        ? "border-primary-500 ring-2 ring-primary-500/30"
+                        : "border-surface-200 dark:border-surface-700 hover:border-primary-300"
+                      }`}
+                  >
+                    <img
+                      src={getProductImageUrl(imagen, fallbackImg)}
+                      alt={`Miniatura ${index + 1}`}
+                      className="w-full h-full object-cover"
+                    />
+                  </button>
+                ))}
+              </div>
+            )}
           </div>
 
-          {/* Sección de detalles */}
-          <div className="flex-1 max-h-full overflow-y-auto">
-            <h2 className="text-3xl font-bold text-blue-700">{producto.nombre}</h2>
-            <p className="mt-3 text-gray-700 dark:text-gray-200 text-sm leading-relaxed">{producto.descripcion}</p>
-            <p className="mt-5 text-xl font-bold text-green-700">
-              {producto.descuento > 0 ? (
-                <>
-                  ${producto.descuento.toFixed(2)}
-                  <span className="line-through text-red-500 ml-2">
-                    ${producto.precio.toFixed(2)}
-                  </span>
-                </>
-              ) : (
-                <span>${producto.precio.toFixed(2)}</span>
-              )}
+          {/* Details section */}
+          <div className="md:w-1/2 p-6 md:pl-2 flex flex-col">
+            <h2 className="text-2xl md:text-3xl font-bold text-surface-900 dark:text-surface-100 mb-3 pr-10">
+              {producto.nombre}
+            </h2>
+
+            <p className="text-surface-600 dark:text-surface-300 text-sm leading-relaxed mb-6 flex-1">
+              {producto.descripcion}
             </p>
 
-            {/* Botón de WhatsApp */}
+            {/* Price */}
+            <div className="mb-6 p-4 rounded-2xl bg-surface-50 dark:bg-surface-800/50 border border-surface-200 dark:border-surface-700">
+              {producto.descuento > 0 ? (
+                <div className="flex items-end gap-3">
+                  <span className="text-3xl font-bold text-accent-600 dark:text-accent-400">
+                    ${producto.descuento.toLocaleString(undefined, { minimumFractionDigits: 2 })}
+                  </span>
+                  <span className="text-lg line-through text-surface-400 mb-0.5">
+                    ${producto.precio.toLocaleString(undefined, { minimumFractionDigits: 2 })}
+                  </span>
+                  <span className="ml-auto bg-red-100 dark:bg-red-950/30 text-red-600 dark:text-red-400 text-xs font-bold px-2.5 py-1 rounded-full">
+                    -{Math.round((1 - producto.descuento / producto.precio) * 100)}%
+                  </span>
+                </div>
+              ) : (
+                <span className="text-3xl font-bold text-accent-600 dark:text-accent-400">
+                  ${producto.precio.toLocaleString(undefined, { minimumFractionDigits: 2 })}
+                </span>
+              )}
+            </div>
+
+            {/* WhatsApp button */}
             <a
-              href={`https://wa.me/+571234567890?text=Hola, estoy interesado en el producto: ${producto.nombre}.%0AEnlace al producto: ${window.location.href}`}
+              href={`https://wa.me/+571234567890?text=Hola, estoy interesado en el producto: ${producto.nombre}.%0AEnlace: ${window.location.origin}/producto/${producto.id}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-6 inline-block bg-green-500 text-white px-8 py-3 rounded-full hover:bg-green-600 shadow-md transition duration-300"
+              className="inline-flex items-center justify-center gap-2.5 w-full
+                         bg-[#25D366] hover:bg-[#20bd5a] text-white
+                         font-bold px-8 py-4 rounded-2xl shadow-lg
+                         hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5"
             >
+              <FaWhatsapp className="w-5 h-5" />
               Contactar por WhatsApp
             </a>
           </div>

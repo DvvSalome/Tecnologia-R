@@ -18,26 +18,25 @@ const InstagramVideo = ({ embedUrl }: InstagramVideoProps) => {
   }, [embedUrl]);
 
   return (
-    <div className="w-full mx-auto">
+    <div className="w-full mx-auto rounded-2xl overflow-hidden shadow-card border border-surface-200 dark:border-surface-700/50">
       <blockquote
-        className="instagram-media w-full p-0 rounded-lg shadow-md"
+        className="instagram-media w-full p-0"
         data-instgrm-permalink={embedUrl}
         data-instgrm-version="14"
         style={{
           background: "#FFF",
           border: "0",
-          boxShadow: "0 0 1px rgba(0, 0, 0, 0.5), 0 1px 10px rgba(0, 0, 0, 0.15)",
-          margin: "1px",
-          width: "calc(100% - 2px)",
+          margin: "0",
+          width: "100%",
         }}
       >
         <a
           href={embedUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-blue-500 hover:text-blue-700"
+          className="text-primary-500 hover:text-primary-600 text-sm p-4 block"
         >
-          Ver esta publicación en Instagram
+          Ver en Instagram
         </a>
       </blockquote>
     </div>
