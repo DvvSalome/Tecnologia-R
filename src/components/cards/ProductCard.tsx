@@ -10,10 +10,10 @@ const ProductsCard = ({ image, title, link }: ProductsSectionProps) => {
   return (
     <NavLink
       to={link}
-      className="group relative flex items-center justify-center gap-2.5
-                 w-14 sm:w-16 md:w-24 lg:w-auto
-                 py-2.5 sm:py-3.5 lg:py-4 lg:px-7
-                 rounded-2xl overflow-hidden
+      className="group relative flex items-center justify-center gap-2
+                 w-12 sm:w-14 md:w-20 lg:w-auto
+                 py-2 sm:py-2.5 md:py-3.5 lg:py-4 lg:px-7
+                 rounded-xl sm:rounded-2xl overflow-hidden
                  bg-gradient-to-br from-primary-500 to-accent-500
                  shadow-lg hover:shadow-xl hover:shadow-primary-500/20
                  hover:scale-105 active:scale-95
@@ -27,10 +27,10 @@ const ProductsCard = ({ image, title, link }: ProductsSectionProps) => {
       <img
         src={image}
         alt={title}
-        className="relative w-6 md:w-7 lg:w-8 brightness-0 invert
+        className="relative w-5 sm:w-6 md:w-7 lg:w-8 brightness-0 invert
                    transition-transform duration-400 group-hover:scale-110 group-hover:rotate-[-5deg]"
       />
-      <span className="relative font-bold text-lg text-white hidden lg:block">
+      <span className="relative font-bold text-sm md:text-base lg:text-lg text-white hidden md:block">
         {title}
       </span>
     </NavLink>

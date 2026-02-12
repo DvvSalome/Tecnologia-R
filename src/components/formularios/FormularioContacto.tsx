@@ -17,17 +17,17 @@ const FormularioContacto = () => {
 
   return (
     <div
-      className="w-11/12 lg:w-1/2 p-8 rounded-3xl
+      className="w-full lg:w-1/2 p-5 sm:p-8 rounded-3xl
                  bg-white dark:bg-surface-800/80
                  border border-surface-200 dark:border-surface-700/50
                  shadow-card"
       data-aos="fade-right"
     >
-      <h2 className="text-2xl md:text-3xl font-bold text-center text-surface-800 dark:text-surface-100 mb-8">
+      <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-center text-surface-800 dark:text-surface-100 mb-6 sm:mb-8">
         Formulario de Contacto
       </h2>
 
-      <form className="space-y-5">
+      <form className="space-y-4 sm:space-y-5">
         <div>
           <label htmlFor="nombre" className="block text-sm font-semibold text-surface-700 dark:text-surface-200 mb-1.5">
             Nombre completo
@@ -78,9 +78,9 @@ const FormularioContacto = () => {
         <div className="pt-2">
           <button
             type="submit"
-            className="w-full py-3.5 rounded-xl bg-primary-500 hover:bg-primary-600
+            className="w-full py-3 sm:py-3.5 rounded-xl bg-primary-500 hover:bg-primary-600
                        text-white text-sm font-bold shadow-lg hover:shadow-xl
-                       transition-all duration-300 hover:-translate-y-0.5"
+                       transition-all duration-300 hover:-translate-y-0.5 active:scale-[0.98]"
           >
             Enviar mensaje
           </button>

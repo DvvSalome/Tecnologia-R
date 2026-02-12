@@ -8,34 +8,43 @@ const CollageImages = () => {
   }, []);
 
   return (
-    <div className="relative w-full mx-auto max-w-md h-[600px] lg:h-[700px]" data-aos="fade-right">
+    <div className="relative w-full mx-auto max-w-sm sm:max-w-md h-[420px] sm:h-[520px] lg:h-[700px]" data-aos="fade-right">
       {/* Image 1 */}
-      <img
-        src="/images/nosotros/local_1.jpg"
-        alt="Tienda 1"
-        className="absolute top-8 left-1/2 -translate-x-1/2 w-64 sm:w-72 rounded-2xl shadow-xl z-10
-                   hover:scale-105 hover:z-40 transition-transform duration-500"
-      />
+      <div className="absolute top-4 sm:top-8 left-1/2 -translate-x-1/2 z-10 group/img1">
+        <img
+          src="/images/nosotros/local_1.jpg"
+          alt="Tienda 1"
+          className="w-48 sm:w-60 lg:w-72 rounded-2xl shadow-xl
+                     transition-all duration-700 ease-out
+                     group-hover/img1:shadow-2xl group-hover/img1:-translate-y-2 group-hover/img1:z-40"
+        />
+      </div>
 
       {/* Image 2 */}
-      <img
-        src="/images/nosotros/local_2.jpg"
-        alt="Tienda 2"
-        className="absolute top-72 left-8 sm:left-12 w-64 sm:w-72 rounded-2xl shadow-xl z-30
-                   hover:scale-105 hover:z-40 transition-transform duration-500"
-      />
+      <div className="absolute top-48 sm:top-60 lg:top-72 left-2 sm:left-8 lg:left-12 z-30 group/img2">
+        <img
+          src="/images/nosotros/local_2.jpg"
+          alt="Tienda 2"
+          className="w-48 sm:w-60 lg:w-72 rounded-2xl shadow-xl
+                     transition-all duration-700 ease-out
+                     group-hover/img2:shadow-2xl group-hover/img2:-translate-y-2 group-hover/img2:z-40"
+        />
+      </div>
 
       {/* Image 3 */}
-      <img
-        src="/images/nosotros/local_3.jpg"
-        alt="Tienda 3"
-        className="absolute top-48 right-4 sm:right-8 w-64 sm:w-72 rounded-2xl shadow-xl z-20
-                   hover:scale-105 hover:z-40 transition-transform duration-500"
-      />
+      <div className="absolute top-32 sm:top-40 lg:top-48 right-0 sm:right-4 lg:right-8 z-20 group/img3">
+        <img
+          src="/images/nosotros/local_3.jpg"
+          alt="Tienda 3"
+          className="w-48 sm:w-60 lg:w-72 rounded-2xl shadow-xl
+                     transition-all duration-700 ease-out
+                     group-hover/img3:shadow-2xl group-hover/img3:-translate-y-2 group-hover/img3:z-40"
+        />
+      </div>
 
       {/* Decorative gradient blob */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
-                      w-64 h-64 rounded-full bg-gradient-to-br from-primary-500/20 to-accent-500/20
+                      w-48 sm:w-64 h-48 sm:h-64 rounded-full bg-gradient-to-br from-primary-500/20 to-accent-500/20
                       blur-3xl -z-10" />
     </div>
   );

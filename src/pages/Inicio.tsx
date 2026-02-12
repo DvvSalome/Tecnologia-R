@@ -53,33 +53,33 @@ const Inicio = () => {
   return (
     <>
       {/* Hero section */}
-      <section className="relative py-8 sm:py-12 px-4 particles-bg">
+      <section className="relative py-6 sm:py-8 md:py-12 px-3 sm:px-4 particles-bg">
         <div className="max-w-3xl mx-auto text-center">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-surface-900 dark:text-white leading-tight mb-4 animate-fade-in-up">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-surface-900 dark:text-white leading-tight mb-3 sm:mb-4 animate-fade-in-up">
             Tu tienda de{" "}
             <TypewriterText words={["Teclados", "Mouses", "Audifonos", "Gaming", "Tecnologia"]} />
           </h1>
-          <p className="text-surface-500 dark:text-surface-400 text-sm sm:text-base max-w-xl mx-auto mb-6 animate-fade-in-up animate-delay-200">
+          <p className="text-surface-500 dark:text-surface-400 text-xs sm:text-sm md:text-base max-w-xl mx-auto mb-5 sm:mb-6 animate-fade-in-up animate-delay-200 px-2">
             Encuentra los mejores productos gaming y tecnologia al mejor precio. Envios a todo Colombia.
           </p>
-          <div className="flex flex-wrap justify-center gap-3 animate-fade-in-up animate-delay-400">
+          <div className="flex flex-col xs:flex-row flex-wrap justify-center gap-2.5 sm:gap-3 animate-fade-in-up animate-delay-400 px-4 sm:px-0">
             <NavLink
               to="/productos/1"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-2xl
+              className="inline-flex items-center justify-center gap-2 px-5 sm:px-6 py-2.5 sm:py-3 rounded-2xl
                          bg-gradient-to-r from-primary-500 to-accent-500 text-white text-sm font-bold
                          shadow-lg hover:shadow-xl hover:shadow-primary-500/20
-                         hover:-translate-y-0.5 transition-all duration-300"
+                         hover:-translate-y-0.5 active:scale-[0.98] transition-all duration-300"
             >
               Ver productos
               <FiArrowRight className="w-4 h-4" />
             </NavLink>
             <NavLink
               to="/contacto"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-2xl
+              className="inline-flex items-center justify-center gap-2 px-5 sm:px-6 py-2.5 sm:py-3 rounded-2xl
                          bg-surface-100 dark:bg-surface-800 text-surface-700 dark:text-surface-200
                          text-sm font-bold border border-surface-200 dark:border-surface-700
                          hover:border-primary-300 dark:hover:border-primary-700
-                         hover:-translate-y-0.5 transition-all duration-300"
+                         hover:-translate-y-0.5 active:scale-[0.98] transition-all duration-300"
             >
               Contactanos
             </NavLink>

@@ -10,7 +10,7 @@ const YoutubeVideo = () => {
 
   return (
     <div
-      className="rounded-3xl overflow-hidden shadow-card bg-white dark:bg-surface-800/80
+      className="rounded-2xl sm:rounded-3xl overflow-hidden shadow-card bg-white dark:bg-surface-800/80
                  border border-surface-200 dark:border-surface-700/50 mx-auto max-w-5xl"
       data-aos="fade-up"
     >
@@ -32,20 +32,20 @@ const YoutubeVideo = () => {
         </div>
 
         {/* Info */}
-        <div className="w-full md:w-2/5 p-6 md:p-8 flex flex-col justify-center">
-          <h3 className="text-xl font-bold text-surface-800 dark:text-surface-100 mb-3">
+        <div className="w-full md:w-2/5 p-4 sm:p-6 md:p-8 flex flex-col justify-center">
+          <h3 className="text-lg sm:text-xl font-bold text-surface-800 dark:text-surface-100 mb-2 sm:mb-3">
             Nuestro canal
           </h3>
-          <p className="text-sm text-surface-500 dark:text-surface-400 leading-relaxed mb-6">
+          <p className="text-xs sm:text-sm text-surface-500 dark:text-surface-400 leading-relaxed mb-4 sm:mb-6">
             Descubre reviews, unboxings y tutoriales de los mejores productos gaming y tecnologia en nuestro canal de YouTube.
           </p>
           <a
             href="https://www.youtube.com/@TecnologiaR"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 self-start px-5 py-2.5 rounded-xl
+            className="inline-flex items-center gap-2 self-start px-4 sm:px-5 py-2 sm:py-2.5 rounded-xl
                        bg-red-500 hover:bg-red-600 text-white text-sm font-bold
-                       shadow-lg hover:shadow-xl transition-all duration-300"
+                       shadow-lg hover:shadow-xl transition-all duration-300 active:scale-[0.98]"
           >
             <FiExternalLink className="w-4 h-4" />
             Ver canal

@@ -40,7 +40,6 @@ const Productos: React.FC = () => {
 
   const { products, loading, error } = useProducts();
 
-  // Get the category name for the title
   const tipoNumerico = Number(tipo);
   const tipoAUsar = !Number.isNaN(tipoNumerico) ? tipoNumerico : getTipoIdFromSlug(tipo);
   const tipoInfo = PRODUCT_TYPES.find((t) => t.id === tipoAUsar);
@@ -80,21 +79,21 @@ const Productos: React.FC = () => {
 
   if (productosFiltrados.length === 0) {
     return (
-      <div className="flex flex-col items-center justify-center min-h-[60vh] px-4" data-aos="fade-up">
-        <Lottie options={lottieOptions} height={300} width={300} />
-        <div className="glass rounded-3xl px-10 py-8 text-center mt-4 max-w-md">
-          <h1 className="text-2xl font-bold text-surface-800 dark:text-surface-100 mb-3">
+      <div className="flex flex-col items-center justify-center min-h-[50vh] sm:min-h-[60vh] px-3 sm:px-4" data-aos="fade-up">
+        <Lottie options={lottieOptions} height={220} width={220} />
+        <div className="glass rounded-3xl px-6 sm:px-10 py-6 sm:py-8 text-center mt-4 max-w-md w-full">
+          <h1 className="text-xl sm:text-2xl font-bold text-surface-800 dark:text-surface-100 mb-2 sm:mb-3">
             Sin productos
           </h1>
-          <p className="text-surface-500 dark:text-surface-400 mb-6 text-sm">
+          <p className="text-surface-500 dark:text-surface-400 mb-5 sm:mb-6 text-sm">
             Actualmente no hay productos disponibles en esta categoria.
           </p>
           <button
             onClick={() => window.history.back()}
-            className="inline-flex items-center gap-2 px-6 py-3
+            className="inline-flex items-center gap-2 px-5 sm:px-6 py-2.5 sm:py-3
                        bg-primary-500 hover:bg-primary-600 text-white
                        font-semibold rounded-xl shadow-lg
-                       hover:shadow-xl transition-all duration-300"
+                       hover:shadow-xl transition-all duration-300 active:scale-[0.98]"
           >
             <FiArrowLeft className="w-4 h-4" />
             Volver
@@ -105,20 +104,20 @@ const Productos: React.FC = () => {
   }
 
   return (
-    <div className="px-4 py-8">
+    <div className="px-3 sm:px-4 py-6 sm:py-8">
       {/* Header */}
-      <div className="mb-8" data-aos="fade-down">
-        <h1 className="text-3xl font-bold text-surface-800 dark:text-surface-100">
+      <div className="mb-6 sm:mb-8" data-aos="fade-down">
+        <h1 className="text-2xl sm:text-3xl font-bold text-surface-800 dark:text-surface-100">
           {tipoNombre}
         </h1>
-        <div className="mt-2 h-1 w-16 rounded-full bg-gradient-to-r from-primary-500 to-accent-500" />
-        <p className="mt-2 text-sm text-surface-500 dark:text-surface-400">
+        <div className="mt-2 h-1 w-12 sm:w-16 rounded-full bg-gradient-to-r from-primary-500 to-accent-500" />
+        <p className="mt-2 text-xs sm:text-sm text-surface-500 dark:text-surface-400">
           {productosFiltrados.length} producto{productosFiltrados.length !== 1 ? "s" : ""} disponible{productosFiltrados.length !== 1 ? "s" : ""}
         </p>
       </div>
 
-      {/* Product grid with staggered entrance */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 mb-10">
+      {/* Product grid */}
+      <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-5 mb-8 sm:mb-10">
         {currentProducts.map((producto, index) => (
           <div
             key={producto.id}
@@ -135,11 +134,11 @@ const Productos: React.FC = () => {
 
       {/* Pagination */}
       {totalPages > 1 && (
-        <div className="flex items-center justify-center gap-2">
+        <div className="flex items-center justify-center gap-1.5 sm:gap-2">
           <button
             onClick={() => currentPage > 1 && paginate(currentPage - 1)}
             disabled={currentPage === 1}
-            className="w-9 h-9 rounded-xl bg-surface-100 dark:bg-surface-800 flex items-center justify-center
+            className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-surface-100 dark:bg-surface-800 flex items-center justify-center
                        disabled:opacity-30 hover:bg-primary-50 dark:hover:bg-primary-950/30
                        hover:text-primary-500 transition-all duration-300"
           >
@@ -150,7 +149,7 @@ const Productos: React.FC = () => {
             <button
               key={i + 1}
               onClick={() => paginate(i + 1)}
-              className={`w-9 h-9 rounded-xl text-sm font-semibold transition-all duration-300
+              className={`w-8 h-8 sm:w-9 sm:h-9 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-300
                 ${currentPage === i + 1
                   ? "bg-primary-500 text-white shadow-lg shadow-primary-500/30"
                   : "bg-surface-100 dark:bg-surface-800 text-surface-600 dark:text-surface-300 hover:bg-primary-50 dark:hover:bg-primary-950/30"
@@ -163,7 +162,7 @@ const Productos: React.FC = () => {
           <button
             onClick={() => currentPage < totalPages && paginate(currentPage + 1)}
             disabled={currentPage === totalPages}
-            className="w-9 h-9 rounded-xl bg-surface-100 dark:bg-surface-800 flex items-center justify-center
+            className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-surface-100 dark:bg-surface-800 flex items-center justify-center
                        disabled:opacity-30 hover:bg-primary-50 dark:hover:bg-primary-950/30
                        hover:text-primary-500 transition-all duration-300"
           >

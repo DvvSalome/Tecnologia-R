@@ -25,28 +25,28 @@ const VideosSection = () => {
   }, []);
 
   return (
-    <div className="my-12 px-4">
+    <div className="my-8 sm:my-12 px-3 sm:px-4">
       {/* Section title */}
-      <div className="mb-8 text-center" data-aos="fade-up">
-        <h2 className="text-2xl font-bold text-surface-800 dark:text-surface-100">
+      <div className="mb-6 sm:mb-8 text-center" data-aos="fade-up">
+        <h2 className="text-xl sm:text-2xl font-bold text-surface-800 dark:text-surface-100">
           Contenido
         </h2>
-        <div className="mt-2 mx-auto h-1 w-16 rounded-full bg-gradient-to-r from-primary-500 to-accent-500" />
+        <div className="mt-2 mx-auto h-1 w-12 sm:w-16 rounded-full bg-gradient-to-r from-primary-500 to-accent-500" />
       </div>
 
       <YoutubeVideo />
 
-      <div className="mt-10" data-aos="fade-up">
+      <div className="mt-6 sm:mt-10" data-aos="fade-up">
         {isMobile ? (
-          <div className="flex overflow-x-auto gap-4 pb-4 snap-x snap-mandatory -mx-4 px-4">
+          <div className="flex overflow-x-auto gap-3 sm:gap-4 pb-4 snap-x snap-mandatory -mx-3 sm:-mx-4 px-3 sm:px-4">
             {videos.map((videoUrl, index) => (
-              <div key={index} className="flex-shrink-0 w-[85%] snap-center">
+              <div key={index} className="flex-shrink-0 w-[80%] sm:w-[85%] snap-center">
                 <InstagramVideo embedUrl={videoUrl} />
               </div>
             ))}
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-5">
             {videos.map((videoUrl, index) => (
               <InstagramVideo key={index} embedUrl={videoUrl} />
             ))}

@@ -45,14 +45,14 @@ const ProductoDesSection = () => {
 
   if (loading) {
     return (
-      <div className="my-12 px-4 sm:px-8 flex justify-center">
+      <div className="my-8 sm:my-12 px-3 sm:px-4 lg:px-8 flex justify-center">
         <div className="w-12 h-12 border-4 border-primary-200 border-t-primary-500 rounded-full animate-spin" />
       </div>
     );
   }
   if (error) {
     return (
-      <div className="my-12 px-4 text-center text-red-500 dark:text-red-400 font-medium">
+      <div className="my-8 sm:my-12 px-3 sm:px-4 text-center text-red-500 dark:text-red-400 font-medium">
         Error: {error}
       </div>
     );
@@ -67,9 +67,9 @@ const ProductoDesSection = () => {
   };
 
   return (
-    <div className="my-12 px-4 sm:px-8 relative flex flex-col gap-6">
+    <div className="my-8 sm:my-12 px-3 sm:px-4 lg:px-8 relative flex flex-col gap-4 sm:gap-6">
       {/* Top section: Featured product + banner */}
-      <div className="flex gap-5">
+      <div className="flex gap-3 sm:gap-5">
         <div className="hidden lg:flex w-4/12" data-aos="fade-right">
           {productoPopular && (
             <ProductInicioCard producto={productoPopular} onOpenModal={handleOpenModal} />
@@ -78,34 +78,34 @@ const ProductoDesSection = () => {
         <img
           src="/images/inicio/banner.png"
           alt="mini banner"
-          className="w-full lg:w-8/12 rounded-2xl shadow-card object-cover"
+          className="w-full lg:w-8/12 rounded-xl sm:rounded-2xl shadow-card object-cover"
           data-aos="fade-left"
         />
       </div>
 
       {/* Section title */}
       <div className="flex items-center justify-between" data-aos="fade-up">
-        <h2 className="text-xl font-bold text-surface-800 dark:text-surface-100">
+        <h2 className="text-lg sm:text-xl font-bold text-surface-800 dark:text-surface-100">
           Novedades
         </h2>
         {groupedProducts.length > 1 && (
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1.5 sm:gap-2">
             <button
               onClick={goToPrevSlide}
-              className="w-9 h-9 rounded-xl bg-surface-100 dark:bg-surface-800 flex items-center justify-center
+              className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-surface-100 dark:bg-surface-800 flex items-center justify-center
                          hover:bg-primary-50 dark:hover:bg-primary-950/30 hover:text-primary-500
-                         transition-all duration-300"
+                         active:scale-90 transition-all duration-300"
             >
               <FiChevronLeft className="w-4 h-4" />
             </button>
-            <span className="text-xs font-medium text-surface-400 tabular-nums">
+            <span className="text-[10px] sm:text-xs font-medium text-surface-400 tabular-nums min-w-[2.5rem] text-center">
               {currentIndex + 1} / {groupedProducts.length}
             </span>
             <button
               onClick={goToNextSlide}
-              className="w-9 h-9 rounded-xl bg-surface-100 dark:bg-surface-800 flex items-center justify-center
+              className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-surface-100 dark:bg-surface-800 flex items-center justify-center
                          hover:bg-primary-50 dark:hover:bg-primary-950/30 hover:text-primary-500
-                         transition-all duration-300"
+                         active:scale-90 transition-all duration-300"
             >
               <FiChevronRight className="w-4 h-4" />
             </button>
@@ -132,7 +132,7 @@ const ProductoDesSection = () => {
                 producto ? (
                   <div
                     key={producto.id}
-                    className="px-2"
+                    className="px-1.5 sm:px-2"
                     style={{ flex: `0 0 ${100 / itemsPerSlide}%` }}
                   >
                     <ProductInicioCard producto={producto} onOpenModal={handleOpenModal} />
@@ -140,7 +140,7 @@ const ProductoDesSection = () => {
                 ) : (
                   <div
                     key={`placeholder-${idx}`}
-                    className="px-2"
+                    className="px-1.5 sm:px-2"
                     style={{ flex: `0 0 ${100 / itemsPerSlide}%`, visibility: "hidden" }}
                   />
                 )
@@ -152,15 +152,15 @@ const ProductoDesSection = () => {
 
       {/* Dots */}
       {groupedProducts.length > 1 && (
-        <div className="flex justify-center gap-2">
+        <div className="flex justify-center gap-1.5 sm:gap-2">
           {groupedProducts.map((_, index) => (
             <button
               key={index}
               onClick={() => setCurrentIndex(index)}
-              className={`h-1.5 rounded-full transition-all duration-300
+              className={`h-1 sm:h-1.5 rounded-full transition-all duration-300
                 ${currentIndex === index
-                  ? "w-6 bg-primary-500"
-                  : "w-3 bg-surface-300 dark:bg-surface-700 hover:bg-surface-400"
+                  ? "w-5 sm:w-6 bg-primary-500"
+                  : "w-2.5 sm:w-3 bg-surface-300 dark:bg-surface-700 hover:bg-surface-400"
                 }`}
             />
           ))}

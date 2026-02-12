@@ -17,16 +17,16 @@ const ProductoSection = () => {
   }, []);
 
   return (
-    <div className="my-8 px-4">
+    <div className="my-6 sm:my-8 px-3 sm:px-4">
       {/* Section title */}
-      <div className="text-center mb-6" data-aos="fade-up">
-        <h2 className="text-xl font-bold text-surface-800 dark:text-surface-100">
+      <div className="text-center mb-5 sm:mb-6" data-aos="fade-up">
+        <h2 className="text-lg sm:text-xl font-bold text-surface-800 dark:text-surface-100">
           Categorias
         </h2>
-        <div className="mt-2 mx-auto h-1 w-12 rounded-full bg-gradient-to-r from-primary-500 to-accent-500" />
+        <div className="mt-2 mx-auto h-1 w-10 sm:w-12 rounded-full bg-gradient-to-r from-primary-500 to-accent-500" />
       </div>
 
-      <div className="flex flex-wrap justify-center gap-3 sm:gap-4">
+      <div className="flex flex-wrap justify-center gap-2.5 sm:gap-3 md:gap-4">
         {categories.map((cat, i) => (
           <div
             key={cat.title}
