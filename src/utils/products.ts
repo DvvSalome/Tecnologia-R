@@ -21,8 +21,21 @@ async function fetchLocalProducts(): Promise<Product[]> {
   return (Array.isArray(data) ? data : []).map((p) => mapRow(p));
 }
 
+async function fetchStorageCatalog(baseUrl: string): Promise<Product[] | null> {
+  const catalogUrl = `${baseUrl.replace(/\/$/, "")}/storage/v1/object/public/product-images/catalog/products.json`;
+  try {
+    const res = await fetch(catalogUrl, { cache: "no-store" });
+    if (!res.ok) return null;
+    const data = await res.json();
+    if (!Array.isArray(data) || data.length === 0) return null;
+    return data.map((p) => mapRow(p as Record<string, unknown>));
+  } catch {
+    return null;
+  }
+}
+
 /**
- * Obtiene productos: intenta Supabase; si falla o viene vacío, usa public/data/products.json
+ * Obtiene productos: tabla Supabase → catálogo en Storage → public/data/products.json
  */
 export async function fetchProducts(): Promise<Product[]> {
   const url = import.meta.env.VITE_SUPABASE_URL as string | undefined;
@@ -32,20 +45,22 @@ export async function fetchProducts(): Promise<Product[]> {
     !String(url).includes("tu-proyecto") &&
     !String(key).includes("tu_anon");
 
-  if (supabaseConfigured) {
+  if (supabaseConfigured && url) {
     try {
       const { supabase } = await import("../lib/supabase");
       const { data, error } = await supabase
         .from("products")
         .select("*")
         .order("id", { ascending: true });
-      if (error) throw error;
-      if (data && data.length > 0) {
+      if (!error && data && data.length > 0) {
         return data.map((p: Record<string, unknown>) => mapRow(p));
       }
     } catch (err) {
-      console.warn("Supabase no disponible, usando catálogo local:", err);
+      console.warn("Tabla products no disponible, probando Storage:", err);
     }
+
+    const fromStorage = await fetchStorageCatalog(url);
+    if (fromStorage) return fromStorage;
   }
 
   return fetchLocalProducts();
