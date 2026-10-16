@@ -1,0 +1,381 @@
+[
+  {
+    "slug": "movisun-k20",
+    "nombre": "Movisun K20",
+    "tipo": 4,
+    "descripcion": "Características:\n\nBluetooth 5.1\nRanura para MicroSD\nCapacidad de batería 500 mAh\nTiempo de espera de hasta 120 horas\nTiempo de carga de 2 horas\nSoporte entrada AUX\nAlmohadillas recubiertas\nEntrada de carga Tipo C\n\nGarantía 06 meses",
+    "precio": 0,
+    "descuento": 0,
+    "popular": true,
+    "localImages": [
+      "data/images-nobg/movisun-k20-0.png",
+      "data/images-nobg/movisun-k20-1.png",
+      "data/images-nobg/movisun-k20-2.png"
+    ],
+    "sourceUrls": [
+      "https://movisun.com.co/wp-content/uploads/2024/02/%C2%A63-1.avif",
+      "https://movisun.com.co/wp-content/uploads/2024/02/A3-1536x1536.avif",
+      "https://movisun.com.co/wp-content/uploads/2024/02/A%C2%A63-1536x1536.png"
+    ]
+  },
+  {
+    "slug": "movisun-k11",
+    "nombre": "Movisun K11",
+    "tipo": 4,
+    "descripcion": "Características:\n\nBluetooth 5.4\nDuración de hasta 16 horas\nResistencia IPX6\nMicrófono incorporado con cancelación de ruido inteligente\nRango de Bluetooth de hasta 10 metros\nAuxiliar 3.5mm\nRanura MicroSD\n\n\nGarantía 06 meses",
+    "precio": 0,
+    "descuento": 0,
+    "popular": false,
+    "localImages": [
+      "data/images-nobg/movisun-k11-0.png"
+    ],
+    "sourceUrls": [
+      "https://media.falabella.com/falabellaCO/146522161_01/w=1200,h=1200,fit=pad"
+    ]
+  },
+  {
+    "slug": "diadema-bluetooth-open-ear-rgb-ms-b16",
+    "nombre": "Diadema Bluetooth Open Ear RGB MS-B16",
+    "tipo": 4,
+    "descripcion": "Características:\n\nConectividad Bluetooth 6.0\nChip Bluetooth JL7006\nTecnología Hybrid ANC con cancelación activa de ruido\nProfundidad de cancelación -23 +- 3 dB\nRango de frecuencia ANC 20-500 Hz\nUnidad de altavoz 40 mm\nImpedancia 320 O\nSensibilidad 103 +- 3 dB\nBatería 500 mAh / 3.7 V\nTiempo de uso de hasta 25 horas\nPerilla integrada para ajuste de volumen\nDiseño ergonómico Over-Ear\nCompatible con Windows/Mac OS/Linux/Android/IOS\n\n\nGarantía 06 meses",
+    "precio": 0,
+    "descuento": 0,
+    "popular": false,
+    "localImages": [
+      "data/images-nobg/diadema-bluetooth-open-ear-rgb-ms-b16-0.png"
+    ],
+    "sourceUrls": [
+      "https://jaltechsas.com/wp-content/uploads/2026/07/AUDIFONOS-DIADEMA-BT-OPEN-EAR-RGB-MS-B16_11931_MS-B16_1.png"
+    ]
+  },
+  {
+    "slug": "diadema-gamer-usb-jaltech-t-688",
+    "nombre": "Diadema Gamer USB Jaltech T-688",
+    "tipo": 4,
+    "descripcion": "Características:\n\nConexión USB Plug and Play\nSonido Super Bass potente y envolvente\nMicrófono integrado de alta sensibilidad\nControl multimedia en línea\nDiseño Gamer cómodo y resistente\nAlmohadillas acolchadas\n\nGarantía 06 meses",
+    "precio": 0,
+    "descuento": 0,
+    "popular": false,
+    "localImages": [
+      "data/images-nobg/diadema-gamer-usb-jaltech-t-688-0.png"
+    ],
+    "sourceUrls": [
+      "https://jaltechsas.com/wp-content/uploads/2019/08/DIADEMA%20GAMER%20USB_10489_T-688_2.png"
+    ]
+  },
+  {
+    "slug": "auriculares-vsg-aureus-bluetoth-5-3-tws-in-ear",
+    "nombre": "Auriculares VSG Aureus Bluetoth 5.3 TWS In Ear",
+    "tipo": 4,
+    "descripcion": "Características:\n\nTecnología de conexión Bluetooth 5.3\nDiseño In Ear para una comodidad superior y una mejor calidad de sonido\nColor negro\nMaterial plástico y metal para una durabilidad y resistencia superior\nFrecuencia de respuesta 20Hz-20kHz\nImpedancia 32 Ohmios\nSensibilidad 105 dB para un sonido claro y potente\nBatería de hasta 5 horas de reproducción continua con una sola carga\nTiempo de carga de 2 horas\nRango de conexión de hasta 10 metros\nVelocidad de transmisión de hasta 2 Mbps para una transmisión rápida y segura\n\nFunciones adicionales\n\nCancelación de Ruido\nMicrófono integrado\nCompatibilidad con sistemas Android y IOS\nControl de volumen\n\nAccesorios incluidos\n\nEstuche de carga\nCable de carga\nManual de instrucciones\n\nPeso y Dimensiones\n\nPeso 20 gramos para una comodidad superior y una mejor fatiga\nDimensiones 5,5*4,5*2,5\n\nGarantía 06 meses",
+    "precio": 0,
+    "descuento": 0,
+    "popular": false,
+    "localImages": [
+      "data/images-nobg/auriculares-vsg-aureus-bluetoth-5-3-tws-in-ear-0.png"
+    ],
+    "sourceUrls": [
+      "https://http2.mlstatic.com/D_NQ_NP_2X_664601-MLA82200418552_022025-F.webp"
+    ]
+  },
+  {
+    "slug": "auriculares-movisun-t100-open-ear-wireless-deportivos",
+    "nombre": "Auriculares Movisun T100 Open-Ear Wireless Deportivos",
+    "tipo": 4,
+    "descripcion": "Características:\n\nBluetooth 5.3\nCapacidad de la batería del auricular de 40 mAh\nCapacidad de batería del estuche 300 mAh\nDistancia de transmisión Bluetooth 10 metros\nTiempo de carga 2-3 horas\nDuración de batería de hasta 6 horas\nImpedancia 16 ohmios\nTamaño del altavoz 13 mm\nSensibilidad 93dB +- 3dB\nvoltaje de carga DC 5V\nAsistente de voz incluido\n\nGarantía 06 meses",
+    "precio": 0,
+    "descuento": 0,
+    "popular": false,
+    "localImages": [
+      "data/images-nobg/auriculares-movisun-t100-open-ear-wireless-deportivos-0.png"
+    ],
+    "sourceUrls": [
+      "https://movisun.com.co/wp-content/uploads/2025/01/T100-Beigue.png"
+    ]
+  },
+  {
+    "slug": "auriculares-sofistek-sk-2000",
+    "nombre": "Auriculares Sofistek SK-2000",
+    "tipo": 4,
+    "descripcion": "Características:\n\nBluetooth 5.3\nComodidad In-Ear\nReducción de ruido en llamada\nPanel touch de ajustes multimedia\nRango de vinculación de hasta 10 metros\nBatería del estuche de 250 mAh\nBatería del auricular de 32 mAh\nTiempo de carga 1 hora\nCarga hasta 4 veces\n\nGarantía 06 meses",
+    "precio": 0,
+    "descuento": 0,
+    "popular": false,
+    "localImages": [
+      "data/images-nobg/auriculares-sofistek-sk-2000-0.png"
+    ],
+    "sourceUrls": [
+      "https://jlmercantil.com/img/productos/1002688-2.webp"
+    ]
+  },
+  {
+    "slug": "auriculares-sofistek-sk-3x-bluetooth-6-0",
+    "nombre": "Auriculares Sofistek SK-3X Bluetooth 6.0",
+    "tipo": 4,
+    "descripcion": "Características:\n\nSonido envolvente con cancelación de ruido ANC + ENC\nControles táctiles\nDiseño ergonómico\nBluetooth 6.0\nAutonomía de hasta 6 horas\n4 micrófonos integrados\nDiseño metálico\n\nGarantía 06 meses",
+    "precio": 0,
+    "descuento": 0,
+    "popular": false,
+    "localImages": [
+      "data/images-nobg/auriculares-sofistek-sk-3x-bluetooth-6-0-0.png"
+    ],
+    "sourceUrls": [
+      "https://sofistek.com.co/cdn/shop/files/audifonossk-3xinalambricosbluetooth-_resultado.webp?v=1784669673"
+    ]
+  },
+  {
+    "slug": "aud-fonos-movisun-ita-8-pro-tipo-iphone",
+    "nombre": "Audífonos Movisun ITA-8 Pro-Tipo IPhone",
+    "tipo": 4,
+    "descripcion": "Características:\n\nBluetooth 5.0\nAlcance aproximado de hasta 10 metros\nDiseño ergonómico Tipo In-Ear\nMicrófono incorporado\nControles integrados\nDuración aproximada del audífono de hasta 5 horas\nEstuche carga hasta 3 veces adicionales, dando un total aproximado de hasta 20 horas de reproducción\nCancelación activa de ruido\n\nGarantía 06 meses",
+    "precio": 0,
+    "descuento": 0,
+    "popular": false,
+    "localImages": [
+      "data/images-nobg/audifonos-movisun-ita-8-pro-tipo-iphone-0.png"
+    ],
+    "sourceUrls": [
+      "https://hatiorcolombia.com/wp-content/uploads/2026/03/Audifonos-Inalambricos-Movisun-ITA-8.png"
+    ]
+  },
+  {
+    "slug": "aud-fonos-movisun-ita-10-pro",
+    "nombre": "Audífonos Movisun ITA-10 Pro",
+    "tipo": 4,
+    "descripcion": "Características:\n\nBluetooth 5.3\nDistancia de transmisión de hasta 10 metros\nDuración de la batería de hasta 5 horas\n4 cargas adicionales con el estuche\ncapacidad de la batería del auricular 30 mah\nCapacidad de la batería del estuche de 300 mah\nTiempo de carga 3 horas\nImpedancia del altavoz 32\nAsistente de voz para llamadas\nBocina de 13 mm\n\nCancelación activa de ruido\n3 modos de reproducción\nPantalla digital interactiva\nModos de ecualización predeterminados\nSensor táctil deslizable\n\nGarantía 06 meses",
+    "precio": 0,
+    "descuento": 0,
+    "popular": false,
+    "localImages": [
+      "data/images-nobg/aud-fonos-movisun-ita-10-pro-0.png"
+    ],
+    "sourceUrls": [
+      "https://movisun.com.co/wp-content/uploads/2025/01/ITA-10-Pro.png"
+    ]
+  },
+  {
+    "slug": "aud-fonos-j-r-buds-3-087-mv",
+    "nombre": "Audífonos J&R BUDS 3 / 087-MV",
+    "tipo": 4,
+    "descripcion": "Características:\n\nSonido de alta fidelidad\nCancelación de ruido hibrida IA (ANC+ENC)\n6 micrófonos con inteligencia artificial\nHasta 30 horas de autonomía con la carga del estuche\nModo Gamer y modo músico\nDiseño premium tipo cuero\nPantalla digital de batería\nIncluye protectores de silicona\nResistentes a salpicaduras (IPX4)\nSistema BMS de protección de batería\n\nGarantía 06 meses",
+    "precio": 0,
+    "descuento": 0,
+    "popular": false,
+    "localImages": [
+      "data/images-nobg/aud-fonos-j-r-buds-3-087-mv-0.png"
+    ],
+    "sourceUrls": [
+      "https://jyrtechnology.com.co/wp-content/uploads/2025/12/087-MV-1.jpg"
+    ]
+  },
+  {
+    "slug": "aud-fonos-j-r-buds-1-085-mv",
+    "nombre": "Audífonos J&R BUDS 1 / 085 MV",
+    "tipo": 4,
+    "descripcion": "Características:\n\nSonido de alta fidelidad\n4 micrófonos IA ENC\nCancelación activa de ruido IA ANC\nHasta 28 horas de autonomía\nDongle 2.4G USB-C incluido\nResistentes a salpicaduras (IPX4)\nSistema BMS d protección de batería\nPantalla digital de doble visualización \nCompatible con PS5, laptop, Tablet y smartphone\nUltra baja latencia",
+    "precio": 0,
+    "descuento": 0,
+    "popular": false,
+    "localImages": [
+      "data/images-nobg/aud-fonos-j-r-buds-1-085-mv-0.png"
+    ],
+    "sourceUrls": [
+      "https://jyrtechnology.com.co/wp-content/uploads/2025/12/085-MV-1.jpg"
+    ]
+  },
+  {
+    "slug": "micr-fono-usb-dps-su8-rgb",
+    "nombre": "Micrófono USB DPS-SU8 RGB",
+    "tipo": 6,
+    "descripcion": "Características:\nLogra grabaciones claras y profesionales desde tu escritorio con reducción de ruido activa y controles integrados para un sonido más limpio y preciso. Ideal para streaming, gaming, podcast y videollamadas con iluminación RGB que realza tu setup.\n\nReducción de ruido activa DSP\nControl de reverberación y volumen integrado\nFrecuencia de muestreo: 48 KHz / 24 bit\nSensibilidad: -30 dB / -45 dB\nIluminación RGB\nInterfaz: USB (Plug and Play)\nJack 3.5 mm para audífonos\nCompatible con Windows / Mac OS / Android / iOS\nCompatible con PS4 / PS5\nIncluye base de escritorio\nDimensiones: 12.6 x 26.2 cm\n\nUna solución práctica y versátil para mejorar tu calidad de audio sin configuraciones complejas, lista para conectar y empezar a crear.",
+    "precio": 0,
+    "descuento": 0,
+    "popular": true,
+    "localImages": [
+      "data/images-nobg/micr-fono-usb-dps-su8-rgb-0.png"
+    ],
+    "sourceUrls": [
+      "https://jaltechsas.com/wp-content/uploads/2026/03/MICROFONO-USB-DSP-SU8_11906_SU8_1.png"
+    ]
+  },
+  {
+    "slug": "micr-fono-tipo-c-tx-x2-mmd-f35",
+    "nombre": "Micrófono Tipo C TX X2-MMD-F35",
+    "tipo": 6,
+    "descripcion": "Características:\n\nSet de 2 Micrófonos Inalámbricos Tipo C – Audio Profesional Sin Complicaciones\n\nConexión instantánea Plug & Play, sin necesidad de apps ni Bluetooth.\nAlcance de hasta 20m con tecnología 2.4GHz para transmisión estable.\nBaja latencia (= 20ms) para un audio sincronizado en tiempo real.\nReducción de ruido para grabaciones más nítidas.\nSensibilidad de -42dB ± 3dB y rango de frecuencia 20Hz-20KHz para capturar cada detalle.\nPuerto de carga y receptor Tipo C, compatible con múltiples dispositivos.\nDisplay indicador de carga para mayor control de batería.\n\n¡Ideal para creadores de contenido, podcasts y transmisiones en vivo!\n\nGarantía 06 meses",
+    "precio": 0,
+    "descuento": 0,
+    "popular": false,
+    "localImages": [
+      "data/images-nobg/micr-fono-tipo-c-tx-x2-mmd-f35-0.png"
+    ],
+    "sourceUrls": [
+      "https://jaltechsas.com/wp-content/uploads/2025/05/MICROFONOS-TIPO-C-TX-X2-MMD-F35_30735_MMD-F35_1.png"
+    ]
+  },
+  {
+    "slug": "micr-fono-tx-3-en-1-set-2-f11",
+    "nombre": "Micrófono TX 3 en 1 Set *2 F11",
+    "tipo": 6,
+    "descripcion": "Características:\n\nMicrófono para Smartphone 3 en 1 Set X2\nIncluye 2 micrófonos\nCon interfaz Tipo C, Lightning y 3.5mm\nCompatible con iPhone, teléfonos Android, cámaras, computadoras portátiles, computadoras de escritorio, tabletas y altavoces\nReducción de Ruido DSP\nPotencia Nominal: 10W\nRelación Señal-Ruido: =75dB\nMicrófono omnidireccional\nIncluye 1 Cortavientos Grande\nBatería Interna Recargable\nDistancia 10 a 20 Metros\nPlug and play\n\nGarantía 06 meses",
+    "precio": 0,
+    "descuento": 0,
+    "popular": false,
+    "localImages": [
+      "data/images-nobg/micr-fono-tx-3-en-1-set-2-f11-0.png"
+    ],
+    "sourceUrls": [
+      "https://jaltechsas.com/wp-content/uploads/2024/09/MICROFONO%20TX%20PELUDO%203%20EN%201%20SET%20X2_30704_F11-2-3N1_1.png"
+    ]
+  },
+  {
+    "slug": "tarjeta-de-sonido-en-vivo-mezclador-de-sonido-con-16-efectos-y-cambio-de-voz",
+    "nombre": "Tarjeta de sonido en vivo / Mezclador de sonido con 16 efectos y cambio de voz",
+    "tipo": 13,
+    "descripcion": "Características:\n\nFunción: Ajuste independiente de graves medios, agudos y bajos, 16 tipos de efectos de sonido en vivo/\nModo de tarjeta de sonido con cambio de tecla única/acompañamiento inalámbrico compatible con Bluetooth.\n\nHermosas luces coloridas: luz LED, luz brillante, una variedad de cambios de color, aumentan la atmósfera interior.\n\nCompatible con Bluetooth: Soporta conexión compatible con Bluetooth, puedes transmitir acompañamiento\nmúsica a través de teléfonos móviles, deshazte de los grilletes de los cables.\n\nReducción de ruido: Usando el chip de reducción de ruido inteligente, el procesamiento de audio es más rápido y estable, para que la voz de entrada sea más clara y sin demora.\n\nCompatibilidad: Fuerte compatibilidad, adecuado para teléfonos móviles/computadoras. \nSe puede utilizar para DJ, grabación de estudio de música, etc.\n\nEspecificaciones:\n\nNombre del producto: Tarjeta de sonido\nColor: negro\nMaterial: plástico\nTamaño: aproximadamente 190 x 118 x 28 mm / 7.48 x 4.65 x 1.10 pulgadas (largo x ancho x alto)\nAlimentación por: batería de 800 mAh (incluida)\nFuente de luz: LED\n\nEl paquete incluye:\n\n1 pieza * Tarjeta de sonido\n1 manual de usuario en inglés\n1 cable de carga\n1 unidad * línea viva\n1 cable de acompañamiento\n\nGarantía 06 meses",
+    "precio": 0,
+    "descuento": 0,
+    "popular": true,
+    "localImages": [
+      "data/images-nobg/tarjeta-de-sonido-en-vivo-mezclador-de-sonido-con-16-efectos-y-cambio-de-voz-0.png"
+    ],
+    "sourceUrls": [
+      "https://m.media-amazon.com/images/I/61rX3dd+1BL._AC_SL1500_.jpg"
+    ]
+  },
+  {
+    "slug": "teclado-num-rico-inal-mbrico-gt-mini-usb-2-4-ghz",
+    "nombre": "Teclado numérico inalámbrico GT Mini USB 2.4 GHz",
+    "tipo": 1,
+    "descripcion": "Características:\n\nConexión 2.4 GHz\nconexión Plug and Play\nDiseño compacto \n18 teclas\n\nGarantía 06 meses",
+    "precio": 0,
+    "descuento": 0,
+    "popular": true,
+    "localImages": [
+      "data/images-nobg/teclado-num-rico-inal-mbrico-gt-mini-usb-2-4-ghz-0.png"
+    ],
+    "sourceUrls": [
+      "https://jaltechsas.com/wp-content/uploads/2022/12/TECLADO-NUMERICO-INALAMBRICO_11237_LH042_3.png"
+    ]
+  },
+  {
+    "slug": "convertidor-av-rca-a-vga",
+    "nombre": "Convertidor AV (RCA) a VGA",
+    "tipo": 10,
+    "descripcion": "Características:\nEl adaptador AV2VGA permite convertir señal de video analógica AV (RCA compuesto) a señal VGA, facilitando la conexión de dispositivos antiguos como reproductores DVD, consolas retro, cámaras o decodificadores a monitores y pantallas con entrada VGA. Ofrece transmisión estable de video y es una solución práctica para presentaciones, educación y uso doméstico.\nCaracterísticas\nConversor de AV (RCA) a VGA\nEntrada RCA compuesto (video y audio)\nSalida de video VGA\nConversión de señal analógica a VGA\nSoporta resoluciones de salida hasta 1024 × 768\nTransmisión de video estable\nFunción Plug & Play\nRequiere alimentación externa\nDiseño compacto y portátil\nContenido del paquete\n1 convertidor AV RCA a VGA\n1 cable de alimentación\nManual de usuario\nUsos recomendados\nConectar equipos AV antiguos a monitores VGA\nReproductores DVD y VHS\nConsolas retro\nCámaras y decodificadores\nSalas de clases y presentaciones\nUso doméstico y educativo\nPeso, medidas y dimensiones\nPeso aproximado: 70 g\nDimensiones del producto:\nLargo: 7.5 cm\nAncho: 5 cm\nAlto: 2 cm\nMedidas del empaque\nLargo: 11 cm\nAncho: 8 cm\nAlto: 4 cm\nPeso empacado aproximado: 130 g\n\nGarantía 06 meses",
+    "precio": 0,
+    "descuento": 0,
+    "popular": true,
+    "localImages": [
+      "data/images-nobg/convertidor-av-rca-a-vga-0.png"
+    ],
+    "sourceUrls": [
+      "https://media.falabella.com/falabellaCO/151320582_01/w=1200,h=1200,fit=pad"
+    ]
+  },
+  {
+    "slug": "convertidor-rca-a-hdmi-1080p",
+    "nombre": "Convertidor RCA a HDMI 1080P",
+    "tipo": 10,
+    "descripcion": "Características:\n\nConvertidor HDMI a RCA AV 1080P Soporte TV Retro y Consolas\nConvierte señales digitales HDMI a analógicas RCA con esta caja adaptadora 1080P. Ideal para conectar consolas, laptops o reproductores modernos a televisores antiguos. Compacto, fácil de instalar y sin necesidad de drivers. Resuelve problemas de compatibilidad en segundos.\nCaracterísticas Destacadas del Convertidor HDMI a RCA AV\nConversión de HDMI digital a RCA analógico\nResolución soportada hasta 1080p Full HD\nCompatible con televisores CRT, proyectores y monitores antiguos\nFunciona con consolas, PCs, reproductores y más\nFácil instalación Plug & Play sin drivers\nIncluye cable USB para alimentación\nBeneficios Principales Convertidor HDMI a AV 1080P\nEsta caja convertidora HDMI a RCA permite conectar dispositivos modernos a televisores o monitores antiguos que solo tienen entrada AV. Es la solución ideal para quienes desean aprovechar pantallas tradicionales con consolas como PS3, Xbox 360, DVD players o laptops. Con su soporte para 1080p, garantiza una conversión clara de imagen y sonido. Es compacto, portátil y no requiere software adicional, ideal para uso en casa, escuelas o presentaciones.\n\nEspecificaciones Técnicas Convertidor HDMI a RCA\nEntrada\tHDMI (hasta 1080p)\nSalida\tRCA AV (video compuesto + audio L/R)\nResolución\t480i/576i/720p/1080p\nCompatibilidad\tPC, PS3, PS4, Xbox, DVD, TV\nAlimentación\tUSB 5V (cable incluido)\nDimensiones\t6.5 x 5.5 x 2.0 cm\nPeso\t55 g\n\nGarantía 06 meses",
+    "precio": 0,
+    "descuento": 0,
+    "popular": false,
+    "localImages": [
+      "data/images-nobg/convertidor-rca-a-hdmi-1080p-0.png"
+    ],
+    "sourceUrls": [
+      "https://exitocol.vtexassets.com/arquivos/ids/24380122/convertidor-rca-a-hdmi-adaptador-1080p-hdmi-audio-av-cvbs-hd.jpg?v=638606312890900000"
+    ]
+  },
+  {
+    "slug": "convertidor-hdmi-a-vga",
+    "nombre": "Convertidor HDMI a VGA",
+    "tipo": 10,
+    "descripcion": "Características:\n\nConecta dispositivos con salida HDMI a pantallas VGA y transmite audio y video mediante este convertidor compacto.\n\nConversión: HDMI 1.4 a VGA\nResolución: Hasta 1080p\nConectividad: HDMI a VGA\nConstrucción: PVC y cobre / conectores con puntas doradas\nFunción: Transmisión de audio y video\n\nIdeal para conectar equipos modernos con HDMI a monitores y proyectores con entrada VGA.\n\nGarantía 06 meses",
+    "precio": 0,
+    "descuento": 0,
+    "popular": false,
+    "localImages": [
+      "data/images-nobg/convertidor-hdmi-a-vga-0.png"
+    ],
+    "sourceUrls": [
+      "https://jaltechsas.com/wp-content/uploads/2019/05/CONVERTIDOR%20HDMI%20A%20VGA_10307_HDMI.VGA-1_1.png"
+    ]
+  },
+  {
+    "slug": "convertidor-usb-3-0-a-rj45-base-1000",
+    "nombre": "Convertidor USB 3.0 a RJ45 Base 1000",
+    "tipo": 10,
+    "descripcion": "Caracteristicas:\n\nConvertidor USB 3.0 a RJ45 Lan gigabit, este producto cuenta con las siguientes características:\n\nSuper speed 3.0\n10/100/1000 Mbps.\nCompatible con 2.0\nNo requiere controladores.\n\nGarantia 06 meses",
+    "precio": 0,
+    "descuento": 0,
+    "popular": false,
+    "localImages": [
+      "data/images-nobg/convertidor-usb-3-0-a-rj45-base-1000-0.png"
+    ],
+    "sourceUrls": [
+      "https://jaltechsas.com/wp-content/uploads/2025/12/CONVERTIDOR-USB-3.0-A-RJ45-LAN-GIGABIT_10881_B556_1.png"
+    ]
+  },
+  {
+    "slug": "base-port-til-plegable-met-lica-unitec-giro-360",
+    "nombre": "Base Portátil Plegable Metálica Unitec Giro 360",
+    "tipo": 11,
+    "descripcion": "Características:\n\nCuerpo de aleación de acero, proporciona soporte para dispositivos de hasta 10 Kg de peso\nAyuda a mejorar tu postura, menos fatiga y mayor productividad\nBasse giratoria de 360 grados\nDiseño antideslizante, con almohadillas de silicona, que evitan que el portátil se resbale\nAmplia compatibilidad, soporta laptops de hasta 18 pulgadas\nDiseño plegable y portable, fácil de transportar.\n\nGarantía 06 meses",
+    "precio": 0,
+    "descuento": 0,
+    "popular": true,
+    "localImages": [
+      "data/images-nobg/base-port-til-plegable-met-lica-unitec-giro-360-0.png"
+    ],
+    "sourceUrls": [
+      "https://media.falabella.com/falabellaCO/156512580_01/w=1200,h=1200,fit=pad"
+    ]
+  },
+  {
+    "slug": "stand-j-r-rgb-para-monitor-brjr-016",
+    "nombre": "Stand J&R RGB Para monitor BRJR-016",
+    "tipo": 11,
+    "descripcion": "Características:\n\nEl soporte de computadora para monitor de escritorio tiene 4 puertos USB 2.0. Utiliza el cable trenzado USB (incluido) para conectar al puerto USB 2.0 del dispositivo, y luego puedes utilizar el hub para ampliar la función. Las luces decorativas RGB en ambos lados del soporte de pantalla de computadora para escritorio pueden cambiar entre 7 efectos de iluminación pulsando el botón. Te proporciona un ambiente vibrante.\n\nGarantía 06 meses",
+    "precio": 0,
+    "descuento": 0,
+    "popular": false,
+    "localImages": [
+      "data/images-nobg/stand-j-r-rgb-para-monitor-brjr-016-0.png"
+    ],
+    "sourceUrls": [
+      "https://jyrtechnology.com.co/wp-content/uploads/2023/07/BRJR-016.jpg"
+    ]
+  },
+  {
+    "slug": "regulador-jaltech-jal-r1200",
+    "nombre": "Regulador Jaltech Jal-R1200",
+    "tipo": 12,
+    "descripcion": "Características:\n\nRegulador de voltaje con certificación RETIE\nCapacidad: 1000 VA / 500 W\nVoltaje nominal: 120 V AC\nRango de entrada: 90 – 140 VAC\nRango de salida: 107 – 133 V AC\nFrecuencia: 60 Hz\nCorriente nominal: 4.2 A\n8 tomas de corriente en total\n4 con regulación AVR\n4 con protección contra sobretensiones\nPuertos de datos: 2 RJ11\nProtección contra sobrecarga con reinicio manual\n•Energía máxima de supresión: 175 Joules\nProtección térmica contra exceso de temperatura\nEtapas de regulación: Buck-Boost\nCompatible con TV, PC, consolas, módem, cámaras, DVR y más\nRuido: < 40 dB\nCable de poder: NEMA 5-15P, 1 m\nCalibre: 3 x 0.75 mm² (AWG 19 x 3)\nDimensiones: 250 x 87 x 89 mm\nMaterial: ABS resistente\n\nGarantía 12 meses",
+    "precio": 0,
+    "descuento": 0,
+    "popular": true,
+    "localImages": [
+      "data/images-nobg/regulador-jaltech-jal-r1200-0.png"
+    ],
+    "sourceUrls": [
+      "https://jaltechsas.com/wp-content/uploads/2025/05/REGULADOR-DE-VOLTAJE-JAL-R1200_80407_JAL-R1200_1.png"
+    ]
+  },
+  {
+    "slug": "regulador-jaltech-jal-r1000",
+    "nombre": "Regulador Jaltech Jal-R1000",
+    "tipo": 12,
+    "descripcion": "Características:\n\nCertificación: RETIE\nCapacidad: 800 VA / 400 W\nVoltaje normal: 120 V AC\nRango de entrada: 90 – 140 V AC / salida: 107–133 V AC\nFrecuencia: 60 Hz\nTomas: 4 con AVR y protección contra sobretensiones\nProtecciones: Sobrecarga, sobretensiones y temperatura excesiva\nCompatibilidad: TV, PC, consolas, módems, teatro en casa, cámaras y DVR\nDimensiones: 240 x 75 x 75 mm\n\nGarantía 12 meses",
+    "precio": 0,
+    "descuento": 0,
+    "popular": false,
+    "localImages": [
+      "data/images-nobg/regulador-jaltech-jal-r1000-0.png"
+    ],
+    "sourceUrls": [
+      "https://jaltechsas.com/wp-content/uploads/2025/05/REGULADOR-DE-VOLTAJE-JAL-R1000_80406_JAL-R1000_1.png"
+    ]
+  }
+]

@@ -28,9 +28,10 @@ const ProductoInicioCard: React.FC<{
 
   if (!producto) return null;
 
-  const discountPercent = producto.descuento > 0
-    ? Math.round((1 - producto.descuento / producto.precio) * 100)
-    : 0;
+  const discountPercent =
+    producto.descuento > 0 && producto.precio > 0
+      ? Math.round((1 - producto.descuento / producto.precio) * 100)
+      : 0;
 
   return (
     <div
@@ -109,7 +110,7 @@ const ProductoInicioCard: React.FC<{
         </h3>
 
         <div className="flex items-center gap-1.5 sm:gap-2 mb-3 sm:mb-4">
-          {producto.descuento > 0 ? (
+          {producto.descuento > 0 && producto.precio > 0 ? (
             <>
               <span className="text-base sm:text-lg font-extrabold text-accent-600 dark:text-accent-400">
                 ${producto.descuento.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 2 })}
@@ -118,9 +119,13 @@ const ProductoInicioCard: React.FC<{
                 ${producto.precio.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 2 })}
               </span>
             </>
-          ) : (
+          ) : producto.precio > 0 ? (
             <span className="text-base sm:text-lg font-extrabold text-accent-600 dark:text-accent-400">
               ${producto.precio.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 2 })}
+            </span>
+          ) : (
+            <span className="text-sm sm:text-base font-bold text-primary-600 dark:text-primary-400">
+              Consultar precio
             </span>
           )}
         </div>

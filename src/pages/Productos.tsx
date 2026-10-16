@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { useParams } from "react-router-dom";
 import ProductoInicioCard from "../components/cards/ProductInicioCard";
 import ProductInicioCardModal from "../components/cards/ProductInicioCardModal";
@@ -10,11 +10,36 @@ import "aos/dist/aos.css";
 import Lottie from "react-lottie";
 import animationData from "../../public/lotties/vacio.json";
 import { FiChevronLeft, FiChevronRight, FiArrowLeft } from "react-icons/fi";
+import type { Product } from "../types/product";
 
 const Productos: React.FC = () => {
+  const { tipo } = useParams<{ tipo: string }>();
+  const { products, loading, error } = useProducts();
+  const [currentPage, setCurrentPage] = useState(1);
+  const [modalProducto, setModalProducto] = useState<Product | null>(null);
+  const itemsPerPage = 8;
+
   useEffect(() => {
     AOS.init({ duration: 600, once: true });
   }, []);
+
+  const tipoAUsar = useMemo(() => {
+    if (!tipo) return null;
+    const tipoNumerico = Number(tipo);
+    return !Number.isNaN(tipoNumerico) ? tipoNumerico : getTipoIdFromSlug(tipo);
+  }, [tipo]);
+
+  const tipoInfo = tipoAUsar != null ? PRODUCT_TYPES.find((t) => t.id === tipoAUsar) : undefined;
+  const tipoNombre = tipoInfo?.labelPlural ?? tipo ?? "Productos";
+
+  const productosFiltrados = useMemo(() => {
+    if (tipoAUsar == null) return [];
+    return getByType(products, tipoAUsar, false);
+  }, [products, tipoAUsar]);
+
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [tipoAUsar, products]);
 
   const lottieOptions = {
     loop: true,
@@ -23,43 +48,23 @@ const Productos: React.FC = () => {
     rendererSettings: { preserveAspectRatio: "xMidYMid slice" },
   };
 
-  const { tipo } = useParams<{ tipo: string }>();
+  const indexOfLastProduct = currentPage * itemsPerPage;
+  const indexOfFirstProduct = indexOfLastProduct - itemsPerPage;
+  const currentProducts = productosFiltrados.slice(indexOfFirstProduct, indexOfLastProduct);
+  const totalPages = Math.ceil(productosFiltrados.length / itemsPerPage) || 1;
 
-  if (!tipo) {
+  const paginate = (pageNumber: number) => {
+    setCurrentPage(pageNumber);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  if (!tipo || tipoAUsar == null) {
     return (
       <div className="flex items-center justify-center h-64 text-surface-500">
         Error: El parametro 'tipo' no esta definido.
       </div>
     );
   }
-
-  const [productosFiltrados, setProductosFiltrados] = useState<any[]>([]);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [modalProducto, setModalProducto] = useState<any | null>(null);
-  const itemsPerPage = 8;
-
-  const { products, loading, error } = useProducts();
-
-  const tipoNumerico = Number(tipo);
-  const tipoAUsar = !Number.isNaN(tipoNumerico) ? tipoNumerico : getTipoIdFromSlug(tipo);
-  const tipoInfo = PRODUCT_TYPES.find((t) => t.id === tipoAUsar);
-  const tipoNombre = tipoInfo?.labelPlural ?? tipo;
-
-  useEffect(() => {
-    const productosPorTipo = getByType(products, tipoAUsar, true);
-    setProductosFiltrados(productosPorTipo);
-    setCurrentPage(1);
-  }, [tipo, products]);
-
-  const indexOfLastProduct = currentPage * itemsPerPage;
-  const indexOfFirstProduct = indexOfLastProduct - itemsPerPage;
-  const currentProducts = productosFiltrados.slice(indexOfFirstProduct, indexOfLastProduct);
-  const totalPages = Math.ceil(productosFiltrados.length / itemsPerPage);
-
-  const paginate = (pageNumber: number) => {
-    setCurrentPage(pageNumber);
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
 
   if (loading) {
     return (
@@ -105,24 +110,23 @@ const Productos: React.FC = () => {
 
   return (
     <div className="px-3 sm:px-4 py-6 sm:py-8">
-      {/* Header */}
       <div className="mb-6 sm:mb-8" data-aos="fade-down">
         <h1 className="text-2xl sm:text-3xl font-bold text-surface-800 dark:text-surface-100">
           {tipoNombre}
         </h1>
         <div className="mt-2 h-1 w-12 sm:w-16 rounded-full bg-gradient-to-r from-primary-500 to-accent-500" />
         <p className="mt-2 text-xs sm:text-sm text-surface-500 dark:text-surface-400">
-          {productosFiltrados.length} producto{productosFiltrados.length !== 1 ? "s" : ""} disponible{productosFiltrados.length !== 1 ? "s" : ""}
+          {productosFiltrados.length} producto{productosFiltrados.length !== 1 ? "s" : ""} disponible
+          {productosFiltrados.length !== 1 ? "s" : ""}
         </p>
       </div>
 
-      {/* Product grid */}
       <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-5 mb-8 sm:mb-10">
         {currentProducts.map((producto, index) => (
           <div
             key={producto.id}
             className="animate-fade-in-up opacity-0"
-            style={{ animationDelay: `${index * 80}ms`, animationFillMode: 'forwards' }}
+            style={{ animationDelay: `${index * 80}ms`, animationFillMode: "forwards" }}
           >
             <ProductoInicioCard
               producto={producto}
@@ -132,7 +136,6 @@ const Productos: React.FC = () => {
         ))}
       </div>
 
-      {/* Pagination */}
       {totalPages > 1 && (
         <div className="flex items-center justify-center gap-1.5 sm:gap-2">
           <button
@@ -150,9 +153,10 @@ const Productos: React.FC = () => {
               key={i + 1}
               onClick={() => paginate(i + 1)}
               className={`w-8 h-8 sm:w-9 sm:h-9 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-300
-                ${currentPage === i + 1
-                  ? "bg-primary-500 text-white shadow-lg shadow-primary-500/30"
-                  : "bg-surface-100 dark:bg-surface-800 text-surface-600 dark:text-surface-300 hover:bg-primary-50 dark:hover:bg-primary-950/30"
+                ${
+                  currentPage === i + 1
+                    ? "bg-primary-500 text-white shadow-lg shadow-primary-500/30"
+                    : "bg-surface-100 dark:bg-surface-800 text-surface-600 dark:text-surface-300 hover:bg-primary-50 dark:hover:bg-primary-950/30"
                 }`}
             >
               {i + 1}
@@ -171,7 +175,6 @@ const Productos: React.FC = () => {
         </div>
       )}
 
-      {/* Modal */}
       {modalProducto && (
         <ProductInicioCardModal producto={modalProducto} onClose={() => setModalProducto(null)} />
       )}

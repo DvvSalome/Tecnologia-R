@@ -4,11 +4,12 @@ import "aos/dist/aos.css";
 import { useEffect } from "react";
 
 const categories = [
+  { image: "/images/inicio/headset.svg", title: "Audífonos", link: "/productos/audifonos" },
+  { image: "/images/inicio/microphone.svg", title: "Micrófonos", link: "/productos/microfonos" },
   { image: "/images/inicio/keyboard.svg", title: "Teclados", link: "/productos/teclados" },
-  { image: "/images/inicio/mouse.svg", title: "Mouses", link: "/productos/mouses" },
-  { image: "/images/inicio/monitor.svg", title: "Monitores", link: "/productos/monitores" },
-  { image: "/images/inicio/headset.svg", title: "Audifonos", link: "/productos/audifonos" },
-  { image: "/images/inicio/cam.svg", title: "Camaras", link: "/productos/camaras" },
+  { image: "/images/inicio/monitor.svg", title: "Convertidores", link: "/productos/convertidores" },
+  { image: "/images/inicio/mouse.svg", title: "Accesorios", link: "/productos/accesorios" },
+  { image: "/images/inicio/cam.svg", title: "Energía", link: "/productos/energia" },
 ];
 
 const ProductoSection = () => {

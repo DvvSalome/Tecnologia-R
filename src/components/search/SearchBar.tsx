@@ -7,12 +7,13 @@ import { useProducts } from "../../contexts/ProductsContext";
 import { searchProducts } from "../../utils/products";
 import { getProductImageUrl } from "../../utils/imageUrl";
 import { FiSearch } from "react-icons/fi";
+import type { Product } from "../../types/product";
 
 const SearchBar: React.FC = () => {
   const [query, setQuery] = useState("");
-  const [results, setResults] = useState<any[]>([]);
+  const [results, setResults] = useState<Product[]>([]);
   const [openDropdown, setOpenDropdown] = useState(false);
-  const [modalProducto, setModalProducto] = useState<any | null>(null);
+  const [modalProducto, setModalProducto] = useState<Product | null>(null);
   const [isFocused, setIsFocused] = useState(false);
   const containerRef = useRef<HTMLDivElement | null>(null);
   const { products } = useProducts();

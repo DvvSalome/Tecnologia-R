@@ -1,16 +1,54 @@
 import { Product } from "../types/product";
 
-/** Obtiene todos los productos desde Supabase (usar desde ProductsContext) */
-export async function fetchProducts(): Promise<Product[]> {
-  const { supabase } = await import("../lib/supabase");
-  const { data, error } = await supabase.from("products").select("*").order("id", { ascending: true });
-  if (error) throw error;
-  return (data ?? []).map((p: Record<string, unknown>) => ({
+function mapRow(p: Record<string, unknown>): Product {
+  return {
     ...p,
     id: Number(p.id),
-    descripcion: (p.descripción ?? p.descripcion) ?? "",
-    popular: p.popular ?? false,
-  })) as Product[];
+    nombre: String(p.nombre ?? ""),
+    descripcion: String((p.descripción ?? p.descripcion) ?? ""),
+    tipo: Number(p.tipo),
+    precio: Number(p.precio ?? 0),
+    descuento: Number(p.descuento ?? 0),
+    imagenes: Array.isArray(p.imagenes) ? (p.imagenes as string[]) : [],
+    popular: Boolean(p.popular ?? false),
+  } as Product;
+}
+
+async function fetchLocalProducts(): Promise<Product[]> {
+  const res = await fetch("/data/products.json", { cache: "no-store" });
+  if (!res.ok) throw new Error(`No se pudo cargar catálogo local (${res.status})`);
+  const data = await res.json();
+  return (Array.isArray(data) ? data : []).map((p) => mapRow(p));
+}
+
+/**
+ * Obtiene productos: intenta Supabase; si falla o viene vacío, usa public/data/products.json
+ */
+export async function fetchProducts(): Promise<Product[]> {
+  const url = import.meta.env.VITE_SUPABASE_URL as string | undefined;
+  const key = import.meta.env.VITE_SUPABASE_ANON_KEY as string | undefined;
+  const supabaseConfigured =
+    Boolean(url && key) &&
+    !String(url).includes("tu-proyecto") &&
+    !String(key).includes("tu_anon");
+
+  if (supabaseConfigured) {
+    try {
+      const { supabase } = await import("../lib/supabase");
+      const { data, error } = await supabase
+        .from("products")
+        .select("*")
+        .order("id", { ascending: true });
+      if (error) throw error;
+      if (data && data.length > 0) {
+        return data.map((p: Record<string, unknown>) => mapRow(p));
+      }
+    } catch (err) {
+      console.warn("Supabase no disponible, usando catálogo local:", err);
+    }
+  }
+
+  return fetchLocalProducts();
 }
 
 export function getById(products: Product[], id: number | string): Product | undefined {
@@ -21,7 +59,7 @@ export function getById(products: Product[], id: number | string): Product | und
 export function getByType(
   products: Product[],
   tipo: number,
-  excludePopular = true
+  excludePopular = false
 ): Product[] {
   const list = products.filter((p) => p.tipo === tipo);
   return excludePopular ? list.filter((p) => !p.popular) : list;

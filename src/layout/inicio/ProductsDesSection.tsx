@@ -6,6 +6,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import { useProducts } from "../../contexts/ProductsContext";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
+import type { Product } from "../../types/product";
 
 const ProductoDesSection = () => {
   const { products, loading, error } = useProducts();
@@ -14,7 +15,7 @@ const ProductoDesSection = () => {
     AOS.init({ duration: 600, once: true });
   }, []);
 
-  const [modalProducto, setModalProducto] = useState(null);
+  const [modalProducto, setModalProducto] = useState<Product | null>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [itemsPerSlide, setItemsPerSlide] = useState(5);
 
@@ -30,13 +31,13 @@ const ProductoDesSection = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const handleOpenModal = (producto: any) => setModalProducto(producto);
+  const handleOpenModal = (producto: Product) => setModalProducto(producto);
   const handleCloseModal = () => setModalProducto(null);
 
   const ultimosProductos = getLatestByType(products).filter((p) => !p.popular);
   const groupedProducts = groupForSlider(ultimosProductos, itemsPerSlide);
 
-  const padGroup = (group: any[]) => {
+  const padGroup = (group: (Product | null)[]) => {
     const diff = itemsPerSlide - group.length;
     return diff > 0 ? [...group, ...Array(diff).fill(null)] : group;
   };

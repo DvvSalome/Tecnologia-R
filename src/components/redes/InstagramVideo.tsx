@@ -2,7 +2,7 @@ import { useEffect } from "react";
 
 declare global {
   interface Window {
-    instgrm: any;
+    instgrm?: { Embeds: { process: () => void } };
   }
 }
 

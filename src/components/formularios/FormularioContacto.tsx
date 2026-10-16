@@ -1,8 +1,11 @@
 import AOS from "aos";
 import "aos/dist/aos.css";
-import { useEffect } from "react";
+import { FormEvent, useEffect, useState } from "react";
+import { SITE } from "../../constants/site";
 
 const FormularioContacto = () => {
+  const [status, setStatus] = useState<"idle" | "sent">("idle");
+
   useEffect(() => {
     AOS.init({ duration: 800, once: true });
   }, []);
@@ -14,6 +17,24 @@ const FormularioContacto = () => {
     focus:ring-2 focus:ring-primary-500/30 focus:border-primary-500 focus:outline-none
     placeholder:text-surface-400 dark:placeholder:text-surface-500
     transition-all duration-200`;
+
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const form = e.currentTarget;
+    const data = new FormData(form);
+    const nombre = String(data.get("nombre") || "").trim();
+    const correo = String(data.get("correo") || "").trim();
+    const telefono = String(data.get("telefono") || "").trim();
+    const motivo = String(data.get("motivo") || "").trim();
+    const mensaje = String(data.get("mensaje") || "").trim();
+
+    const subject = encodeURIComponent(`[${motivo || "Contacto"}] ${nombre || "Consulta web"}`);
+    const body = encodeURIComponent(
+      `Nombre: ${nombre}\nCorreo: ${correo}\nTeléfono: ${telefono}\nMotivo: ${motivo}\n\n${mensaje}`
+    );
+    window.location.href = `mailto:${SITE.email}?subject=${subject}&body=${body}`;
+    setStatus("sent");
+  };
 
   return (
     <div
@@ -27,19 +48,19 @@ const FormularioContacto = () => {
         Formulario de Contacto
       </h2>
 
-      <form className="space-y-4 sm:space-y-5">
+      <form className="space-y-4 sm:space-y-5" onSubmit={handleSubmit}>
         <div>
           <label htmlFor="nombre" className="block text-sm font-semibold text-surface-700 dark:text-surface-200 mb-1.5">
             Nombre completo
           </label>
-          <input type="text" id="nombre" name="nombre" placeholder="Ingrese su nombre" className={inputClasses} />
+          <input type="text" id="nombre" name="nombre" required placeholder="Ingrese su nombre" className={inputClasses} />
         </div>
 
         <div>
           <label htmlFor="correo" className="block text-sm font-semibold text-surface-700 dark:text-surface-200 mb-1.5">
             Correo electronico
           </label>
-          <input type="email" id="correo" name="correo" placeholder="correo@ejemplo.com" className={inputClasses} />
+          <input type="email" id="correo" name="correo" required placeholder="correo@ejemplo.com" className={inputClasses} />
         </div>
 
         <div>
@@ -53,8 +74,7 @@ const FormularioContacto = () => {
           <label htmlFor="motivo" className="block text-sm font-semibold text-surface-700 dark:text-surface-200 mb-1.5">
             Motivo de contacto
           </label>
-          <select id="motivo" name="motivo" className={inputClasses} defaultValue="">
-            <option value="" disabled>Seleccione un motivo</option>
+          <select id="motivo" name="motivo" className={inputClasses} defaultValue="informacion" required>
             <option value="soporte">Soporte tecnico</option>
             <option value="informacion">Solicitar informacion</option>
             <option value="reclamos">Reclamos</option>
@@ -70,6 +90,7 @@ const FormularioContacto = () => {
             id="mensaje"
             name="mensaje"
             rows={4}
+            required
             placeholder="Escriba su mensaje..."
             className={inputClasses + " resize-none"}
           />
@@ -84,6 +105,11 @@ const FormularioContacto = () => {
           >
             Enviar mensaje
           </button>
+          {status === "sent" ? (
+            <p className="mt-3 text-center text-xs text-surface-500">
+              Se abrirá tu cliente de correo hacia {SITE.email}.
+            </p>
+          ) : null}
         </div>
       </form>
     </div>

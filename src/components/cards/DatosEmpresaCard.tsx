@@ -2,24 +2,32 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import { useEffect } from "react";
 import { FiMapPin, FiPhone, FiMail, FiClock } from "react-icons/fi";
+import { SITE } from "../../constants/site";
 
 const datos = [
   {
     icon: FiMapPin,
     title: "Direccion",
-    content: "CENTRO COMERCIAL CARRUSEL DEL EXITO, Cl. 48D #65A-57 Local 220-221-222, Laureles - Estadio, Medellin",
+    content: SITE.addressFull,
   },
   {
     icon: FiPhone,
     title: "Telefono",
-    content: "+123 456 7890",
+    content: SITE.phoneDisplay,
   },
   {
     icon: FiMail,
     title: "Correo",
-    content: "principal.tecnologiar@gmail.com",
+    content: SITE.email,
   },
 ];
+
+const socialLinks = [
+  { id: "youtube", href: SITE.social.youtube },
+  { id: "instagram", href: SITE.social.instagram },
+  { id: "facebook", href: SITE.social.facebook },
+  { id: "twitter", href: SITE.social.twitter },
+].filter((s) => Boolean(s.href));
 
 const DatosEmpresaCard = () => {
   useEffect(() => {
@@ -51,12 +59,20 @@ const DatosEmpresaCard = () => {
             </div>
             <div className="min-w-0">
               <h3 className="text-sm font-bold text-surface-800 dark:text-surface-100">{d.title}</h3>
-              <p className="text-xs sm:text-sm text-surface-500 dark:text-surface-400 mt-0.5 break-words">{d.content}</p>
+              {d.title === "Correo" ? (
+                <a
+                  href={`mailto:${SITE.email}`}
+                  className="text-xs sm:text-sm text-surface-500 dark:text-surface-400 mt-0.5 break-words hover:text-primary-500"
+                >
+                  {d.content}
+                </a>
+              ) : (
+                <p className="text-xs sm:text-sm text-surface-500 dark:text-surface-400 mt-0.5 break-words">{d.content}</p>
+              )}
             </div>
           </div>
         ))}
 
-        {/* Horarios */}
         <div className="flex items-start gap-3 sm:gap-4">
           <div className="w-9 h-9 sm:w-10 sm:h-10 flex-shrink-0 rounded-xl bg-primary-50 dark:bg-primary-950/30
                           flex items-center justify-center">
@@ -73,30 +89,33 @@ const DatosEmpresaCard = () => {
         </div>
       </div>
 
-      {/* Social icons */}
-      <div className="mt-6 sm:mt-8 pt-5 sm:pt-6 border-t border-surface-200 dark:border-surface-700">
-        <h3 className="text-sm font-bold text-surface-800 dark:text-surface-100 mb-3">
-          Siguenos
-        </h3>
-        <div className="flex gap-3">
-          {["facebook", "instagram", "twitter", "youtube"].map((social) => (
-            <a
-              key={social}
-              href="#"
-              className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-surface-100 dark:bg-surface-800
-                         flex items-center justify-center
-                         hover:bg-primary-500 hover:scale-110 active:scale-95 transition-all duration-300 group"
-            >
-              <img
-                src={`/images/footer/${social}.svg`}
-                alt={social}
-                className="w-4 sm:w-5 opacity-50 group-hover:opacity-100 group-hover:brightness-0 group-hover:invert
-                           transition-all duration-300"
-              />
-            </a>
-          ))}
+      {socialLinks.length > 0 ? (
+        <div className="mt-6 sm:mt-8 pt-5 sm:pt-6 border-t border-surface-200 dark:border-surface-700">
+          <h3 className="text-sm font-bold text-surface-800 dark:text-surface-100 mb-3">
+            Siguenos
+          </h3>
+          <div className="flex gap-3">
+            {socialLinks.map((social) => (
+              <a
+                key={social.id}
+                href={social.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-surface-100 dark:bg-surface-800
+                           flex items-center justify-center
+                           hover:bg-primary-500 hover:scale-110 active:scale-95 transition-all duration-300 group"
+              >
+                <img
+                  src={`/images/footer/${social.id}.svg`}
+                  alt={social.id}
+                  className="w-4 sm:w-5 opacity-50 group-hover:opacity-100 group-hover:brightness-0 group-hover:invert
+                             transition-all duration-300"
+                />
+              </a>
+            ))}
+          </div>
         </div>
-      </div>
+      ) : null}
     </div>
   );
 };

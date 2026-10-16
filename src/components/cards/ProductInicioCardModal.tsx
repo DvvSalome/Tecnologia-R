@@ -2,6 +2,8 @@ import React, { useState, useRef } from "react";
 import { getProductImageUrl } from "../../utils/imageUrl";
 import { FiX } from "react-icons/fi";
 import { FaWhatsapp } from "react-icons/fa";
+import { HiOutlineMail } from "react-icons/hi";
+import { productWhatsAppUrl, SITE } from "../../constants/site";
 
 interface Producto {
   id: number;
@@ -126,7 +128,7 @@ const ProductInicioCardModal: React.FC<{
 
             {/* Price */}
             <div className="mb-4 sm:mb-6 p-3 sm:p-4 rounded-2xl bg-surface-50 dark:bg-surface-800/50 border border-surface-200 dark:border-surface-700">
-              {producto.descuento > 0 ? (
+              {producto.descuento > 0 && producto.precio > 0 ? (
                 <div className="flex flex-wrap items-end gap-2 sm:gap-3">
                   <span className="text-2xl sm:text-3xl font-bold text-accent-600 dark:text-accent-400">
                     ${producto.descuento.toLocaleString(undefined, { minimumFractionDigits: 2 })}
@@ -134,30 +136,38 @@ const ProductInicioCardModal: React.FC<{
                   <span className="text-base sm:text-lg line-through text-surface-400 mb-0.5">
                     ${producto.precio.toLocaleString(undefined, { minimumFractionDigits: 2 })}
                   </span>
-                  <span className="bg-red-100 dark:bg-red-950/30 text-red-600 dark:text-red-400 text-xs font-bold px-2.5 py-1 rounded-full">
-                    -{Math.round((1 - producto.descuento / producto.precio) * 100)}%
-                  </span>
+                  {producto.precio > 0 ? (
+                    <span className="bg-red-100 dark:bg-red-950/30 text-red-600 dark:text-red-400 text-xs font-bold px-2.5 py-1 rounded-full">
+                      -{Math.round((1 - producto.descuento / producto.precio) * 100)}%
+                    </span>
+                  ) : null}
                 </div>
-              ) : (
+              ) : producto.precio > 0 ? (
                 <span className="text-2xl sm:text-3xl font-bold text-accent-600 dark:text-accent-400">
                   ${producto.precio.toLocaleString(undefined, { minimumFractionDigits: 2 })}
+                </span>
+              ) : (
+                <span className="text-xl sm:text-2xl font-bold text-primary-600 dark:text-primary-400">
+                  Consultar precio
                 </span>
               )}
             </div>
 
-            {/* WhatsApp button */}
+            {/* WhatsApp / email button */}
             <a
-              href={`https://wa.me/+571234567890?text=Hola, estoy interesado en el producto: ${producto.nombre}.%0AEnlace: ${window.location.origin}/producto/${producto.id}`}
-              target="_blank"
-              rel="noopener noreferrer"
+              href={productWhatsAppUrl(producto.nombre, producto.id)}
+              target={SITE.whatsapp ? "_blank" : undefined}
+              rel={SITE.whatsapp ? "noopener noreferrer" : undefined}
               className="inline-flex items-center justify-center gap-2.5 w-full
                          bg-[#25D366] hover:bg-[#20bd5a] text-white
                          font-bold px-6 py-3.5 sm:px-8 sm:py-4 rounded-2xl shadow-lg
                          hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5
                          active:scale-[0.98]"
             >
-              <FaWhatsapp className="w-5 h-5" />
-              <span className="text-sm sm:text-base">Contactar por WhatsApp</span>
+              {SITE.whatsapp ? <FaWhatsapp className="w-5 h-5" /> : <HiOutlineMail className="w-5 h-5" />}
+              <span className="text-sm sm:text-base">
+                {SITE.whatsapp ? "Contactar por WhatsApp" : "Consultar por correo"}
+              </span>
             </a>
           </div>
         </div>

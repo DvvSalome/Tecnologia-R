@@ -6,6 +6,7 @@ import Lottie from "react-lottie";
 import animationData from "../../public/lotties/vacio.json";
 import { useProducts } from "../contexts/ProductsContext";
 import { searchProducts } from "../utils/products";
+import type { Product } from "../types/product";
 
 function useQuery() {
   return new URLSearchParams(useLocation().search);
@@ -14,7 +15,7 @@ function useQuery() {
 const SearchResults: React.FC = () => {
   const query = useQuery();
   const q = query.get("q") || "";
-  const [modalProducto, setModalProducto] = useState<any | null>(null);
+  const [modalProducto, setModalProducto] = useState<Product | null>(null);
   const { products, loading, error } = useProducts();
 
   const results = useMemo(() => searchProducts(products, q), [products, q]);

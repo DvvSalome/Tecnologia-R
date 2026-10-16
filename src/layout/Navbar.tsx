@@ -1,8 +1,8 @@
 import { NavLink, useNavigate, useLocation } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
-import { PRODUCT_TYPES } from "../constants/productTypes";
-import { FiX, FiChevronDown, FiChevronRight, FiMonitor, FiCpu, FiHeadphones, FiCamera, FiMic, FiGrid } from "react-icons/fi";
+import { PRODUCT_TYPES, PRODUCT_TYPE_GROUPS } from "../constants/productTypes";
+import { FiX, FiChevronDown, FiChevronRight, FiMonitor, FiCpu, FiHeadphones, FiCamera, FiMic, FiGrid, FiZap, FiSpeaker, FiLink } from "react-icons/fi";
 import { BsKeyboard, BsMouse2 } from "react-icons/bs";
 
 // Map category IDs to icons
@@ -16,6 +16,16 @@ const categoryIcons: Record<number, React.ReactNode> = {
   7: <FiCpu className="w-4 h-4" />,
   8: <FiCpu className="w-4 h-4" />,
   9: <FiGrid className="w-4 h-4" />,
+  10: <FiLink className="w-4 h-4" />,
+  11: <FiGrid className="w-4 h-4" />,
+  12: <FiZap className="w-4 h-4" />,
+  13: <FiSpeaker className="w-4 h-4" />,
+};
+
+const groupIcons: Record<string, React.ReactNode> = {
+  perifericos: <BsKeyboard className="w-4 h-4" />,
+  componentes: <FiCpu className="w-4 h-4" />,
+  conectividad: <FiLink className="w-4 h-4" />,
 };
 
 /** Sidebar + overlay rendered via portal so it escapes any parent overflow/z-index constraints */
@@ -169,26 +179,14 @@ const Navbar = () => {
     { name: "Nosotros", path: "/nosotros" },
   ];
 
-  const productSections = [
-    {
-      name: "Perifericos",
-      id: "perifericos",
-      icon: <BsKeyboard className="w-4 h-4" />,
-      options: PRODUCT_TYPES.filter((t) => t.id >= 1 && t.id <= 6).map((t) => ({
-        name: t.labelPlural,
-        id: t.id,
-      })),
-    },
-    {
-      name: "Componentes",
-      id: "componentes",
-      icon: <FiCpu className="w-4 h-4" />,
-      options: PRODUCT_TYPES.filter((t) => t.id >= 7 && t.id <= 8).map((t) => ({
-        name: t.labelPlural,
-        id: t.id,
-      })),
-    },
-  ];
+  const productSections = PRODUCT_TYPE_GROUPS.map((group) => ({
+    name: group.name,
+    id: group.id,
+    icon: groupIcons[group.id] || <FiGrid className="w-4 h-4" />,
+    options: PRODUCT_TYPES.filter((t) => (group.typeIds as readonly number[]).includes(t.id)).map(
+      (t) => ({ name: t.labelPlural, id: t.id })
+    ),
+  }));
 
   const menuRef = useRef<HTMLUListElement | null>(null);
   const buttonRef = useRef<HTMLButtonElement | null>(null);

@@ -1,6 +1,8 @@
 import SocialButton from "../components/buttons/SocialButton";
 import { NavLink } from "react-router-dom";
 import { FiMapPin, FiMail, FiArrowUpRight } from "react-icons/fi";
+import { PRODUCT_TYPES } from "../constants/productTypes";
+import { SITE } from "../constants/site";
 
 const Footer = () => {
   const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
@@ -28,10 +30,18 @@ const Footer = () => {
                 Tu tienda de confianza en tecnologia y gaming. Productos de calidad para gamers y entusiastas en Medellin.
               </p>
               <div className="flex gap-3">
-                <SocialButton icon="/images/footer/facebook.svg" link="" />
-                <SocialButton icon="/images/footer/instagram.svg" link="" />
-                <SocialButton icon="/images/footer/twitter.svg" link="" />
-                <SocialButton icon="/images/footer/youtube.svg" link="" />
+                {SITE.social.facebook ? (
+                  <SocialButton icon="/images/footer/facebook.svg" link={SITE.social.facebook} />
+                ) : null}
+                {SITE.social.instagram ? (
+                  <SocialButton icon="/images/footer/instagram.svg" link={SITE.social.instagram} />
+                ) : null}
+                {SITE.social.twitter ? (
+                  <SocialButton icon="/images/footer/twitter.svg" link={SITE.social.twitter} />
+                ) : null}
+                {SITE.social.youtube ? (
+                  <SocialButton icon="/images/footer/youtube.svg" link={SITE.social.youtube} />
+                ) : null}
               </div>
             </div>
 
@@ -41,14 +51,12 @@ const Footer = () => {
                 Productos
               </h3>
               <div className="flex flex-col gap-2.5 sm:gap-3 items-center sm:items-start">
-                {[
-                  { to: "/productos/1", label: "Teclados" },
-                  { to: "/productos/2", label: "Mouses" },
-                  { to: "/productos/3", label: "Monitores" },
-                  { to: "/productos/4", label: "Audifonos" },
-                  { to: "/productos/5", label: "Camaras" },
-                  { to: "/productos/6", label: "Microfonos" },
-                ].map((link) => (
+                {PRODUCT_TYPES.filter((t) =>
+                  [1, 4, 6, 10, 11, 12, 13].includes(t.id)
+                ).map((t) => ({
+                  to: `/productos/${t.slugs[0]}`,
+                  label: t.labelPlural,
+                })).map((link) => (
                   <NavLink
                     key={link.to}
                     to={link.to}
@@ -98,14 +106,17 @@ const Footer = () => {
                 <div className="flex items-start gap-3">
                   <FiMapPin className="w-4 h-4 text-primary-500 mt-0.5 flex-shrink-0" />
                   <p className="text-sm text-surface-500 dark:text-surface-400 leading-relaxed">
-                    Medellin, Antioquia<br />Centro Comercial Carrusel
+                    {SITE.addressShort}
                   </p>
                 </div>
                 <div className="flex items-center gap-3 min-w-0">
                   <FiMail className="w-4 h-4 text-primary-500 flex-shrink-0" />
-                  <p className="text-xs sm:text-sm text-surface-500 dark:text-surface-400 break-all sm:break-normal">
-                    principal.tecnologiar@gmail.com
-                  </p>
+                  <a
+                    href={`mailto:${SITE.email}`}
+                    className="text-xs sm:text-sm text-surface-500 dark:text-surface-400 break-all sm:break-normal hover:text-primary-500"
+                  >
+                    {SITE.email}
+                  </a>
                 </div>
               </div>
             </div>
